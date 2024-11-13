@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import styles from "./SliderSwction.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
