@@ -1,16 +1,19 @@
 import styles from "./Section.module.css";
-import { getTovars } from "../../app/lib/api/getTovars";
 import SectionClient from "./SectionClient";
-  
-export default async function Section({children, sliderComponent }) {  
-  const data = await getTovars();
 
-  return ( 
-    <section className={styles.section}>   
-    <div className={styles.title}>   
-      {children}
-      </div>  
+interface SectionProps {
+  children: React.ReactNode;
+  sliderComponent: React.ReactNode;  // The correct type for sliderComponent
+}
+
+export default function Section({ children, sliderComponent }: SectionProps) {
+  return (
+    <section className={styles.section}>
+      <div className={styles.title}>
+        {children}
+      </div>
       <SectionClient sliderComponent={sliderComponent} />
     </section>
   );
 }
+ 

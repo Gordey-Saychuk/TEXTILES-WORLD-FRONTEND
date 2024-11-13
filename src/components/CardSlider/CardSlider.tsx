@@ -2,12 +2,13 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, FreeMode } from 'swiper/modules';
+import { FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import Card from "../Card/Card";  
 import styles from "./CardSlider.module.css";
+import { Product } from '../Section/SectionProps'; // Import the Product type
 
 interface CardSliderProps { 
   data: Product[];
@@ -24,12 +25,11 @@ export default function CardSlider({ data }: CardSliderProps) {
       modules={[FreeMode]} 
       watchOverflow={true} // Для учета переполнения 
       centeredSlides={false} // Отключить центрирование слайдов
-      
     >
       {data.map((item) => (
         <SwiperSlide key={item.id} className={styles['swiper-slide']}>
           <Card product={item} />
-        </SwiperSlide>
+        </SwiperSlide> 
       ))}
     </Swiper>
   );

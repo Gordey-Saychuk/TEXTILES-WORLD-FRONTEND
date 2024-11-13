@@ -1,4 +1,4 @@
-'use client' 
+'use client';
 
 import styles from "./SliderTwo.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation'; 
 import 'swiper/css/pagination'; 
 import Image from 'next/image';  
- 
+
 export default function SliderTwo() {
   return (
     <Swiper
@@ -25,7 +25,6 @@ export default function SliderTwo() {
         <Image src="/images/9.webp" alt="Slide 2" width={1000} height={500} className={styles.icon} />
       </SwiperSlide> 
     </Swiper>   
-    
   );
 }
  

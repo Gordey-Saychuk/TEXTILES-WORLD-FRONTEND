@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import type { AppProps } from 'next/app'; 
+
 
 import Providers from './GlobalRedux/provider';
 
