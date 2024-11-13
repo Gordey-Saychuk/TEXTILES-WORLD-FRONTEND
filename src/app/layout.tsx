@@ -1,16 +1,31 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import type { AppProps } from 'next/app'; 
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+import Providers from './GlobalRedux/provider';
+
+ 
+// Подключаем шрифты SF Pro Display
+const sfProBold = localFont({
+  src: "./fonts/SFProDisplayBold.otf", 
+  variable: "--font-sf-pro-bold",
+  weight: "700",
+  style: "normal", 
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const sfProMedium = localFont({
+  src: "./fonts/SFProDisplayMedium.otf",
+  variable: "--font-sf-pro-medium", 
+  weight: "500",
+  style: "normal",
+});
+
+const sfProRegular = localFont({
+  src: "./fonts/SFProDisplayRegular.otf",
+  variable: "--font-sf-pro-regular",
+  weight: "400",
+  style: "normal",
 });
 
 export const metadata: Metadata = {
@@ -23,10 +38,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+  return ( 
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body
+        className={`${sfProBold.variable} ${sfProMedium.variable} ${sfProRegular.variable}`}
+      >
+    <Providers>
+      {children} 
+      </Providers>
       </body>
     </html>
   );

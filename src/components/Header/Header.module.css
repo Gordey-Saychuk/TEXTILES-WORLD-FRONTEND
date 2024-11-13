@@ -1,0 +1,40 @@
+.topbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1830px;
+  margin: auto;
+  height: 59px;
+}
+
+.ul{
+  display: flex;
+  gap: 30px;
+  font-size: 16px;
+}
+
+.phoneBlock{
+  display: flex;
+  gap: 30px;
+  font-size: 16px;
+}
+
+.logo{
+  font-size: 30px;
+  font-family: var(--font-sf-pro-bold);  
+  color: var(--prime);
+  min-width: 248px;
+}
+
+.input{
+  width: 40%; 
+  padding: 20px;
+}
+
+.nav{
+  min-width: 459px;
+  margin-right: 20px;
+  margin-left: 20px;
+}

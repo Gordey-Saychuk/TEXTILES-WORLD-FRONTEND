@@ -1,0 +1,91 @@
+.card{
+  height: 420px;
+  width: 300px;
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease; 
+}
+
+.card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.311); 
+}
+
+.photos{
+  padding: 10px;
+}
+
+.photo{
+  height: 250px;
+ 
+}
+
+.price{
+  font-size: 21px;
+  line-height: 28px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.oldPrice{
+  font-size: 17px;
+  line-height: 22px;
+  color: #6d7885;
+  text-decoration: line-through;
+  
+
+}
+
+.title{
+  margin: 0 ;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+.reviews{
+  margin-bottom: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.icons{
+  margin-right: 10px;
+}
+
+.sets{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prices{
+  width: 100%;
+  display: flex;
+ 
+}
+
+.discount{
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+
+.photo {
+  border-radius: 20px 20px 0 0;
+  background-image: url(../../../public/images/images.jfif);
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-size: cover; 
+}
+
+.body{
+  padding: 10px;
+}
