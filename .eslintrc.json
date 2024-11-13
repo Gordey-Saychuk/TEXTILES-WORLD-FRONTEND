@@ -1,3 +1,12 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-unused-vars": "warn", // Предупреждение для неиспользуемых переменных
+    "semi": ["error", "always"], // Ошибка, если не указан символ ; (точка с запятой)
+    "@typescript-eslint/explicit-function-return-type": "off", // Не требовать явное указание типа возвращаемого значения функции
+    "@typescript-eslint/no-explicit-any": "warn", // Предупреждение при использовании типа any
+    "react/react-in-jsx-scope": "off" // Отключить требование импорта React в файлах с JSX
+  }
 }

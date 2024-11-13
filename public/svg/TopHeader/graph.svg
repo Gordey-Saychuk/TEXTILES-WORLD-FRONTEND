@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg enable-background="new 0 0 512 512" height="512px" id="Home_Icon_Drak_Grey" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect height="105" width="41" x="142" y="262" fill="#d29a74"/> <!-- Замените #FF0000 на нужный цвет -->
+    <rect height="155" width="41" x="199" y="212" fill="#d29a74"/>
+    <rect height="155" width="41" x="312" y="212" fill="#d29a74"/>
+    <rect height="245" width="41" x="256" y="122" fill="#d29a74"/>
+  </g>
+</svg>
