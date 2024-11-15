@@ -1,24 +1,26 @@
 'use client';
-
+ 
 import styles from "./SliderSwction.module.css";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react'; 
 import 'swiper/css';
-import 'swiper/css/navigation'; 
+import 'swiper/css/navigation';  
 import 'swiper/css/pagination';
-import Image from 'next/image';
+import Image from 'next/image'; 
 
-export default function SliderSwction() { 
+import { Autoplay } from 'swiper/modules';
+
+export default function SliderSwction() {  
   return (
     <Swiper
+    modules={[Autoplay]}
       className={styles['swiper-container']}
-      spaceBetween={20}
-      slidesPerView={1} 
-      navigation
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      spaceBetween={20}  
+      slidesPerView={1}  
+      
+  
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
       loop
-      modules={[Navigation]}  // Подключаем модуль Navigation
+     
     >
       <SwiperSlide className={styles.slide}>
         <Image src="/images/AXlHyXuW8ZoFSnue-VoNa9B6Xh2fmMjk76uMy7smdYE=.jfif" alt="Slide 1" width={1000} height={700} className={styles.icon} />
