@@ -9,11 +9,15 @@ import SliderTwo from "../components/SliderTwo/SliderTwo";
 import Section from "@/components/Section/Section";
 import Title from "@/components/Title/Title";
 import CardSlider from "@/components/CardSlider/CardSlider";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/Modal/Modal";  
 
-export default function ClientHome({ data, hits, pleds }) {
-  const [active, setActive] = useState(true); 
-  const [anchorRef, setAnchorRef] = useState(null);
+import { ClientHomeProps } from '../components/Section/SectionProps';
+
+export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
+  const [active, setActive] = useState(true);  
+
+  // Явная типизация setAnchorRef
+  const [anchorRef, setAnchorRef] = useState<HTMLElement | null>(null);
 
   return (
     <>
@@ -24,13 +28,13 @@ export default function ClientHome({ data, hits, pleds }) {
           <SliderSwction />
           <SliderTwo />
         </div>
-        <Section sliderComponent={<CardSlider data={data} />}>
+        <Section sliderComponent={<CardSlider data={data} />} >
           <Title>Хиты продаж</Title>
         </Section>
-        <Section sliderComponent={<CardSlider data={hits} />}>
+        <Section sliderComponent={<CardSlider data={hits} />} >
           <Title>Комплекты постельного</Title>
         </Section>
-        <Section sliderComponent={<CardSlider data={pleds} />}>
+        <Section sliderComponent={<CardSlider data={pleds} />} >
           <Title>Пледы</Title>
         </Section>
 
