@@ -40,8 +40,8 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
 
         {/* Модальное окно */}
         <Modal active={active} anchorRef={anchorRef} />
-      </div>
-    </>
+      </div>  
+    </> 
   );
 }  
  
