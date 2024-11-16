@@ -43,5 +43,5 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
       </div>
     </>
   );
-}
+}  
  
