@@ -2,8 +2,14 @@ import { useRef } from "react";
 import styles from "./TopHeader.module.css";
 import Image from "next/image";
 
-export default function TopHeader({ setActive, setAnchorRef }) {
-  const phoneBlockRef = useRef(null);
+// Типы для пропсов компонента
+interface TopHeaderProps { 
+  setActive: (value: boolean) => void;  // Тип для setActive
+  setAnchorRef: (el: HTMLElement | null) => void;  // Тип для setAnchorRef
+}
+
+export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
+  const phoneBlockRef = useRef<HTMLElement | null>(null);  // Типизация useRef
 
   return (
     <div className={styles.topbar}>
@@ -47,4 +53,3 @@ export default function TopHeader({ setActive, setAnchorRef }) {
     </div>
   );
 }
- 

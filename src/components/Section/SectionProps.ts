@@ -33,3 +33,9 @@ export interface Product {
 export interface Products {
   data: Product[];
 }
+
+export interface ClientHomeProps {
+  data: Product[];
+  hits: Product[]; 
+  pleds: Product[]; 
+}
