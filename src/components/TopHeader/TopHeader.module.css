@@ -14,6 +14,10 @@
   margin: auto;
 }
 
+.phoneBlocks{
+  cursor: pointer;
+}
+
 .underPhone{
   color: #a7aeb6;
 }
