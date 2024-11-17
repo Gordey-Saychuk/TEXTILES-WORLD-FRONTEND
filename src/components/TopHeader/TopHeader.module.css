@@ -22,10 +22,16 @@
   color: #a7aeb6;
 }
 
-.phone{
+.phone {
   font-size: 16px;
-  font-family: var(--font-sf-pro-bold);  
+  font-family: var(--font-sf-pro-bold);
+  transition: color 0.3s ease; 
 }
+
+.phone:hover {
+  color: var(--prime);
+}
+
 
 .button{
   background-color: var(--prime);
