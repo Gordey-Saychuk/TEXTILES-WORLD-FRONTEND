@@ -47,13 +47,13 @@ export default function Card({ product }: CardProps) {
   }, [product.id]); 
 
   return (  
-    <div className={styles.card}> 
+    <div className={styles.card}>  
       <div className={styles.photos}> 
         <div
           className={styles.photo}   
           style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_API_BASE_URL}${product.image_url})` }}
         ></div>
-      </div> 
+      </div>  
       <div className={styles.body}>   
         <h3 className={styles.title}>{product.name}</h3>    
         <p className={styles.sets}>{product.sets}</p>       

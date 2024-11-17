@@ -26,6 +26,9 @@
   border: 1px solid #ccc;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .phoneBlocks{
@@ -34,9 +37,15 @@
 
 .underPhone{
   color: #a7aeb6;
+  font-size: 17px;
+}
+
+.social{
+  display: flex;
+  justify-content: space-around;
 }
 
 .phone{
-  font-size: 16px;
+  font-size: 20px;
   font-family: var(--font-sf-pro-bold);  
 }

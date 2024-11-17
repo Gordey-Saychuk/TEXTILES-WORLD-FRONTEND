@@ -27,7 +27,7 @@ export interface Product {
   created_at: string; 
   updated_at: string; 
   category: number;
-  slice: number;
+  slice: number; 
 }
 
 export interface Products {

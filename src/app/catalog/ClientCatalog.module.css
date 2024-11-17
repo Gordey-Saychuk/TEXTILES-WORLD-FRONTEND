@@ -1,0 +1,40 @@
+.page{
+  display: flex;
+  justify-content: space-around;
+  
+  max-width: 1830px;
+  margin: auto;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sections{
+  display: flex;
+  padding: 20px;
+  max-width: 1830px;
+  margin: auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column; /* Вертикальная структура: фильтры + карточки */
+  width: 100%; /* Контейнер занимает всю ширину */
+}
+
+.filtre {
+  margin-bottom: 20px; /* Отступ от фильтров до карточек */
+  width: 200px;
+}
+
+
+.catalogCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 10px; /* Внутренний отступ для красоты */
+  width: 100%;
+}
+
+
+

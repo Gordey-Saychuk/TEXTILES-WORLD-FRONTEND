@@ -12,9 +12,12 @@ import { Product } from '../Section/SectionProps'; // Import the Product type
 
 interface CardSliderProps { 
   data: Product[];
-}
+} 
+
 
 export default function CardSlider({ data }: CardSliderProps) {
+ 
+ 
   return ( 
     <Swiper
       className={styles['swiper-container']}
@@ -29,7 +32,7 @@ export default function CardSlider({ data }: CardSliderProps) {
       {data.map((item) => (
         <SwiperSlide key={item.id} className={styles['swiper-slide']}>
           <Card product={item} />
-        </SwiperSlide> 
+        </SwiperSlide>  
       ))}
     </Swiper>
   );
