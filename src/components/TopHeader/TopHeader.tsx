@@ -32,9 +32,9 @@ export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
             }}
             className={styles.phoneBlocks}
             onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)}
+            onMouseLeave={() => setActive(false)} 
           >
-            <div className={styles.phone}>+7 (993) 950 31 08</div>
+            <a href="tel:+79939503108" className={styles.phone}>+7 (993) 950 31 08</a>
             <div className={styles.underPhone}>Круглосуточно</div>
           </div>
 

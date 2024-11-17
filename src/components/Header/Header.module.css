@@ -26,6 +26,20 @@
   font-family: var(--font-sf-pro-bold);  
   color: var(--prime);
   min-width: 248px;
+  transition: color 0.3s ease;
+}
+
+.logo:hover{
+  color: var(--rude);
+}
+
+.links{
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.links:hover{
+  color: var(--rude);
 }
 
 .input{
