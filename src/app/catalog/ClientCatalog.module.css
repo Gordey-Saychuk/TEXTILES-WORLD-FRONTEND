@@ -36,5 +36,36 @@
   width: 100%;
 }
 
+.pagination{
+  margin: auto;
+  margin-top: 20px;
+}
+
+.pagText{
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.pagButton{
+  color: white;
+  background-color: var(--prime);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagButton:not(:disabled):hover {
+  background-color: var(--rude);
+}
 
 
+.pagButtonDis{
+  background-color: rgba(152, 150, 150, 0.455);
+  cursor: default;
+
+}
+ 

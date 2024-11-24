@@ -19,18 +19,18 @@ export default function Modal({ active, anchorRef,  setActive}: ModalPrors) {
       }}
     >
       <div className={styles.modals}>
-      <div 
+      <div  
           >
-            <div className={styles.phone}>+7 (993) 950 31 08</div>
+            <a href="tel:+79939503108" className={styles.phone}>+7 (993) 950 31 08</a>
             <div className={styles.underPhone}>Круглосуточно</div>
           </div> 
-          <div className={styles.social}>   
-            <div>
+          <div className={styles.social}>    
+            <div className={styles.socialTg}>
             <Image src="/svg/Header/Telegram.webp" alt="Звезда" width={25} height={25} className={styles.icons} />
-              TG</div>    
-            <div>  
+            Telegram</div>     
+            <div className={styles.socialTg}>   
             <Image src="/svg/Header/WhatsApp.webp" alt="Звезда" width={25} height={25} className={styles.icons} />
-              WA</div>
+            Whatsapp</div> 
           </div> 
       </div>
     </div>

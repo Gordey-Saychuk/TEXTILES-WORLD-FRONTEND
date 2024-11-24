@@ -48,4 +48,20 @@
 .phone{
   font-size: 20px;
   font-family: var(--font-sf-pro-bold);  
+  transition: color 0.3s ease; 
+  cursor: pointer;
+}
+
+.phone:hover {
+  color: var(--prime);
+}
+
+.socialTg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-family: var(--font-sf-pro-bold);  
+  cursor: pointer;
 }
