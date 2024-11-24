@@ -12,8 +12,8 @@ export default function Header() {
       </Link>   
    
       <div className={styles.input}>   
-        <Input placeholder='Поиск по каталогу'></Input>    
-      </div>
+        <Input search={true} placeholder='Поиск по каталогу'></Input>    
+      </div> 
  
       <div className={styles.nav}>  
         <ul className={styles.ul}> 
@@ -23,8 +23,9 @@ export default function Header() {
           <li className={styles.links}>Распродажа</li>  
         </ul>
       </div>  
-      <div className={styles.phoneBlock}>
-        <Image src="/svg/TopHeader/6593795.png" alt="Поиск"  width={20} height={20} className={styles.icon} />
+      <div className={styles.phoneBlock}>  
+      <Link   href='/auth'><Image src="/svg/TopHeader/6593795.png" alt="Поиск"  width={20} height={20} className={styles.icon} /></Link> 
+        
         <Image src="/svg/TopHeader/cart.svg" alt="Поиск"  width={20} height={20} className={styles.icon} />
         
       </div>  

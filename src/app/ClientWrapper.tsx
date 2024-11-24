@@ -10,7 +10,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const [anchorRef, setAnchorRef] = useState<HTMLElement | null>(null); // Ссылка на элемент
 
   return (
-    <> 
+    <>  
       <TopHeader setActive={setActive} setAnchorRef={setAnchorRef} />
       <Header />
       {children}

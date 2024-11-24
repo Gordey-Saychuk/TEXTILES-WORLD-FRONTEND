@@ -10,7 +10,7 @@ interface TopHeaderProps {
 
 export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
   const phoneBlockRef = useRef<HTMLElement | null>(null);  // Типизация useRef
-
+ 
   return (
     <div className={styles.topbar}>
       <div className={styles.topbars}>

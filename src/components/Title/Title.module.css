@@ -7,6 +7,14 @@
   display: inline-block;
 }
 
+.titles {  
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.26;
+  position: relative;
+  display: inline-block;
+}
+
 .title::after {
   content: " >"; 
   color: inherit;

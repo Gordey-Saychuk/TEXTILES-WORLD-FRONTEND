@@ -5,7 +5,7 @@ export async function getTovars() {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`);
     return response.data.results; 
   } catch (error) { 
-    console.error(error);  
+    console.error(error);   
     throw new Error('Failed to fetch tovars');
   }  
 } 

@@ -66,6 +66,7 @@ export default function Card({ product }: CardProps) {
           {product.old_price && <span className={styles.oldPrice}>{product.old_price} ₽</span>}
           {product.old_price && <span className={styles.discount}> -{discount}%</span>}
         </div>  
+        <button className={styles.button}>Добавить в корзину</button>   
       </div> 
     </div>  
   ); 

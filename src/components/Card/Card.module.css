@@ -1,5 +1,5 @@
 .card{
-  height: 420px;
+  height: 470px;
   width: 300px;
   border-radius: 20px;
   transition: box-shadow 0.3s ease; 
@@ -76,6 +76,25 @@
   display: flex;
   align-items: center;
 }
+
+.button {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 15px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 10px;
+  border: solid 2px black;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Объединено в одно свойство */
+}
+
+.button:hover {
+  background-color: var(--prime);
+  border: solid 2px white;
+  color: white;
+}
+
 
 
 .photo {

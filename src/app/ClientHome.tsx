@@ -1,6 +1,6 @@
 "use client";
-
-import { useState } from "react";
+ 
+import {  useState } from "react";
 import styles from "./page.module.css";
 import SliderSwction from "../components/SliderSwction/SliderSwction";
 import SliderTwo from "../components/SliderTwo/SliderTwo";
@@ -14,22 +14,25 @@ import { ClientHomeProps } from '../components/Section/SectionProps';
 export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
   const [active, setActive] = useState(false);
   const [anchorRef] = useState<HTMLElement | null>(null);
+ 
 
+  
+ 
   return (
-    <div className={styles.page}>
+    <div className={styles.page}> 
       <div className={styles.slider}>
         <SliderSwction />
         <SliderTwo />
       </div>
       <Section sliderComponent={<CardSlider data={data} />} > 
-        <Title>Хиты продаж</Title>
-      </Section>
-      <Section sliderComponent={<CardSlider data={hits} />} >
-        <Title>Комплекты постельного</Title>
+        <Title link={true}>Хиты продаж</Title>
+      </Section> 
+      <Section sliderComponent={<CardSlider data={hits} />} > 
+        <Title link={true}>Комплекты постельного</Title>
       </Section>
       <Section sliderComponent={<CardSlider data={pleds} />} >
-        <Title>Пледы</Title>
-      </Section>
+        <Title link={true}>Пледы</Title>
+      </Section> 
 
       {/* Модальное окно */}
       <Modal setActive={setActive} active={active} anchorRef={anchorRef} />
