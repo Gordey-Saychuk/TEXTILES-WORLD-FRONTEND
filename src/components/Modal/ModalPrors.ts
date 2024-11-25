@@ -1,6 +1,6 @@
 export interface ModalPrors {
   active: boolean;
   anchorRef?: HTMLElement | null;
-  setActive: (value: boolean) => void;
+  setActive: (_: boolean) => void; // Параметр явно обозначен как неиспользуемый
 }
-  
+ 
