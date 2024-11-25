@@ -9,6 +9,10 @@
   height: 59px;
 }
 
+.inputs{
+  display: none;
+}
+
 .ul{
   display: flex;
   gap: 30px;
@@ -51,4 +55,58 @@
   min-width: 459px;
   margin-right: 20px;
   margin-left: 20px;
+}
+
+@media (max-width: 1100px) {
+  .topbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 29px;
+  }
+
+  .logo {
+    font-size: 24px; /* уменьшение размера логотипа */
+    text-align: center;
+    min-width: auto; /* убираем ограничение по ширине */
+    order: 2; /* позиционируем логотип по центру */
+    flex-grow: 1; /* логотип займет доступное пространство */
+  }
+
+  .inputs {
+    display: block;
+   
+    width: 60px; /* убираем фиксированную ширину */
+    padding: 0;
+    order: 1; /* иконка поиска будет слева */
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .input{
+    display: none;
+  }
+ 
+  .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .phoneBlock {
+    order: 3; /* иконки входа и корзины справа */
+    gap: 20px;
+    
+    margin: auto;
+    height: 20px;
+  }
+
+  .nav {
+    display: none; /* скрываем навигацию для мобильных */
+  }
+
+  .ul {
+    display: none; /* скрываем список навигации на мобильных */
+  }
 }

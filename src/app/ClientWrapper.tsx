@@ -4,6 +4,8 @@ import { useState } from "react";
 import TopHeader from "../components/TopHeader/TopHeader";
 import Header from "../components/Header/Header";
 import Modal from "@/components/Modal/Modal";
+import { BottomBar } from "@/components/BottomBar/BottomBar";
+ 
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [active, setActive] = useState(false); // Для модального окна
@@ -13,7 +15,8 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
     <>  
       <TopHeader setActive={setActive} setAnchorRef={setAnchorRef} />
       <Header />
-      {children}
+      {children} 
+      <BottomBar />
       <Modal setActive={setActive} active={active} anchorRef={anchorRef} />
     </>
   );
