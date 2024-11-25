@@ -9,8 +9,8 @@ interface TopHeaderProps {
 }
 
 export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
-  const phoneBlockRef = useRef<HTMLElement | null>(null);  // Типизация useRef
- 
+  const phoneBlockRef = useRef<HTMLElement | null>(null);
+
   return (
     <div className={styles.topbar}>
       <div className={styles.topbars}>
@@ -24,15 +24,15 @@ export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
           </ul>
         </div>
 
-        <div className={styles.phoneBlock}>
+        <div className={styles.phoneBlock}> 
           <div
             ref={(el) => {
               phoneBlockRef.current = el;
-              setAnchorRef(el);
+              setAnchorRef(el); // el используется, так что ошибки тут нет.
             }}
             className={styles.phoneBlocks}
             onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)} 
+            onMouseLeave={() => setActive(false)}
           >
             <a href="tel:+79939503108" className={styles.phone}>+7 (993) 950 31 08</a>
             <div className={styles.underPhone}>Круглосуточно</div>
@@ -53,3 +53,4 @@ export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
     </div>
   );
 }
+ 

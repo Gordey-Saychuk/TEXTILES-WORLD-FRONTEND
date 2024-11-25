@@ -6,7 +6,7 @@ export async function getTovars() {
     return response.data.results; 
   } catch (error) { 
     console.error(error);   
-    throw new Error('Failed to fetch tovars');
+   
   }  
 } 
  
@@ -28,7 +28,7 @@ export async function getHits() {
     return response.data.results; 
   } catch (error) { 
     console.error(error);  
-    throw new Error('Failed to fetch tovars');
+    
   }
 }
 
@@ -39,6 +39,6 @@ export async function getPleds() {
     return response.data.results; 
   } catch (error) {
     console.error(error);  
-    throw new Error('Failed to fetch tovars');
+ 
   }
 }
