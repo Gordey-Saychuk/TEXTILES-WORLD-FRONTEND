@@ -6,16 +6,19 @@ import { useRouter } from 'next/navigation';
 import Title from '@/components/Title/Title';
 import Button from '@/components/Button/Button';
 import Input from '@/components/Input/Input';
-
+import { useDispatch } from 'react-redux'; // Импорт диспетчера Redux
+import { login } from '@/app/GlobalRedux/authSlice'; // Импорт экшена login
+ 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const dispatch = useDispatch(); // Инициализация диспетчера Redux
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}login`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,10 +27,19 @@ export default function Login() {
       body: JSON.stringify({ email, password }),
     });
 
-    // Если запрос успешен, редиректим на страницу профиля
-    router.push('/profile');
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.jwt); // Сохраняем токен в localStorage
+      console.log('Перед вызовом dispatch:', data.jwt);
+      dispatch(login({ token: data.jwt })); 
+      console.log('После вызова dispatch'); 
+      
+      router.push('/profile'); // Переход на страницу профиля
+    } else {
+      console.error('Ошибка при авторизации');
+    }
   };
-
+ 
   return (
     <div className={styles.body}>
       <div className={styles.bodyForm}>
@@ -49,9 +61,6 @@ export default function Login() {
           />
           <Button submit={true}>ОТПРАВИТЬ</Button>
         </form>
-      </div>
-      <div className={styles.bodyForm}>
-        <Title>Войти</Title>
       </div>
     </div>
   );

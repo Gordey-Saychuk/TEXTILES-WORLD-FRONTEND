@@ -1,41 +1,17 @@
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  video_url: string;
-  image_url: string;
-  image_url1?: string; 
-  image_url2?: string;
-  image_url3?: string;
-  image_url4?: string;
-  image_url5?: string;
-  image_url6?: string;
-  image_url7?: string;
-  image_url8?: string;
-  image_url9?: string;
-  image_url10?: string;
-  price: string; 
-  old_price: string | null; 
-  available: boolean;
-  sets: string; 
-  material: string;
-  consist: string;
-  manufacture: string;
-  brand: string;
-  color: string;
-  url: string;
-  created_at: string; 
-  updated_at: string; 
-  category: number;
-  slice: number; 
-}
+import { Product } from '@/types/index';
+import { ReactNode } from "react";
 
-export interface Products {
-  data: Product[];
-}
-
-export interface ClientHomeProps {
-  data: Product[];
+export interface ClientHomeProps { 
+  data: Product[]; 
   hits: Product[]; 
   pleds: Product[]; 
+}
+
+export interface SectionClientProps {
+  sliderComponent: ReactNode; 
+}
+
+export interface SectionProps {
+  children: React.ReactNode;
+  sliderComponent: React.ReactNode;  
 }

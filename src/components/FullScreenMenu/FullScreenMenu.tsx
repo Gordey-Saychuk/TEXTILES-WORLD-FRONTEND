@@ -3,11 +3,8 @@
 import React, { useState } from 'react';
 import styles from './FullScreenMenu.module.css'; // Убедитесь, что стили подключены правильно
 import { Link } from 'react-alice-carousel';
+import { FullScreenMenuProps } from "./FullScreenMenuProps";
 
-interface FullScreenMenuProps {
-  isOpen: boolean;
-  onClose: () => void;  
-}
 
 const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState<'shades' | 'bedding'>('shades');
@@ -16,7 +13,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen }) => {
 
   return (
     <div className={styles.fullScreenMenu}>
-      <div className={styles.switcher}>
+      <div className={styles.switcher}> 
         <button
           className={`${styles.switchButton} ${selectedCategory === 'shades' ? styles.active : ''}`}
           onClick={() => setSelectedCategory('shades')}

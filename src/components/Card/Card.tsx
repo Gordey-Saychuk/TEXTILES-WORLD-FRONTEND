@@ -1,29 +1,25 @@
 "use client"; 
 import React, { useEffect, useState } from 'react';
-import styles from "./Card.module.css"; 
-import { Product } from '../Section/SectionProps';
+import styles from "./Card.module.css";  
+import { Product, Review } from '@/types/index'; 
 import Image from 'next/image';  
 import { getReviewsByProductId } from "../../app/lib/api/getReviewsByProductId";
-
-interface Review {
-  id: number; 
-  rating: number;
-  comment: string;
-  name: string;  // Имя автора отзыва
-  is_verified: boolean;  // Проверен ли отзыв
-  created_at: string;  // Дата создания отзыва
-  image_url: string | null;  // URL изображения отзыва
-  product: number;  // ID продукта
-} 
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '@/app/GlobalRedux/cartSlice';
+ 
+ 
 
 interface CardProps { 
-  product: Product;  
+  product: Product;   
 }
 
 export default function Card({ product }: CardProps) { 
   const [discount, setDiscount] = useState<number | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);  // Типизация для reviews
-
+  const dispatch = useDispatch()
+  const {itemsCart} = useSelector((state) => state.cart);  
+  
+ 
   function calculateDiscount(product: Product) {  
     const discountValue = ((Number(product.old_price) - Number(product.price)) / Number(product.old_price)) * 100;
     console.log(discountValue); 
@@ -46,8 +42,22 @@ export default function Card({ product }: CardProps) {
     fetchReviews(); 
   }, [product.id]); 
 
-  return (  
-    <div className={styles.card}>  
+  function itemsCarts() {
+    const item = {
+      id: product.id,  
+      name: product.name,
+      price: product.price,
+      image_url: product.image_url,
+      old_price: product.old_price 
+    }
+
+    dispatch(addItem(item)) 
+  }
+ 
+  return (    
+    <div className={styles.card}>   
+    
+    
       <div className={styles.photos}> 
         <div
           className={styles.photo}   
@@ -65,8 +75,8 @@ export default function Card({ product }: CardProps) {
           <span className={styles.price}>{product.price} ₽</span> 
           {product.old_price && <span className={styles.oldPrice}>{product.old_price} ₽</span>}
           {product.old_price && <span className={styles.discount}> -{discount}%</span>}
-        </div>  
-        <button className={styles.button}>Добавить в корзину</button>   
+        </div>   
+        <button onClick={itemsCarts} className={styles.button}>Добавить в корзину</button>   
       </div> 
     </div>  
   ); 

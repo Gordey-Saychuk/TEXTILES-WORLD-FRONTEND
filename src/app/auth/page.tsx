@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; // Импорт для редиректа
 import styles from './auth.module.css'; 
 import Title from '@/components/Title/Title';
 import Button from '@/components/Button/Button';
-import Input from '@/components/Input/Input'; 
+import Input from '@/components/Input/Input';  
  
  
 export default function Auth() {
@@ -14,6 +14,13 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter(); 
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      router.push('/profile'); // Перенаправление, если пользователь уже авторизован
+    }
+  }, [router]); 
+
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();  
