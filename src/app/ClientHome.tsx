@@ -7,7 +7,7 @@ import SliderTwo from "../components/SliderTwo/SliderTwo";
 import Section from "@/components/Section/Section";
 import Title from "@/components/Title/Title";
 import CardSlider from "@/components/CardSlider/CardSlider";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/Modal/Modal"; 
 
 import { ClientHomeProps } from '../components/Section/SectionProps';
 
@@ -22,7 +22,8 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
     <div className={styles.page}> 
       <div className={styles.slider}>
         <SliderSwction />
-        <SliderTwo />
+        <SliderTwo /> 
+    
       </div>
       <Section sliderComponent={<CardSlider data={data} />} > 
         <Title link={true}>Хиты продаж</Title>
@@ -33,6 +34,8 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
       <Section sliderComponent={<CardSlider data={pleds} />} >
         <Title link={true}>Пледы</Title>
       </Section> 
+
+  
 
       {/* Модальное окно */}
       <Modal setActive={setActive} active={active} anchorRef={anchorRef} />

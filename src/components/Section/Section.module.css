@@ -13,7 +13,8 @@
 
 .title {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
+
   width: 100%;
   max-width: 1830px;
   padding: 0 20px;

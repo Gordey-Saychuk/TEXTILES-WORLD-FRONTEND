@@ -1,19 +1,32 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Profile() {
   const [name, setName] = useState('');
 
+  const token = useSelector((state) => state.auth.token);
+ 
+  console.log('Полученный токен в Profile:', token);
+
+
   useEffect(() => {
     const fetchUserData = async () => { 
-      try {
+      const token = localStorage.getItem('token'); // Получаем токен из localStorage
+
+      if (!token) {
+        console.error('Пользователь не авторизован');
+        return;
+      }
+      try { 
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}user`, 
           {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/json', 
+               "Authorization": `Bearer ${token}`,
             },
             credentials: 'include', // Обязательно для передачи кук
           }
@@ -42,4 +55,4 @@ export default function Profile() {
     </div> 
   );
 }
- 
+    

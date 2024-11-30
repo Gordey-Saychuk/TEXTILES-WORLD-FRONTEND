@@ -1,17 +1,31 @@
   'use client';
-
+  import { useState } from "react";
   import styles from "./ClientCatalog.module.css";
   import SliderCatalog from "../../components/SliderCatalog/SliderCatalog";
   import Card from "../../components/Card/Card";
-  import { Product } from "../../components/Section/SectionProps";
+  import Category from "@/components/Category/Category";
+  import { useRouter } from "next/navigation";  
+  import { ClientCatalogProps } from "./ClientCatalogProps";
+ 
+ 
+  export default function ClientCatalog({ initialData, totalPages, currentPage,  }: ClientCatalogProps) {
+   
+    const [categoryId, setCategoryId] = useState();  
+    const router = useRouter(); 
 
-  interface ClientCatalogProps {
-    initialData: Product[]; // Данные текущей страницы
-    totalPages: number; // Общее количество страниц
-    currentPage: number; // Текущая страница
-  }
+    console.log(categoryId); 
 
-  export default function ClientCatalog({ initialData, totalPages, currentPage }: ClientCatalogProps) {
+ 
+    const handleCategoryChange = (id: number | undefined) => {
+      setCategoryId(id);
+  
+      // Если категория не выбрана, не передаем параметр categoryId в URL
+      const url = id ? `/catalog?page=${currentPage}&categoryId=${id}` : `/catalog?page=${currentPage}`;
+      router.push(url); // Обновляем URL с помощью router.push
+    };
+   
+     
+ 
     // Переход на предыдущую страницу
     const handlePrevPage = () => {
       if (currentPage > 1) {
@@ -36,7 +50,16 @@
         <section className={styles.sections}>
           <div className={styles.filtre}>Фильтры</div>
           <div className={styles.section}>
-            <div className={styles.sort}>Сортировка по</div>
+            <div className={styles.sort}>
+              
+              <div> 
+
+                <Category changeCategory={(id: number) => handleCategoryChange(id) } /> 
+              </div>
+              Сортировка по
+ 
+              
+            </div>
             <div className={styles.catalogCard}>
               {initialData.map((item) => (
                 <Card key={item.id} product={item} />
@@ -58,7 +81,7 @@
             
             >
               Вперед
-            </button>
+            </button> 
           </div>  
           </div>
       

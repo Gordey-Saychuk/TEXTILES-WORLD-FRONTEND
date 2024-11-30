@@ -8,9 +8,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import Card from "../Card/Card";  
 import styles from "./CardSlider.module.css";
-import { Product } from '../Section/SectionProps'; // Import the Product type
+import { Product } from '@/types/index';
 
-interface CardSliderProps { 
+
+interface CardSliderProps {  
   data: Product[];
 } 
 

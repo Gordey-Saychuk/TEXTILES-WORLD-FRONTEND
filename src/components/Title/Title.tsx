@@ -1,10 +1,5 @@
-import React, { ReactNode } from "react"; // Import ReactNode
 import styles from "./Title.module.css";
-
-interface TitleProps {
-  children: ReactNode;  
-  link?: boolean; 
-}
+import { TitleProps } from "./TitleProps"; 
 
 export default function Title({ children, link }: TitleProps) {
   return (
