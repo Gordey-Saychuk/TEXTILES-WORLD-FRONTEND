@@ -28,7 +28,7 @@ export default function Checkout() {
       const newSessionId = generateUniqueSessionId();
       localStorage.setItem('session_id', newSessionId);
       console.log('Session ID создан:', newSessionId);  
-    }
+    } 
   }, []); 
 
   async function getUser(token) {
@@ -68,8 +68,8 @@ export default function Checkout() {
 
     let userId = null;
   if (isAuthenticated && token) {
-    const userData = await getUser(token); // Дожидаемся получения данных пользователя
-    userId = userData?.id; // Получаем id пользователя
+    const userData = await getUser(token); 
+    userId = userData?.id; 
   }
 
   
