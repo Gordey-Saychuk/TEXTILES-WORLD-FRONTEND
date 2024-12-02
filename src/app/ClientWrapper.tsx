@@ -7,6 +7,7 @@ import Modal from "@/components/Modal/Modal";
 import { BottomBar } from "@/components/BottomBar/BottomBar";
 import { useDispatch } from "react-redux";
 import { setInitialCartData } from "./GlobalRedux/cartSlice";
+import Footer from "@/components/Footer/Footer";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [active, setActive] = useState(false);
@@ -43,6 +44,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
       <TopHeader setActive={setActive} setAnchorRef={setAnchorRef} />
       <Header />
       {children}
+      <Footer /> 
       <BottomBar />
       <Modal setActive={setActive} active={active} anchorRef={anchorRef} />
     </>

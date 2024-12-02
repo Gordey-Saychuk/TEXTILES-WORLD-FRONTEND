@@ -10,6 +10,9 @@ import CardSlider from "@/components/CardSlider/CardSlider";
 import Modal from "@/components/Modal/Modal"; 
 
 import { ClientHomeProps } from '../components/Section/SectionProps';
+import Blocks from "@/components/Blocks/Blocks";
+import CallBackForm from "@/components/CallBackForm/CallBackForm";
+import SEOBlock from "@/components/SEOBlock/SEOBlock";
 
 export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
   const [active, setActive] = useState(false);
@@ -34,8 +37,9 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
       <Section sliderComponent={<CardSlider data={pleds} />} >
         <Title link={true}>Пледы</Title>
       </Section> 
-
-  
+      <Blocks /> 
+      <CallBackForm /> 
+      <SEOBlock /> 
 
       {/* Модальное окно */}
       <Modal setActive={setActive} active={active} anchorRef={anchorRef} />

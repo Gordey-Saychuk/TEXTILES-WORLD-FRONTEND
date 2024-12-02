@@ -40,7 +40,7 @@ export default function Checkout() {
         },
         withCredentials: true,
       });
-      console.log('Данные пользователя:', response.data); // Логируем данные пользователя
+      console.log('Данные пользователя:', response.data);
       return response.data;
     } catch (error) {
       console.error('Ошибка получения данных пользователя:', error);
@@ -51,8 +51,8 @@ export default function Checkout() {
     if (isAuthenticated && token) { 
       getUser(token).then((userData) => {
         console.log('Пользователь:', userData);
-        setName(userData?.name || ''); // Устанавливаем имя, если доступно
-        setEmail(userData?.email || ''); // Устанавливаем имя, если доступно
+        setName(userData?.name || ''); 
+        setEmail(userData?.email || ''); 
       });
     } else {
       console.log('Пользователь не авторизован');
@@ -67,12 +67,14 @@ export default function Checkout() {
     }
 
     let userId = null;
-  if (isAuthenticated && token) {
-    const userData = await getUser(token); 
-    userId = userData?.id; 
-  }
+    let sessionId = localStorage.getItem('session_id'); // Берем session_id для гостя
 
-  
+    if (isAuthenticated && token) {
+      const userData = await getUser(token); 
+      userId = userData?.id; 
+      sessionId = null; // Если пользователь авторизован, session_id не нужно
+    }
+
     const orderData = {
       name,
       address, 
@@ -80,7 +82,8 @@ export default function Checkout() {
       email,
       products: itemsCart,
       total_price: String(totalPrice),
-      user: isAuthenticated ? userId : null, 
+      session_id: sessionId, // Добавляем session_id
+      user_id: userId, // Добавляем user_id, если есть
     };
     
     console.log('Отправка данных на сервер:', orderData); 
@@ -138,5 +141,5 @@ export default function Checkout() {
       <Button onClick={handleCheckout}>Оформить заказ</Button>
     </div>
   );
-}
+} 
  
