@@ -2,7 +2,7 @@ export interface Product {
   id: number;
   name: string;
   description: string;
-  video_url: string;
+  video_url: string | null;
   image_url: string;
   image_url1?: string; 
   image_url2?: string;
@@ -14,8 +14,8 @@ export interface Product {
   image_url8?: string;
   image_url9?: string;
   image_url10?: string;
-  price: string; 
-  old_price: string | null; 
+  price: number; 
+  old_price: number | null;
   available: boolean;
   sets: string; 
   material: string;
@@ -32,4 +32,4 @@ export interface Product {
 
 export interface Products {
   data: Product[];
-}
+} 

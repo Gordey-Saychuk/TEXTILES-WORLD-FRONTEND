@@ -6,16 +6,18 @@ import Button from '@/components/Button/Button';
 import Input from '@/components/Input/Input';  
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { RootState } from '@/app/GlobalRedux/store';
 
 export default function Checkout() { 
-  const { itemsCart, totalPrice } = useSelector((state) => state.cart);
-  const { isAuthenticated, token } = useSelector((state) => state.auth);
+  const { itemsCart, totalPrice } = useSelector((state: RootState) => state.cart);
+  const { isAuthenticated, token } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
-
+ 
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [isClient, setIsClient] = useState(false); // State to check if it's client-side
 
   // Генерация безопасного уникального ID сессии
   function generateUniqueSessionId() {
@@ -23,15 +25,21 @@ export default function Checkout() {
   }
 
   useEffect(() => {
-    // Если session_id еще не существует, создаем новый
-    if (!localStorage.getItem('session_id')) {
-      const newSessionId = generateUniqueSessionId();
-      localStorage.setItem('session_id', newSessionId);
-      console.log('Session ID создан:', newSessionId);  
-    } 
-  }, []); 
+    setIsClient(true); // Set the state to true after mounting on the client
+  }, []);
 
-  async function getUser(token) {
+  useEffect(() => {
+    // Только на клиенте
+    if (isClient) {
+      if (!localStorage.getItem('session_id')) {
+        const newSessionId = generateUniqueSessionId();
+        localStorage.setItem('session_id', newSessionId);
+        console.log('Session ID создан:', newSessionId);  
+      }
+    }
+  }, [isClient]); 
+
+  async function getUser(token: string | null) { 
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}user`, {
         headers: {
@@ -67,12 +75,14 @@ export default function Checkout() {
     }
 
     let userId = null;
-    let sessionId = localStorage.getItem('session_id'); // Берем session_id для гостя
+    let sessionId = null;
 
     if (isAuthenticated && token) {
       const userData = await getUser(token); 
-      userId = userData?.id; 
-      sessionId = null; // Если пользователь авторизован, session_id не нужно
+      userId = userData?.id;
+    } else if (isClient) {
+      // Получаем session_id, если пользователь не авторизован
+      sessionId = localStorage.getItem('session_id');
     }
 
     const orderData = {

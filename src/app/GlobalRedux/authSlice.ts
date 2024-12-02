@@ -1,16 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+// Типизация для состояния
+interface AuthState {
+  token: string | null;
+  isAuthenticated: boolean;
+}
+
+export const loadAuthData = createAsyncThunk('auth/loadAuthData', async () => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    return token ? { token, isAuthenticated: true } : { token: null, isAuthenticated: false };
+  }
+  return { token: null, isAuthenticated: false };
+});
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    token: typeof window !== 'undefined' ? localStorage.getItem('token') : null, // Извлекаем токен из localStorage при загрузке
-    isAuthenticated: localStorage.getItem('token') !== null, // Проверяем, есть ли токен в localStorage
-  },
+    token: null,
+    isAuthenticated: false,
+  } as AuthState, // Явно указываем тип состояния
   reducers: {
     login(state, action) {
       state.token = action.payload.token;
       state.isAuthenticated = true;
-      // Сохраняем токен в localStorage
       if (typeof window !== 'undefined') {
         localStorage.setItem('token', action.payload.token);
       }
@@ -18,14 +31,20 @@ const authSlice = createSlice({
     logout(state) {
       state.token = null;
       state.isAuthenticated = false;
-      // Удаляем токен из localStorage
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token');
       }
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(loadAuthData.fulfilled, (state, action) => {
+      state.token = action.payload.token;
+      state.isAuthenticated = action.payload.isAuthenticated;
+    });
+  },
 });
- 
+
 export const { login, logout } = authSlice.actions;
+
 export default authSlice.reducer;
  

@@ -12,19 +12,15 @@ import Button from '../Button/Button';
 export default function CallBackForm() { 
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleChange = (event) => {
-    // Remove spaces from the input value
-    const value = event.target.value.replace(/\s+/g, '');
-    setPhoneNumber(value);
-  };
+  
 
-  const validatePhoneNumber = (number) => {
+  const validatePhoneNumber = (number: string) => {
     // Simple validation for a 11-digit phone number with +7 prefix
     const phoneNumberPattern = /^\+7\d{10}$/;
-    return phoneNumberPattern.test(number);
+    return phoneNumberPattern.test(number); 
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     // Check if phone number is valid
@@ -84,7 +80,8 @@ export default function CallBackForm() {
         </p>  
         
         <div onClick={handleSubmit} >   
-        <Button  type="submit" >Перезвоните мне</Button> 
+        <Button submit={true}>Перезвоните мне</Button>
+ 
         </div>
       </form> 
 

@@ -4,8 +4,8 @@ import styles from "./Card.module.css";
 import { Product, Review } from '@/types/index'; 
 import Image from 'next/image';  
 import { getReviewsByProductId } from "../../app/lib/api/getReviewsByProductId";
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '@/app/GlobalRedux/cartSlice';
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/app/GlobalRedux/cartSlice'; 
  
  
  
@@ -17,7 +17,7 @@ export default function Card({ product }: CardProps) {
   const [discount, setDiscount] = useState<number | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);  // Типизация для reviews
   const dispatch = useDispatch();
-  const {itemsCart} = useSelector((state) => state.cart);  
+ 
   
  
   function calculateDiscount(product: Product) {  

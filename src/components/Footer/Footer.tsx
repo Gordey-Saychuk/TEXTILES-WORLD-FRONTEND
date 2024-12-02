@@ -1,5 +1,5 @@
-'use client'; 
- 
+'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css'; // Import CSS module  
@@ -11,17 +11,16 @@ import { ToastContainer } from 'react-toastify';
 import Button from '../Button/Button';
 
 const Footer = () => {
-  const [email, setEmail] = useState(''); 
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     // Basic email validation regex
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
-
-  const handleSubmit = async (e) => {
+  // Specify the type for the parameter 'e'
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!email) {
@@ -34,8 +33,6 @@ const Footer = () => {
       return;
     }
 
-    setLoading(true);
-    
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
@@ -52,12 +49,10 @@ const Footer = () => {
         toast.error('Что-то пошло не так. Попробуйте еще раз.');
       }
     } catch (error) {
+      console.error('Ошибка сети:', error); 
       toast.error('Ошибка сети. Попробуйте еще раз.');
-    } finally {
-      setLoading(false);
     }
   };
-
 
   return (
     <>
@@ -75,9 +70,7 @@ const Footer = () => {
               required 
               aria-label="Email Address" 
             />
-            <div onClick={handleSubmit} > 
-            <Button  disabled={loading}>Подписаться</Button>     
-            </div>
+            <Button >Подписаться</Button>      
           </form>
         </div>
 
@@ -90,7 +83,6 @@ const Footer = () => {
             <li><Link href="/catalog/pledy">Пледы</Link></li>  
             <li><Link href="/catalog/prostynya">Простыня</Link></li> 
             <li><Link href="/catalog/tyul">Тюль</Link></li>   
-        
           </ul> 
         </nav>
 
@@ -119,7 +111,7 @@ const Footer = () => {
             <a href="tel:+79939503108">+7 993 950 31 08</a>
           </p> 
         </address> 
- 
+   
         <div className={styles.footerBottom}> 
           <p>© TextilesWorld 2012 - 2024</p>
           <p><Link href="/politika_konfedencialnosti">Политика конфиденциальности</Link></p>
@@ -131,3 +123,4 @@ const Footer = () => {
 };
 
 export default Footer;
+ 

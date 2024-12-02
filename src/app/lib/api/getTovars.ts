@@ -9,7 +9,7 @@ export async function getTovars() {
    
   }    
 } 
- 
+  
 export async function getTovarsCatalog(
   page = 1,
   pageSize = 3,
@@ -27,7 +27,7 @@ export async function getTovarsCatalog(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/products`,
       {
         params,
-      }
+      } 
     );
     return response.data; // Возвращаем весь объект, включая результаты и метаданные
   } catch (error) {
@@ -43,7 +43,7 @@ export async function getHits() {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products/category/1`);
     return response.data.results; 
   } catch (error) { 
-    console.error(error);  
+    console.error(error);   
     
   }
 }

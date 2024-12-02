@@ -2,22 +2,42 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import styles from './tracking.module.css'; 
+import styles from './tracking.module.css';
 
-export default function Page() { 
-  const [orders, setOrders] = useState([]);
+interface Order {
+  id: number;
+  total_price: number;
+  name: string;
+  address: string;
+  payment_status: string;
+  order_status: string;
+  products: {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+  }[];
+  created_at: string;
+}
+
+export default function Page() {
+  const [orders, setOrders] = useState<Order[]>([]); // Explicitly type orders as an array of Order
   const [isLoading, setIsLoading] = useState(true); 
-  const [error, setError] = useState(null);
-  const session_id = typeof window !== 'undefined' ? localStorage.getItem('session_id') : null;
- 
+  const [error, setError] = useState<string | null>(null);
+  
+  // session_id can be null if it's not available in localStorage
+  const session_id: string | null = typeof window !== 'undefined' ? localStorage.getItem('session_id') : null;
+
   useEffect(() => {
     if (!session_id) {
       console.log('No session ID found');
       setIsLoading(false);
       return;
-    } 
+    }
     console.log(session_id);
-    const getGuestOrders = async (sessionId) => {
+
+    // Explicitly type sessionId as a string
+    const getGuestOrders = async (sessionId: string) => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}orders/session/${sessionId}`);
         setOrders(response.data);
