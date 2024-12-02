@@ -57,6 +57,30 @@
   margin-left: 20px;
 }
 
+.cartIcon {
+  position: relative;
+  display: inline-block;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  background-color: red; /* Можно заменить на другой цвет */
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid white;
+}
+
+
 @media (max-width: 1100px) {
   .topbar {
     flex-direction: row;

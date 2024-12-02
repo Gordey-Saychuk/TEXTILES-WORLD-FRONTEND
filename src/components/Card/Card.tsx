@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '@/app/GlobalRedux/cartSlice';
  
  
-
+ 
 interface CardProps { 
   product: Product;   
 }
@@ -16,7 +16,7 @@ interface CardProps {
 export default function Card({ product }: CardProps) { 
   const [discount, setDiscount] = useState<number | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);  // Типизация для reviews
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {itemsCart} = useSelector((state) => state.cart);  
   
  
@@ -29,10 +29,11 @@ export default function Card({ product }: CardProps) {
 
   useEffect(() => {  
     if (product.old_price) {
-      calculateDiscount(product);  
+      calculateDiscount(product);   
     }
+    console.log(`${product.image_url}`); 
   }, [product]);
-
+ 
   useEffect(() => {
     const fetchReviews = async () => {
       const reviewsData = await getReviewsByProductId(product.id);
@@ -49,21 +50,21 @@ export default function Card({ product }: CardProps) {
       price: product.price,
       image_url: product.image_url,
       old_price: product.old_price 
-    }
+    };
 
-    dispatch(addItem(item)) 
+    dispatch(addItem(item)); 
   }
  
   return (    
-    <div className={styles.card}>   
+    <div className={styles.card}>    
     
     
-      <div className={styles.photos}> 
+      <div className={styles.photos}>   
         <div
           className={styles.photo}   
-          style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_API_BASE_URL}${product.image_url})` }}
+          style={{ backgroundImage: `url(${product.image_url})` }}
         ></div>
-      </div>  
+      </div>   
       <div className={styles.body}>   
         <h3 className={styles.title}>{product.name}</h3>    
         <p className={styles.sets}>{product.sets}</p>       

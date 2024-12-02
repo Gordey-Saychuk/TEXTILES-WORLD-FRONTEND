@@ -1,0 +1,136 @@
+/* components/Footer.module.css */
+.footer {
+  background-color: rgb(243 244 246 ); 
+ 
+  color: #333;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  max-width: 1600px;
+}
+
+.newsletter {
+  flex: 1;
+  min-width: 280px;
+}
+
+.newsletter h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.newsletter p {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+.newsletterForm input { 
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px ;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.catalog, .brands, .customers, .company {
+  flex: 1;
+  min-width: 200px;
+}
+
+.catalog h3, .brands h3, .customers h3, .company h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.catalogList, .brandsList, .customersList, .companyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalogList li, .brandsList li, .customersList li, .companyList li {
+  margin-bottom: 10px;
+}
+
+.catalogList a, .brandsList a, .customersList a, .companyList a {
+  text-decoration: none;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.catalogList a:hover, .brandsList a:hover, .customersList a:hover, .companyList a:hover {
+  color: #000;
+}
+
+.contactInfo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.contactInfo p {
+  margin: 5px 0;
+}
+
+.footerBottom {
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  color: #666;
+   
+}
+
+.footerBottom p {
+  margin: 5px 0;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px ;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .newshead{
+    text-align: center;
+  }
+
+  .newsletter{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .newsletterForm {
+    flex-direction: column; 
+  }
+
+  .newsletterForm input, .newsletterForm button {
+    width: 100%;
+  }
+}
+ 
