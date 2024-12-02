@@ -4,12 +4,13 @@ import Input from "../Input/Input";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { RootState } from '@/app/GlobalRedux/store';
 
 export default function Header() {
-  const { totalQuantity = 0 } = useSelector((state) => state.cart || {});
-  const { isAuthenticated } = useSelector((state) => state.auth); // Проверяем статус аутентификации
+  const { totalQuantity = 0 } = useSelector((state: RootState) => state.cart || {});
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth); // Проверяем статус аутентификации
   const router = useRouter();
- 
+  
   const handleProfileClick = () => {
     if (isAuthenticated) {
       router.push("/profile");

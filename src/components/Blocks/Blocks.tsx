@@ -14,8 +14,9 @@ const blocksData = [
 export default function Blocks() {
   return (
     <section className={styles.blocksContainer}> 
-      {blocksData.map((block) => (<div className={styles.blocks}> 
-        <div key={block.id} className={styles.block}>
+      {blocksData.map((block) => (
+        <div key={block.id} className={styles.blocks}> {/* Добавлен key */}
+          <div className={styles.block}> 
           <img src={block.image} alt={block.caption} className={styles.image} />
           
         </div>
