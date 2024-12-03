@@ -8,6 +8,7 @@ import { BottomBar } from "@/components/BottomBar/BottomBar";
 import { useDispatch } from "react-redux";
 import { setInitialCartData } from "./GlobalRedux/cartSlice";
 import Footer from "@/components/Footer/Footer";
+import { loadTokens } from "./GlobalRedux/authSlice";
 
 interface CartItem {
   price: number;
@@ -19,6 +20,10 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const [anchorRef, setAnchorRef] = useState<HTMLElement | null>(null);
   const [isClient, setIsClient] = useState(false); // Флаг для отслеживания клиентской стороны
   const dispatch = useDispatch();
+
+  useEffect(() => { 
+    dispatch(loadTokens());
+  }, [dispatch]);
 
   useEffect(() => {
     // Убедитесь, что код выполняется только на клиенте

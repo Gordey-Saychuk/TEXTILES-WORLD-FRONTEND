@@ -1,66 +1,32 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation'; 
 import styles from './Profile.module.css';
 import Image from 'next/image';  
 import { RootState } from '@/app/GlobalRedux/store';
+import { getUser, refreshAccessToken } from '@/app/GlobalRedux/authSlice';
 
-export default function Profile() {
-  const [name, setName] = useState(''); 
-  const [email, setEmail] = useState(''); 
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);   
+export default function Profile() { 
+  const { isAuthenticated, user, isLoading } = useSelector((state: RootState) => state.auth);   
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false); // To track if the component is in the client side
+  const dispatch = useDispatch();
 
-  useEffect(() => { 
-    // Set isClient to true after the first render (only in client-side)
-    setIsClient(true);
-
+  useEffect(() => {
+    if (isLoading) return; // Ждем завершения загрузки
     if (!isAuthenticated) {
-      router.push('/auth'); // Redirect unauthenticated users
-    } else {
-      const fetchUserData = async () => { 
-        // This will only be called in the client
-        if (isClient) {
-          const token = localStorage.getItem('token'); // Access localStorage
-
-          if (!token) {
-            console.error('Пользователь не авторизован');
-            return;
-          }
-
-          try { 
-            const response = await fetch(
-              `${process.env.NEXT_PUBLIC_API_BASE_URL}user`, 
-              {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json', 
-                  "Authorization": `Bearer ${token}`,
-                },
-                credentials: 'include', // Required for cookies
-              }
-            );
-            
-            if (!response.ok) {
-              throw new Error('Ошибка при запросе данных');
-            }
-    
-            const data = await response.json();
-            console.log('Ответ сервера:', data); 
-            setName(data.name); // Set user name
-            setEmail(data.email); 
-          } catch (error) {
-            console.error('Ошибка при запросе данных:', error);
-          }
-        }
-      };
-  
-      fetchUserData();
+      console.log('Пользователь не аутентифицирован');
+      router.push('/auth');
+    } else if (!user) {
+      dispatch(getUser()); 
     }
-  }, [isAuthenticated, router, isClient]);
+  }, [isAuthenticated, user, isLoading, router, dispatch]);
+  
+
+  if (!isAuthenticated || isLoading) {
+    return <h1>Загрузка профиля...</h1>;
+  }
 
   return ( 
     <div className={styles.page}>     
@@ -68,8 +34,8 @@ export default function Profile() {
         <div>
           <Image src="/images/profile.png" alt="Profile Image" width={100} height={100} className={styles.icon} />
         </div> 
-        {name ? <h1 className={styles.name}>{name}</h1> : <h1>Загрузка профиля...</h1>} 
-        <div className={styles.email}>{email}</div>
+        <h1 className={styles.name}>{user?.name}</h1>
+        <div className={styles.email}>{user?.email}</div>
       </div> 
       <div>У вас пока нет заказов</div>
     </div>

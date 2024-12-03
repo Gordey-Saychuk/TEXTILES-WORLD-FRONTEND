@@ -1,57 +1,51 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getTovarsCatalog } from "../lib/api/getTovars";
 import SliderCatalog from "../../components/SliderCatalog/SliderCatalog";
 import Card from "../../components/Card/Card";
 import Category from "@/components/Category/Category";
 import styles from "./ClientCatalog.module.css";
 import { Product } from "@/types/index";
+import Sort from "@/components/Sort/Sort";
 
 export default function Catalog() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [data, setData] = useState<Product[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
 
+  // Получение параметров из URL
   useEffect(() => {
-    // Получение параметров из URL
-    const queryParams = new URLSearchParams(window.location.search);
-    const page = parseInt(queryParams.get('page') || "1", 10);
-    const category = queryParams.get('categoryId');
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const category = searchParams.get("categoryId");
     setCurrentPage(page);
     setCategoryId(category ? parseInt(category, 10) : undefined);
+  }, [searchParams]);
 
-    // Запрос данных
+  // Запрос данных
+  useEffect(() => {
     async function fetchData() {
-      const response = await getTovarsCatalog(page, 3, categoryId);
-      setData(response.results || []);
-      setTotalPages(Math.ceil(response.count / 3));
+      try {
+        const response = await getTovarsCatalog(currentPage, 3, categoryId);
+        setData(response.results || []);
+        setTotalPages(Math.ceil(response.count / 3));
+      } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
+      }
     }
-
     fetchData();
-  }, [categoryId]);
+  }, [currentPage, categoryId]);
 
   const handleCategoryChange = (id: number | undefined) => {
-    setCategoryId(id);
-    const url = id ? `/catalog?page=${currentPage}&categoryId=${id}` : `/catalog?page=${currentPage}`;
-    router.push(url);  // Обновление URL
+    router.push(`/catalog?page=1&categoryId=${id || ""}`);
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      const prevPageUrl = `/catalog?page=${currentPage - 1}`;
-      window.location.href = prevPageUrl; // Переход на предыдущую страницу
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      const nextPageUrl = `/catalog?page=${currentPage + 1}`;
-      window.location.href = nextPageUrl; // Переход на следующую страницу
-    }
+  const handlePageChange = (page: number) => {
+    router.push(`/catalog?page=${page}&categoryId=${categoryId || ""}`);
   };
 
   return (
@@ -63,11 +57,9 @@ export default function Catalog() {
         <div className={styles.filtre}>Фильтры</div>
         <div className={styles.section}>
           <div className={styles.sort}>
-            <div>
-              <Category changeCategory={(id: number) => handleCategoryChange(id)} />
-            </div>
-            Сортировка по
-          </div>
+            <Category changeCategory={handleCategoryChange} />
+            <Sort /> 
+          </div> 
           <div className={styles.catalogCard}>
             {data.map((item) => (
               <Card key={item.id} product={item} />
@@ -75,8 +67,10 @@ export default function Catalog() {
           </div>
           <div className={styles.pagination}>
             <button
-              className={`${styles.pagButton} ${currentPage === 1 ? styles.pagButtonDis : ""}`}
-              onClick={handlePrevPage}
+              className={`${styles.pagButton} ${
+                currentPage === 1 ? styles.pagButtonDis : ""
+              }`}
+              onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
               Назад
@@ -85,8 +79,10 @@ export default function Catalog() {
               {currentPage} из {totalPages}
             </span>
             <button
-              className={`${styles.pagButton} ${currentPage === totalPages ? styles.pagButtonDis : ""}`}
-              onClick={handleNextPage}
+              className={`${styles.pagButton} ${
+                currentPage === totalPages ? styles.pagButtonDis : ""
+              }`}
+              onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
               Вперед

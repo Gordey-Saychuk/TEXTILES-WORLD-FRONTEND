@@ -1,0 +1,24 @@
+.category {
+  display: flex;
+  gap: 20px;
+}
+
+.categoryItem {
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+  border: 1.7px solid rgb(147, 144, 144);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.categoryItem:hover {
+  background-color: var(--prime);
+  color: white;
+}
+
+.active {
+  background-color: var(--prime);
+  color: white;
+  
+}

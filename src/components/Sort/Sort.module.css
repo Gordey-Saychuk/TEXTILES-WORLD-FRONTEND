@@ -1,0 +1,10 @@
+.sorts{
+  position: relative;
+}
+
+.module{
+  position: absolute;
+  top: 30px ;
+  background-color: aqua;
+  padding: 20px;
+}

@@ -1,35 +1,55 @@
 import { useEffect, useState } from "react";
 import { getCategory } from "../../app/lib/api/category";
+import styles from "./Category.module.css";
 
-// Define the prop types for the Category component
-interface CategoryProps { 
-  changeCategory: (id:  number) => void; // Adjust the type if the ID is a different type, e.g., number
-} 
+interface CategoryProps {
+  changeCategory: (id: number | undefined) => void;
+}
 
-export default function Category({ changeCategory }: CategoryProps) {  
-  const [category, setCategory] = useState<any[]>([]); // Adjust the type based on the structure of the category data
-   
-  useEffect(() => { 
+export default function Category({ changeCategory }: CategoryProps) {
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    []
+  );
+  const [activeCategory, setActiveCategory] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
     async function fetchCategories() {
       try {
         const data = await getCategory();
-        setCategory(data); 
+        setCategories(data || []);
       } catch (error) {
-        console.error("Failed to fetch categories:", error);
+        console.error("Ошибка загрузки категорий:", error);
       }
     }
     fetchCategories();
-  }, []); 
+  }, []);
+
+  const handleCategoryClick = (id: number | undefined) => {
+    setActiveCategory(id); // Устанавливаем активную категорию
+    changeCategory(id); // Вызываем функцию родительского компонента
+  };
 
   return (
     <div>
-      {category.length === 0 ? (
+      {categories.length === 0 ? (
         <p>Категории не найдены</p>
       ) : (
-        <ul>
-          {category.map((el) => (
-            <li onClick={() => changeCategory(el.id)} key={el.id}>
-              {el.name}
+        <ul className={styles.category}>
+          <li
+            className={`${styles.categoryItem} ${activeCategory === undefined ? styles.active : ""}`}
+            onClick={() => handleCategoryClick(undefined)}
+          >
+            Все
+          </li>
+          {categories.map((cat) => (
+            <li
+              key={cat.id}
+              className={`${styles.categoryItem} ${
+                activeCategory === cat.id ? styles.active : ""
+              }`}
+              onClick={() => handleCategoryClick(cat.id)}
+            >
+              {cat.name}
             </li>
           ))}
         </ul>
