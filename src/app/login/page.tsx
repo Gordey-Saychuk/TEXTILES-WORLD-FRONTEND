@@ -6,17 +6,19 @@ import { useRouter } from 'next/navigation';
 import Title from '@/components/Title/Title';
 import Button from '@/components/Button/Button';
 import Input from '@/components/Input/Input';
-import { useDispatch } from 'react-redux'; // Импорт диспетчера Redux
-import { login } from '@/app/GlobalRedux/authSlice'; // Импорт экшена login
- 
+import { useDispatch } from 'react-redux';
+import { login } from '@/app/GlobalRedux/authSlice';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
-  const dispatch = useDispatch(); // Инициализация диспетчера Redux
+  const dispatch = useDispatch();
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
+    setError(''); // Reset any previous errors
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}login`, {
       method: 'POST',
@@ -29,17 +31,16 @@ export default function Login() {
 
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('token', data.jwt); // Сохраняем токен в localStorage
-      console.log('Перед вызовом dispatch:', data.jwt);
-      dispatch(login({ token: data.jwt })); 
-      console.log('После вызова dispatch'); 
-      
-      router.push('/profile'); // Переход на страницу профиля
+      dispatch(login({ accessToken: data.access_token, refreshToken: data.refresh_token, user: null }));
+      localStorage.setItem('accessToken', data.access_token); // Сохраняем accessToken в localStorage
+      localStorage.setItem('refreshToken', data.refresh_token); // Сохраняем refreshToken в localStorage
+      router.push('/profile');
     } else {
-      console.error('Ошибка при авторизации');
+      const errorData = await response.json();
+      setError(errorData.message || 'Ошибка при авторизации');
     }
-  };
- 
+  };     
+
   return (
     <div className={styles.body}>
       <div className={styles.bodyForm}>
@@ -59,6 +60,7 @@ export default function Login() {
             type="password"
             placeholder="Пароль"
           />
+          {error && <div className={styles.error}>{error}</div>}
           <Button submit={true}>ОТПРАВИТЬ</Button>
         </form>
       </div>

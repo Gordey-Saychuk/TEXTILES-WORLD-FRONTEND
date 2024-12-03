@@ -22,6 +22,13 @@
   width: 100%; /* Контейнер занимает всю ширину */
 }
 
+.sort{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .filtre {
   margin-bottom: 20px; /* Отступ от фильтров до карточек */
   width: 200px;

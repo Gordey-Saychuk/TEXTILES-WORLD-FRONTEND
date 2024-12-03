@@ -1,50 +1,103 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// Типизация для состояния
-interface AuthState {
-  token: string | null;
-  isAuthenticated: boolean;
-}
+export const refreshAccessToken = createAsyncThunk(
+  'auth/refreshAccessToken',
+  async (_, { getState, rejectWithValue }) => {
+    const { refreshToken } = (getState() as RootState).auth;
+    if (!refreshToken) return rejectWithValue('Нет токена обновления');
 
-export const loadAuthData = createAsyncThunk('auth/loadAuthData', async () => {
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('token');
-    return token ? { token, isAuthenticated: true } : { token: null, isAuthenticated: false };
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}refresh`, {
+        refreshToken,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Ошибка обновления токена');
+    }
   }
-  return { token: null, isAuthenticated: false };
-});
+);
+
+export const getUser = createAsyncThunk(
+  'auth/getUser',
+  async (_, { getState, rejectWithValue }) => {
+    const { accessToken } = (getState() as RootState).auth;
+    if (!accessToken) return rejectWithValue('Нет токена доступа');
+
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}user`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response?.status === 401) {
+        await refreshAccessToken();
+        return getUser();
+      }
+      return rejectWithValue('Ошибка при запросе данных пользователя');
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     isAuthenticated: false,
-  } as AuthState, // Явно указываем тип состояния
+    user: null,
+    isLoading: true,
+  },
   reducers: {
-    login(state, action) {
-      state.token = action.payload.token;
-      state.isAuthenticated = true;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('token', action.payload.token);
+    loadTokens: (state) => {
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (accessToken && refreshToken) {
+        state.accessToken = accessToken;
+        state.refreshToken = refreshToken;
+        state.isAuthenticated = true;
       }
+      state.isLoading = false;
     },
-    logout(state) {
-      state.token = null;
+    logout: (state) => {
+      state.accessToken = null;
+      state.refreshToken = null;
       state.isAuthenticated = false;
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
-      }
+      state.user = null;
+      state.isLoading = false;
+
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+    },
+    login: (state, action) => {
+      const { accessToken, refreshToken, user } = action.payload;
+      state.accessToken = accessToken;
+      state.refreshToken = refreshToken;
+      state.isAuthenticated = true;
+      state.user = user;
+      state.isLoading = false;
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loadAuthData.fulfilled, (state, action) => {
-      state.token = action.payload.token;
-      state.isAuthenticated = action.payload.isAuthenticated;
+    builder.addCase(refreshAccessToken.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      localStorage.setItem('accessToken', action.payload.accessToken);
+    });
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLoading = false;
+    }); 
+    builder.addCase(getUser.rejected, (state) => {
+      state.user = null;
+      state.isLoading = false;
     });
   },
 });
 
-export const { login, logout } = authSlice.actions;
-
+export const { login, logout, loadTokens } = authSlice.actions;
 export default authSlice.reducer;
  
