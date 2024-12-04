@@ -1,44 +1,50 @@
-'use client';
+'use client'
 
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation'; 
-import styles from './Profile.module.css';
-import Image from 'next/image';  
-import { RootState } from '@/app/GlobalRedux/store';
-import { getUser, refreshAccessToken } from '@/app/GlobalRedux/authSlice';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/navigation'
+import styles from './Profile.module.css'
+import Image from 'next/image'
+import { RootState } from '@/app/GlobalRedux/store'
+import { getUser, refreshAccessToken } from '@/app/GlobalRedux/authSlice'
 
-export default function Profile() { 
-  const { isAuthenticated, user, isLoading } = useSelector((state: RootState) => state.auth);   
-  const router = useRouter();
-  const dispatch = useDispatch();
+export default function Profile() {
+	const { isAuthenticated, user, isLoading } = useSelector(
+		(state: RootState) => state.auth
+	)
+	const router = useRouter()
+	const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isLoading) return; // Ждем завершения загрузки
-    if (!isAuthenticated) {
-      console.log('Пользователь не аутентифицирован');
-      router.push('/auth');
-    } else if (!user) {
-      dispatch(getUser()); 
-    }
-  }, [isAuthenticated, user, isLoading, router, dispatch]);
-  
+	useEffect(() => {
+		if (isLoading) return // Ждем завершения загрузки
+		if (!isAuthenticated) {
+			console.log('Пользователь не аутентифицирован')
+			router.push('/auth')
+		} else if (!user) {
+			dispatch(getUser())
+		}
+	}, [isAuthenticated, user, isLoading, router, dispatch])
 
-  if (!isAuthenticated || isLoading) {
-    return <h1>Загрузка профиля...</h1>;
-  }
+	if (!isAuthenticated || isLoading) {
+		return <h1>Загрузка профиля...</h1>
+	}
 
-  return ( 
-    <div className={styles.page}>     
-      <div className={styles.profile}>   
-        <div>
-          <Image src="/images/profile.png" alt="Profile Image" width={100} height={100} className={styles.icon} />
-        </div> 
-        <h1 className={styles.name}>{user?.name}</h1>
-        <div className={styles.email}>{user?.email}</div>
-      </div> 
-      <div>У вас пока нет заказов</div>
-    </div>
-  );
+	return (
+		<div className={styles.page}>
+			<div className={styles.profile}>
+				<div>
+					<Image
+						src="/images/profile.png"
+						alt="Profile Image"
+						width={100}
+						height={100}
+						className={styles.icon}
+					/>
+				</div>
+				<h1 className={styles.name}>{user?.name}</h1>
+				<div className={styles.email}>{user?.email}</div>
+			</div>
+			<div>У вас пока нет заказов</div>
+		</div>
+	)
 }
- 

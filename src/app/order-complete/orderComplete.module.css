@@ -1,29 +1,29 @@
 /* orderComplete.module.css */
 .orderComplete {
-  text-align: center;
-  padding: 20px;
+	text-align: center;
+	padding: 20px;
 }
 
 .orderComplete h1 {
-  font-size: 2rem;
-  color: #4CAF50; /* Зеленый для успешного завершения */
+	font-size: 2rem;
+	color: #4caf50; /* Зеленый для успешного завершения */
 }
 
 .orderComplete p {
-  font-size: 1.2rem;
-  color: #333;
+	font-size: 1.2rem;
+	color: #333;
 }
 
 .orderComplete button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
+	margin-top: 20px;
+	padding: 10px 20px;
+	font-size: 1rem;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	cursor: pointer;
 }
 
 .orderComplete button:hover {
-  background-color: #45a049;
+	background-color: #45a049;
 }

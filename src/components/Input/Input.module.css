@@ -1,23 +1,22 @@
-.input{
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #eef2f6;
-  border: none;
-  font-size: 17px;
+.input {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #eef2f6;
+	border: none;
+	font-size: 17px;
 }
 .inputContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
 }
 .icon {
-  position: absolute;
-  right: 20px; 
-  pointer-events: none; 
-
+	position: absolute;
+	right: 20px;
+	pointer-events: none;
 }

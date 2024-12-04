@@ -1,29 +1,28 @@
 .title {
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 1.26;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 1.26;
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.titles {  
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 1.26;
-  position: relative;
-  display: inline-block;
+.titles {
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 1.26;
+	position: relative;
+	display: inline-block;
 }
 
 .title::after {
-  content: " >"; 
-  color: inherit;
-  display: inline-block;
-  transition: transform 0.3s ease; 
-  
+	content: ' >';
+	color: inherit;
+	display: inline-block;
+	transition: transform 0.3s ease;
 }
 
 .title:hover::after {
-  transform: translateX(5px); 
-  color: var(--prime);
+	transform: translateX(5px);
+	color: var(--prime);
 }

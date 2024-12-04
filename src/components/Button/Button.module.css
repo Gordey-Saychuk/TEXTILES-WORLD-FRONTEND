@@ -1,8 +1,8 @@
-.button{
-  background-color: var(--prime);
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 30px;
-  width: 100%;
+.button {
+	background-color: var(--prime);
+	border: none;
+	color: white;
+	padding: 10px;
+	border-radius: 30px;
+	width: 100%;
 }

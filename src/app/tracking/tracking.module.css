@@ -1,85 +1,88 @@
 .container {
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+	padding: 2rem;
+	max-width: 800px;
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
 }
 
 .heading {
-  text-align: center;
-  color: #4a4a4a;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
+	text-align: center;
+	color: #4a4a4a;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .orderList {
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 .orderItem {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+	background: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
 }
 
 .orderItem:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .orderHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
 }
 
 .orderHeader span {
-  font-weight: bold;
-  color: #333;
+	font-weight: bold;
+	color: #333;
 }
 
 .orderDetails {
-  line-height: 1.5;
-  color: #666;
+	line-height: 1.5;
+	color: #666;
 }
 
 .productList {
-  list-style: none;
-  padding-left: 1rem;
-  margin-top: 1rem;
-  color: #444;
+	list-style: none;
+	padding-left: 1rem;
+	margin-top: 1rem;
+	color: #444;
 }
 
 .productList li {
-  margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .createdAt {
-  font-size: 0.85rem;
-  color: #999;
+	font-size: 0.85rem;
+	color: #999;
 }
 
 .loader {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #666;
-  animation: fade-in 1.2s ease-in-out infinite;
+	text-align: center;
+	font-size: 1.5rem;
+	color: #666;
+	animation: fade-in 1.2s ease-in-out infinite;
 }
 
 @keyframes fade-in {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
+	0%,
+	100% {
+		opacity: 0.4;
+	}
+	50% {
+		opacity: 1;
+	}
 }

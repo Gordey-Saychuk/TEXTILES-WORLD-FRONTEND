@@ -1,74 +1,100 @@
-import { useSelector } from "react-redux";
-import styles from "./Header.module.css";
-import Input from "../Input/Input";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { RootState } from '@/app/GlobalRedux/store';
+import { useSelector } from 'react-redux'
+import styles from './Header.module.css'
+import Input from '../Input/Input'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { RootState } from '@/app/GlobalRedux/store'
+import { useEffect, useState } from 'react'
 
 export default function Header() {
-  const { totalQuantity = 0 } = useSelector((state: RootState) => state.cart || {});
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth); // Проверяем статус аутентификации
-  const router = useRouter();
-  
-  const handleProfileClick = () => {
-    if (isAuthenticated) {
-      router.push("/profile");
-    } else {
-      router.push("/auth");
-    }
-  };
+	const { totalQuantity = 0 } = useSelector(
+		(state: RootState) => state.cart || {}
+	)
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth) // Проверяем статус аутентификации
+	const [isSticy, setIsSticy] = useState(false)
 
-  return (
-    <div className={styles.topbar}>
-      <Link href="/" className={styles.logo}>
-        TEXTILES WORLD
-      </Link>
+	const router = useRouter()
 
-      <div className={styles.input}>
-        <Input search={true} placeholder="Поиск по каталогу" />
-      </div>
+	const handleProfileClick = () => {
+		if (isAuthenticated) {
+			router.push('/profile')
+		} else {
+			router.push('/auth')
+		}
+	}
 
-      <div className={styles.inputs}>
-        <Image
-          src="/svg/Header/search.svg"
-          alt="Поиск"
-          width={20}
-          height={20}
-          className={styles.icon}
-        />
-      </div>
+	function handleScroll() {
+		if (window.scrollY > 100) {
+			setIsSticy(true)
+		} else {
+			setIsSticy(false)
+		}
+	}
 
-      <div className={styles.nav}>
-        <ul className={styles.ul}>
-          <Link className={styles.links} href="/catalog">
-            Каталог
-          </Link>
-          <li className={styles.links}>Постельное белье</li>
-          <li className={styles.links}>Хиты продаж</li>
-          <li className={styles.links}>Распродажа</li>
-        </ul>
-      </div>
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
 
-      <div className={styles.phoneBlock}>
-        <div onClick={handleProfileClick} className={styles.profileIcon}>
-          <Image
-            src="/svg/TopHeader/6593795.png"
-            alt="Профиль"
-            width={20}
-            height={20}
-            className={styles.icon}
-          />
-        </div>
+	return (
+		<div className={`${styles.topbars} ${isSticy ? styles.sticky : ''}`}>
+			<div className={styles.topbar}>
+				<Link href="/" className={styles.logo}>
+					TEXTILES WORLD
+				</Link>
 
-        <Link href="/cart" className={styles.cartIcon}>
-          <Image src="/svg/TopHeader/cart.svg" alt="Корзина" width={20} height={20} />
-          {totalQuantity > 0 && (
-            <span className={styles.cartBadge}>{totalQuantity}</span>
-          )}
-        </Link>
-      </div>
-    </div>
-  );
+				<div className={styles.input}>
+					<Input search={true} placeholder="Поиск по каталогу" />
+				</div>
+
+				<div className={styles.inputs}>
+					<Image
+						src="/svg/Header/search.svg"
+						alt="Поиск"
+						width={20}
+						height={20}
+						className={styles.icon}
+					/>
+				</div>
+
+				<div className={styles.nav}>
+					<ul className={styles.ul}>
+						<Link className={styles.links} href="/catalog">
+							Каталог
+						</Link>
+						<li className={styles.links}>Постельное белье</li>
+						<li className={styles.links}>Хиты продаж</li>
+						<li className={styles.links}>Распродажа</li>
+					</ul>
+				</div>
+
+				<div className={styles.phoneBlock}>
+					<div onClick={handleProfileClick} className={styles.profileIcon}>
+						<Image
+							src="/svg/TopHeader/6593795.png"
+							alt="Профиль"
+							width={20}
+							height={20}
+							className={styles.icon}
+						/>
+					</div>
+
+					<Link href="/cart" className={styles.cartIcon}>
+						<Image
+							src="/svg/TopHeader/cart.svg"
+							alt="Корзина"
+							width={20}
+							height={20}
+						/>
+						{totalQuantity > 0 && (
+							<span className={styles.cartBadge}>{totalQuantity}</span>
+						)}
+					</Link>
+				</div>
+			</div>
+		</div>
+	)
 }
- 

@@ -1,0 +1,42 @@
+/* YourStyles.module.css */
+.h2 {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 39px;
+}
+
+.conteiner {
+	background-color: white;
+}
+
+.conteiners {
+	background-color: white;
+	max-width: 1600px;
+	margin: auto;
+	padding: 40px;
+	padding-top: 60px;
+}
+
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem; /* замените это на ваш стиль для lg:gap-8 */
+}
+
+.list {
+	margin-top: 1.5rem; /* замените на нужное значение */
+	display: flex;
+	flex-direction: column;
+	gap: 1rem; /* замените на ваш стиль */
+}
+
+.fontBold {
+	font-weight: bold;
+}
+
+@media (max-width: 767px) {
+	.conteiners {
+		padding-top: 50px;
+	}
+}

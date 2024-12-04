@@ -1,110 +1,106 @@
-.card{
-  height: 470px;
-  width: 300px;
-  border-radius: 20px;
-  transition: box-shadow 0.3s ease; 
+.card {
+	height: 470px;
+	width: 300px;
+	border-radius: 20px;
+	transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.311); 
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.311);
 }
 
-.photos{
-  padding: 10px;
+.photos {
+	padding: 10px;
 }
 
-.photo{
-  height: 250px;
- 
+.photo {
+	height: 250px;
 }
 
-.price{
-  font-size: 21px;
-  line-height: 28px;
-  font-weight: bold;
-  margin-right: 5px;
+.price {
+	font-size: 21px;
+	line-height: 28px;
+	font-weight: bold;
+	margin-right: 5px;
 }
 
-.oldPrice{
-  font-size: 17px;
-  line-height: 22px;
-  color: #6d7885;
-  text-decoration: line-through;
-  
-
+.oldPrice {
+	font-size: 17px;
+	line-height: 22px;
+	color: #6d7885;
+	text-decoration: line-through;
 }
 
-.title{
-  margin: 0 ;
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} 
-
-.reviews{
-  margin-bottom: 13px;
-  display: flex;
-  align-items: center;
+.title {
+	margin: 0;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.icons{
-  margin-right: 10px;
+.reviews {
+	margin-bottom: 13px;
+	display: flex;
+	align-items: center;
 }
 
-.sets{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.icons {
+	margin-right: 10px;
 }
 
-.prices{
-  width: 100%;
-  display: flex;
- 
+.sets {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.discount{
-  background-color: red;
-  color: white;
-  padding: 5px;
-  border-radius: 10px;
-  margin-left: auto;
-  font-weight: bold;
-  font-size: 12px;
-  text-align: center;
-  display: flex;
-  align-items: center;
+.prices {
+	width: 100%;
+	display: flex;
+}
+
+.discount {
+	background-color: red;
+	color: white;
+	padding: 5px;
+	border-radius: 10px;
+	margin-left: auto;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	display: flex;
+	align-items: center;
 }
 
 .button {
-  cursor: pointer;
-  font-size: 20px;
-  padding: 15px;
-  width: 100%;
-  background-color: white;
-  border-radius: 20px;
-  margin-top: 10px;
-  border: solid 2px black;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Объединено в одно свойство */
+	cursor: pointer;
+	font-size: 20px;
+	padding: 15px;
+	width: 100%;
+	background-color: white;
+	border-radius: 20px;
+	margin-top: 10px;
+	border: solid 2px black;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease; /* Объединено в одно свойство */
 }
 
 .button:hover {
-  background-color: var(--prime);
-  border: solid 2px white;
-  color: white;
+	background-color: var(--prime);
+	border: solid 2px white;
+	color: white;
 }
-
-
 
 .photo {
-  border-radius: 20px 20px 0 0;
-  background-image: url(../../../public/images/images.jfif);
-  background-repeat: no-repeat; 
-  background-position: center;
-  background-size: cover; 
+	border-radius: 20px 20px 0 0;
+	background-image: url(../../../public/images/images.jfif);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
-.body{
-  padding: 10px;
+.body {
+	padding: 10px;
 }
