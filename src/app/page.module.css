@@ -1,11 +1,10 @@
-.page{
-
+.page {
 }
 
-.slider{
-  display: flex;
-  justify-content: space-around;
-  max-width: 1830px;
-  margin: auto;
-  margin-bottom: 20px;
+.slider {
+	display: flex;
+	justify-content: space-around;
+	max-width: 1830px;
+	margin: auto;
+	margin-bottom: 20px;
 }

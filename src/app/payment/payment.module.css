@@ -1,22 +1,22 @@
 .payment {
-  padding: 20px;
-  text-align: center;
+	padding: 20px;
+	text-align: center;
 }
 
 .payment h1 {
-  font-size: 24px;
+	font-size: 24px;
 }
 
 .payment h3 {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 .payment button {
-  margin: 10px;
+	margin: 10px;
 }
 
 .payment p {
-  margin-top: 20px;
-  font-size: 18px;
-  color: green; /* Можно сделать цвет текста динамическим, в зависимости от успеха или ошибки */
+	margin-top: 20px;
+	font-size: 18px;
+	color: green; /* Можно сделать цвет текста динамическим, в зависимости от успеха или ошибки */
 }

@@ -1,136 +1,146 @@
-.topbar{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  max-width: 1830px;
-  margin: auto;
-  height: 59px;
+.topbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	max-width: 1800px;
+	margin: auto;
+	height: 59px;
+	transition: top 0.3s ease;
 }
 
-.inputs{
-  display: none;
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: white;
+	height: 59px; /* Убедитесь, что высота не меняется */
 }
 
-.ul{
-  display: flex;
-  gap: 30px;
-  font-size: 16px;
+.inputs {
+	display: none;
 }
 
-.phoneBlock{
-  display: flex;
-  gap: 30px;
-  font-size: 16px;
+.ul {
+	display: flex;
+	gap: 30px;
+	font-size: 16px;
 }
 
-.logo{
-  font-size: 30px;
-  font-family: var(--font-sf-pro-bold);  
-  color: var(--prime);
-  min-width: 248px;
-  transition: color 0.3s ease;
+.phoneBlock {
+	display: flex;
+	gap: 30px;
+	font-size: 16px;
 }
 
-.logo:hover{
-  color: var(--rude);
+.logo {
+	font-size: 30px;
+	font-family: var(--font-sf-pro-bold);
+	color: var(--prime);
+	min-width: 248px;
+	transition: color 0.3s ease;
 }
 
-.links{
-  cursor: pointer;
-  transition: color 0.3s ease;
+.logo:hover {
+	color: var(--rude);
 }
 
-.links:hover{
-  color: var(--rude);
+.links {
+	cursor: pointer;
+	transition: color 0.3s ease;
 }
 
-.input{
-  width: 40%; 
-  padding: 20px;
+.links:hover {
+	color: var(--rude);
 }
 
-.nav{
-  min-width: 459px;
-  margin-right: 20px;
-  margin-left: 20px;
+.input {
+	width: 40%;
+	padding: 20px;
+}
+
+.nav {
+	min-width: 459px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 
 .cartIcon {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
+	z-index: 1010; /* Обеспечиваем, чтобы иконка была поверх других элементов */
 }
 
 .cartBadge {
-  position: absolute;
-  top: -10px;
-  right: -15px;
-  background-color: red; /* Можно заменить на другой цвет */
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 10px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	position: absolute;
+	top: -10px;
+	right: -15px;
+	background-color: red; /* Можно заменить на другой цвет */
+	color: white;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-  border: 2px solid white;
+	border: 2px solid white;
 }
 
-
 @media (max-width: 1100px) {
-  .topbar {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px 20px;
-    height: 29px;
-  }
+	.topbar {
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 10px 20px;
+		height: 29px;
+	}
 
-  .logo {
-    font-size: 24px; /* уменьшение размера логотипа */
-    text-align: center;
-    min-width: auto; /* убираем ограничение по ширине */
-    order: 2; /* позиционируем логотип по центру */
-    flex-grow: 1; /* логотип займет доступное пространство */
-  }
+	.logo {
+		font-size: 24px; /* уменьшение размера логотипа */
+		text-align: center;
+		min-width: auto; /* убираем ограничение по ширине */
+		order: 2; /* позиционируем логотип по центру */
+		flex-grow: 1; /* логотип займет доступное пространство */
+	}
 
-  .inputs {
-    display: block;
-   
-    width: 60px; /* убираем фиксированную ширину */
-    padding: 0;
-    order: 1; /* иконка поиска будет слева */
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
+	.inputs {
+		display: block;
 
-  .input{
-    display: none;
-  }
- 
-  .icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+		width: 60px; /* убираем фиксированную ширину */
+		padding: 0;
+		order: 1; /* иконка поиска будет слева */
+		margin-top: 4px;
+		margin-bottom: 4px;
+	}
 
-  .phoneBlock {
-    order: 3; /* иконки входа и корзины справа */
-    gap: 20px;
-    
-    margin: auto;
-    height: 20px;
-  }
+	.input {
+		display: none;
+	}
 
-  .nav {
-    display: none; /* скрываем навигацию для мобильных */
-  }
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
 
-  .ul {
-    display: none; /* скрываем список навигации на мобильных */
-  }
+	.phoneBlock {
+		order: 3; /* иконки входа и корзины справа */
+		gap: 20px;
+
+		margin: auto;
+		height: 20px;
+	}
+
+	.nav {
+		display: none; /* скрываем навигацию для мобильных */
+	}
+
+	.ul {
+		display: none; /* скрываем список навигации на мобильных */
+	}
 }

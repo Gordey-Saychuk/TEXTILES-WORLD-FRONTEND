@@ -1,4 +1,4 @@
-export interface TopHeaderProps { 
-  setActive: (value: boolean) => void;  // Тип для setActive
-  setAnchorRef: (el: HTMLElement | null) => void;  // Тип для setAnchorRef
-} 
+export interface TopHeaderProps {
+	setActive: (value: boolean) => void // Тип для setActive
+	setAnchorRef: (el: HTMLElement | null) => void // Тип для setAnchorRef
+}

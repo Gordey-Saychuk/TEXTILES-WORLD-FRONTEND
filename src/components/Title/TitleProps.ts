@@ -1,6 +1,6 @@
-import { ReactNode } from "react"; 
+import { ReactNode } from 'react'
 
 export interface TitleProps {
-  children: ReactNode;  
-  link?: boolean; 
+	children: ReactNode
+	link?: boolean
 }

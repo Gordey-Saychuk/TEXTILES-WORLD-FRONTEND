@@ -1,78 +1,74 @@
-.page{
-  display: flex;
-  justify-content: space-around;
-  
-  max-width: 1830px;
-  margin: auto;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+.page {
+	display: flex;
+	justify-content: space-around;
+
+	max-width: 1830px;
+	margin: auto;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
-.sections{
-  display: flex;
-  padding: 20px;
-  max-width: 1830px;
-  margin: auto;
+.sections {
+	display: flex;
+	padding: 20px;
+	max-width: 1830px;
+	margin: auto;
 }
 
 .section {
-  display: flex;
-  flex-direction: column; /* Вертикальная структура: фильтры + карточки */
-  width: 100%; /* Контейнер занимает всю ширину */
+	display: flex;
+	flex-direction: column; /* Вертикальная структура: фильтры + карточки */
+	width: 100%; /* Контейнер занимает всю ширину */
 }
 
-.sort{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.sort {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
 .filtre {
-  margin-bottom: 20px; /* Отступ от фильтров до карточек */
-  width: 200px;
+	margin-bottom: 20px; /* Отступ от фильтров до карточек */
+	width: 200px;
 }
-
 
 .catalogCard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 10px; /* Внутренний отступ для красоты */
-  width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	padding: 10px; /* Внутренний отступ для красоты */
+	width: 100%;
 }
 
-.pagination{
-  margin: auto;
-  margin-top: 20px;
+.pagination {
+	margin: auto;
+	margin-top: 20px;
 }
 
-.pagText{
-  margin-right: 10px;
-  margin-left: 10px;
-  font-size: 15px;
+.pagText {
+	margin-right: 10px;
+	margin-left: 10px;
+	font-size: 15px;
 }
 
-.pagButton{
-  color: white;
-  background-color: var(--prime);
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.pagButton {
+	color: white;
+	background-color: var(--prime);
+	border: none;
+	padding: 10px;
+	border-radius: 10px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .pagButton:not(:disabled):hover {
-  background-color: var(--rude);
+	background-color: var(--rude);
 }
 
-
-.pagButtonDis{
-  background-color: rgba(152, 150, 150, 0.455);
-  cursor: default;
-
+.pagButtonDis {
+	background-color: rgba(152, 150, 150, 0.455);
+	cursor: default;
 }
- 

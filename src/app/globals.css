@@ -1,55 +1,59 @@
 @import 'normalize.css';
 
 :root {
-  --background: #ffffff;
-  --prime: #d29a74;
-  --lite: #d3c29e; 
-  --text-color: #373737; 
-  --box-shadow: #6B7F994D;
-  --gray: #f3f4f6;
-  --rude: #d88147;
+	--background: #ffffff;
+	--prime: #d29a74;
+	--lite: #d3c29e;
+	--text-color: #373737;
+	--box-shadow: #6b7f994d;
+	--gray: #f3f4f6;
+	--rude: #d88147;
 
-  --font-sf-pro-bold: 'SFProDisplayBold', sans-serif;
-  --font-sf-pro-medium: 'SFProDisplayMedium', sans-serif;
-  --font-sf-pro-regular: 'SFProDisplayRegular', sans-serif;
+	--font-sf-pro-bold: 'SFProDisplayBold', sans-serif;
+	--font-sf-pro-medium: 'SFProDisplayMedium', sans-serif;
+	--font-sf-pro-regular: 'SFProDisplayRegular', sans-serif;
 }
 
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
 body {
-  color: var(--text-color);
-  background: var(--background);
-  font-family: var(--font-sf-pro-regular); 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 13px;
+	color: var(--text-color);
+	background: var(--background);
+	font-family: var(--font-sf-pro-regular);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 13px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sf-pro-bold); 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-sf-pro-bold);
 }
 
 p {
-  font-family: var(--font-sf-pro-regular); 
- 
+	font-family: var(--font-sf-pro-regular);
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 button {
-  font-family: var(--font-sf-pro-medium);
+	font-family: var(--font-sf-pro-medium);
 }
 
-ul, ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
-
-
