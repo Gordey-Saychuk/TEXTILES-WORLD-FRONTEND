@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './SEOBlock.module.css'
+import React from 'react';
+import styles from './SEOBlock.module.css';
 
 export default function SEOBlock() {
 	return (
@@ -228,5 +228,5 @@ export default function SEOBlock() {
 				</div>
 			</div>
 		</section>
-	)
+	);
 }

@@ -1,47 +1,47 @@
-'use client'
-import { useSelector } from 'react-redux'
-import styles from './checkout.module.css'
-import { useState, useEffect } from 'react'
-import Button from '@/components/Button/Button'
-import Input from '@/components/Input/Input'
-import { useRouter } from 'next/navigation'
-import axios from 'axios'
-import { RootState } from '@/app/GlobalRedux/store'
+'use client';
+import { useSelector } from 'react-redux';
+import styles from './checkout.module.css';
+import { useState, useEffect } from 'react';
+import Button from '@/components/Button/Button';
+import Input from '@/components/Input/Input';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { RootState } from '@/app/GlobalRedux/store';
 
 export default function Checkout() {
 	const { itemsCart, totalPrice } = useSelector(
 		(state: RootState) => state.cart
-	)
+	);
 	const { isAuthenticated, token } = useSelector(
 		(state: RootState) => state.auth
-	)
-	const router = useRouter()
+	);
+	const router = useRouter();
 
-	const [name, setName] = useState('')
-	const [address, setAddress] = useState('')
-	const [phone, setPhone] = useState('')
-	const [email, setEmail] = useState('')
-	const [isClient, setIsClient] = useState(false) // State to check if it's client-side
+	const [name, setName] = useState('');
+	const [address, setAddress] = useState('');
+	const [phone, setPhone] = useState('');
+	const [email, setEmail] = useState('');
+	const [isClient, setIsClient] = useState(false); // State to check if it's client-side
 
 	// Генерация безопасного уникального ID сессии
 	function generateUniqueSessionId() {
-		return 'guest-' + crypto.randomUUID() // Использование безопасного криптографического метода
+		return 'guest-' + crypto.randomUUID(); // Использование безопасного криптографического метода
 	}
 
 	useEffect(() => {
-		setIsClient(true) // Set the state to true after mounting on the client
-	}, [])
+		setIsClient(true); // Set the state to true after mounting on the client
+	}, []);
 
 	useEffect(() => {
 		// Только на клиенте
 		if (isClient) {
 			if (!localStorage.getItem('session_id')) {
-				const newSessionId = generateUniqueSessionId()
-				localStorage.setItem('session_id', newSessionId)
-				console.log('Session ID создан:', newSessionId)
+				const newSessionId = generateUniqueSessionId();
+				localStorage.setItem('session_id', newSessionId);
+				console.log('Session ID создан:', newSessionId);
 			}
 		}
-	}, [isClient])
+	}, [isClient]);
 
 	async function getUser(token: string | null) {
 		try {
@@ -54,42 +54,42 @@ export default function Checkout() {
 					},
 					withCredentials: true
 				}
-			)
-			console.log('Данные пользователя:', response.data)
-			return response.data
+			);
+			console.log('Данные пользователя:', response.data);
+			return response.data;
 		} catch (error) {
-			console.error('Ошибка получения данных пользователя:', error)
+			console.error('Ошибка получения данных пользователя:', error);
 		}
 	}
 
 	useEffect(() => {
 		if (isAuthenticated && token) {
 			getUser(token).then((userData) => {
-				console.log('Пользователь:', userData)
-				setName(userData?.name || '')
-				setEmail(userData?.email || '')
-			})
+				console.log('Пользователь:', userData);
+				setName(userData?.name || '');
+				setEmail(userData?.email || '');
+			});
 		} else {
-			console.log('Пользователь не авторизован')
+			console.log('Пользователь не авторизован');
 		}
-	}, [isAuthenticated, token])
+	}, [isAuthenticated, token]);
 
 	const handleCheckout = async () => {
 		if (!name || !address || !phone || !email) {
-			console.warn('Пожалуйста, заполните все поля')
-			alert('Пожалуйста, заполните все поля')
-			return
+			console.warn('Пожалуйста, заполните все поля');
+			alert('Пожалуйста, заполните все поля');
+			return;
 		}
 
-		let userId = null
-		let sessionId = null
+		let userId = null;
+		let sessionId = null;
 
 		if (isAuthenticated && token) {
-			const userData = await getUser(token)
-			userId = userData?.id
+			const userData = await getUser(token);
+			userId = userData?.id;
 		} else if (isClient) {
 			// Получаем session_id, если пользователь не авторизован
-			sessionId = localStorage.getItem('session_id')
+			sessionId = localStorage.getItem('session_id');
 		}
 
 		const orderData = {
@@ -101,9 +101,9 @@ export default function Checkout() {
 			total_price: String(totalPrice),
 			session_id: sessionId, // Добавляем session_id
 			user_id: userId // Добавляем user_id, если есть
-		}
+		};
 
-		console.log('Отправка данных на сервер:', orderData)
+		console.log('Отправка данных на сервер:', orderData);
 
 		try {
 			const response = await fetch(
@@ -115,28 +115,28 @@ export default function Checkout() {
 					},
 					body: JSON.stringify(orderData)
 				}
-			)
+			);
 
 			if (response.ok) {
-				const responseData = await response.json()
+				const responseData = await response.json();
 
-				const orderId = responseData.id
-				console.log('Order successfully created:', orderId)
-				alert('Заказ оформлен успешно')
+				const orderId = responseData.id;
+				console.log('Order successfully created:', orderId);
+				alert('Заказ оформлен успешно');
 
-				localStorage.setItem('orderId', orderId)
+				localStorage.setItem('orderId', orderId);
 
-				router.push('/payment')
+				router.push('/payment');
 			} else {
-				const error = await response.json()
-				console.error(`Ошибка при оформлении заказа: ${error.message}`)
-				alert(`Ошибка при оформлении заказа: ${error.message}`)
+				const error = await response.json();
+				console.error(`Ошибка при оформлении заказа: ${error.message}`);
+				alert(`Ошибка при оформлении заказа: ${error.message}`);
 			}
 		} catch (error) {
-			console.error('Ошибка сети или сервера:', error)
-			alert('Ошибка сети или сервера')
+			console.error('Ошибка сети или сервера:', error);
+			alert('Ошибка сети или сервера');
 		}
-	}
+	};
 
 	return (
 		<div className={styles.checkout}>
@@ -176,5 +176,5 @@ export default function Checkout() {
 			</div>
 			<Button onClick={handleCheckout}>Оформить заказ</Button>
 		</div>
-	)
+	);
 }

@@ -1,12 +1,12 @@
-import { Link } from 'react-alice-carousel'
-import styles from './Modal.module.css'
-import { ModalPrors } from './ModalPrors'
-import Image from 'next/image'
+import { Link } from 'react-alice-carousel';
+import styles from './Modal.module.css';
+import { ModalPrors } from './ModalPrors';
+import Image from 'next/image';
 
 export default function Modal({ active, anchorRef, setActive }: ModalPrors) {
-	if (!anchorRef) return null
+	if (!anchorRef) return null;
 
-	const { top, left, height } = anchorRef.getBoundingClientRect()
+	const { top, left, height } = anchorRef.getBoundingClientRect();
 
 	return (
 		<div
@@ -50,5 +50,5 @@ export default function Modal({ active, anchorRef, setActive }: ModalPrors) {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

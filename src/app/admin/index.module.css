@@ -1,0 +1,17 @@
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgb(236, 233, 252), rgba(144, 135, 198, 0.573));
+  
+}
+ 
+.pageModule{
+  width: 70%;
+  background: linear-gradient(to bottom, rgb(204 199 230), rgb(224, 219, 245));
+  height: 70%;
+  border-radius: 20px;  
+  padding: 20px;
+  box-shadow: 0 30px 20px rgba(121, 111, 190, 0.362), 0 16px 16px rgba(121, 111, 190, 0.893); 
+}

@@ -1,11 +1,12 @@
-import { useRef } from 'react'
-import styles from './TopHeader.module.css'
-import Image from 'next/image'
-import { TopHeaderProps } from './TopHeaderProps'
-import { Link } from 'react-alice-carousel'
+import { useRef } from 'react';
+import styles from './TopHeader.module.css';
+import Image from 'next/image';
+import { TopHeaderProps } from './TopHeaderProps';
+import { Link } from 'react-alice-carousel';
+import Button from '../Button/Button'; 
 
-export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
-	const phoneBlockRef = useRef<HTMLElement | null>(null)
+export default function TopHeader({ setActive, setAnchorRef, setActives }: TopHeaderProps) {
+	const phoneBlockRef = useRef<HTMLElement | null>(null);
 
 	return (
 		<div className={styles.topbar}>
@@ -33,8 +34,8 @@ export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
 				<div className={styles.phoneBlock}>
 					<div
 						ref={(el) => {
-							phoneBlockRef.current = el
-							setAnchorRef(el) // el используется, так что ошибки тут нет.
+							phoneBlockRef.current = el;
+							setAnchorRef(el); // el используется, так что ошибки тут нет.
 						}}
 						className={styles.phoneBlocks}
 						onMouseEnter={() => setActive(true)}
@@ -50,14 +51,16 @@ export default function TopHeader({ setActive, setAnchorRef }: TopHeaderProps) {
 						<Image
 							src="/svg/TopHeader/graph.svg"
 							alt="Иконка сравнения товаров"
-							width={40}
+							width={40} 
 							height={40}
-						/>
-						Сравнить
-					</div>
-					<button className={styles.button}>ЗАКАЗАТЬ ЗВОНОК</button>
-				</div>
-			</div>
-		</div>
-	)
+						/> 
+						Сравнить 
+					</div> 
+          <div onClick={ () => setActives(true)} className={styles.button}>
+					<Button  >ЗАКАЗАТЬ ЗВОНОК</Button>
+          </div>  
+				</div> 
+			</div> 
+		</div> 
+	); 
 }

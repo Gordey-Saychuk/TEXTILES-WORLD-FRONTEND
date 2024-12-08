@@ -1,43 +1,43 @@
-import React, { useState, useEffect, useRef } from 'react'
-import styles from './Sort.module.css'
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './Sort.module.css';
 
 export default function Sort({ changeSort, sortId }) {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 	const [list] = useState([
 		{ value: 'default', name: 'По популярности' },
 		{ value: 'price', name: 'По цене' }
-	])
+	]);
 
-	const sortRef = useRef(null)
+	const sortRef = useRef(null);
 
 	// Toggle dropdown visibility
 	function toggleDropdown() {
-		setIsOpen((prev) => !prev)
+		setIsOpen((prev) => !prev);
 	}
 
 	// Close dropdown if clicked outside
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
 			if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
-				setIsOpen(false)
+				setIsOpen(false);
 			}
 		}
 
-		document.addEventListener('mousedown', handleClickOutside)
+		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
-		}
-	}, [])
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
 
 	// Handle sorting change
 	const handleSortChange = (value: string) => {
-		changeSort(value)
-		setIsOpen(false) // Close dropdown when an option is selected
-	}
+		changeSort(value);
+		setIsOpen(false); // Close dropdown when an option is selected
+	};
 
 	// Find the selected sort option by its value
-	const selectedSort = list.find((item) => item.value === sortId)
+	const selectedSort = list.find((item) => item.value === sortId);
 
 	return (
 		<div className={styles.sorts} ref={sortRef}>
@@ -66,5 +66,5 @@ export default function Sort({ changeSort, sortId }) {
 				</div>
 			)}
 		</div>
-	)
+	);
 }

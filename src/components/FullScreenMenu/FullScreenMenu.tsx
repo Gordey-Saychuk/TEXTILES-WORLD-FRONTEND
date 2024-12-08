@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import styles from './FullScreenMenu.module.css' // Убедитесь, что стили подключены правильно
-import { Link } from 'react-alice-carousel'
-import { FullScreenMenuProps } from './FullScreenMenuProps'
+import React, { useState } from 'react';
+import styles from './FullScreenMenu.module.css'; // Убедитесь, что стили подключены правильно
+import { Link } from 'react-alice-carousel';
+import { FullScreenMenuProps } from './FullScreenMenuProps';
 
 const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen }) => {
 	const [selectedCategory, setSelectedCategory] = useState<
 		'shades' | 'bedding'
-	>('shades')
+	>('shades');
 
-	if (!isOpen) return null
+	if (!isOpen) return null;
 
 	return (
 		<div className={styles.fullScreenMenu}>
@@ -60,7 +60,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen }) => {
 				)}
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default FullScreenMenu
+export default FullScreenMenu;

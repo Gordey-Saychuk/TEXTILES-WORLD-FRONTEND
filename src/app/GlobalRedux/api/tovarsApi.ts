@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const tovarsApi = createApi({
 	reducerPath: 'tovarsApi',
@@ -10,6 +10,6 @@ export const tovarsApi = createApi({
 			query: () => 'products'
 		})
 	})
-})
+});
 
-export const { useGetTovarsQuery } = tovarsApi
+export const { useGetTovarsQuery } = tovarsApi;

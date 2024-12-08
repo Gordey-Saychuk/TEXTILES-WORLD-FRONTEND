@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import { useState, SyntheticEvent, useEffect } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/navigation' // Импорт для редиректа
-import styles from './auth.module.css'
-import Title from '@/components/Title/Title'
-import Button from '@/components/Button/Button'
-import Input from '@/components/Input/Input'
+import { useState, SyntheticEvent, useEffect } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation'; // Импорт для редиректа
+import styles from './auth.module.css';
+import Title from '@/components/Title/Title';
+import Button from '@/components/Button/Button';
+import Input from '@/components/Input/Input';
 
 export default function Auth() {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const router = useRouter()
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const router = useRouter();
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
-			router.push('/profile') // Перенаправление, если пользователь уже авторизован
+			router.push('/profile'); // Перенаправление, если пользователь уже авторизован
 		}
-	}, [router])
+	}, [router]);
 
 	const submit = async (e: SyntheticEvent) => {
-		e.preventDefault()
+		e.preventDefault();
 
 		try {
 			const response = await axios.post(
@@ -34,15 +34,15 @@ export default function Auth() {
 				{
 					headers: { 'Content-Type': 'application/json' }
 				}
-			)
+			);
 
-			console.log('Ответ сервера:', response.data)
+			console.log('Ответ сервера:', response.data);
 
-			router.push('/login')
+			router.push('/login');
 		} catch (error) {
-			console.error('Ошибка при отправке данных:', error)
+			console.error('Ошибка при отправке данных:', error);
 		}
-	}
+	};
 
 	return (
 		<div className={styles.body}>
@@ -100,5 +100,5 @@ export default function Auth() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

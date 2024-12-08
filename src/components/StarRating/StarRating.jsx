@@ -1,11 +1,11 @@
 // components/StarRating/StarRating.js
-import React from 'react'
-import styles from './StarRating.module.css'
+import React from 'react';
+import styles from './StarRating.module.css';
 
 const StarRating = ({ rating, onChange, isInteractive = false }) => {
 	const handleClick = (value) => {
-		if (isInteractive && onChange) onChange(value)
-	}
+		if (isInteractive && onChange) onChange(value);
+	};
 
 	return (
 		<div className={styles.ratingStars}>
@@ -24,7 +24,7 @@ const StarRating = ({ rating, onChange, isInteractive = false }) => {
 				</svg>
 			))}
 		</div>
-	)
-}
+	);
+};
 
-export default StarRating
+export default StarRating;

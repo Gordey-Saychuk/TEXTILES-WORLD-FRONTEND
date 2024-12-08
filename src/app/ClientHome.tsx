@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import styles from './page.module.css'
-import SliderSwction from '../components/SliderSwction/SliderSwction'
-import SliderTwo from '../components/SliderTwo/SliderTwo'
-import Section from '@/components/Section/Section'
-import Title from '@/components/Title/Title'
-import CardSlider from '@/components/CardSlider/CardSlider'
-import Modal from '@/components/Modal/Modal'
+import { useState } from 'react';
+import styles from './page.module.css';
+import SliderSwction from '../components/SliderSwction/SliderSwction';
+import SliderTwo from '../components/SliderTwo/SliderTwo';
+import Section from '@/components/Section/Section';
+import Title from '@/components/Title/Title';
+import CardSlider from '@/components/CardSlider/CardSlider';
+import Modal from '@/components/Modal/Modal';
+import Modals from '@/components/Modals/Modals'; 
 
-import { ClientHomeProps } from '../components/Section/SectionProps'
-import Blocks from '@/components/Blocks/Blocks'
-import CallBackForm from '@/components/CallBackForm/CallBackForm'
-import SEOBlock from '@/components/SEOBlock/SEOBlock'
+import { ClientHomeProps } from '../components/Section/SectionProps';
+import Blocks from '@/components/Blocks/Blocks';
+import CallBackForm from '@/components/CallBackForm/CallBackForm';
+import SEOBlock from '@/components/SEOBlock/SEOBlock';
 
 export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
-	const [active, setActive] = useState(false)
-	const [anchorRef] = useState<HTMLElement | null>(null)
-
+  
+ 
 	return (
 		<div className={styles.page}>
 			<div className={styles.slider}>
@@ -38,7 +38,8 @@ export default function ClientHome({ data, hits, pleds }: ClientHomeProps) {
 			<SEOBlock />
 
 			{/* Модальное окно */}
-			<Modal setActive={setActive} active={active} anchorRef={anchorRef} />
+ 
+    
 		</div>
-	)
+	); 
 }

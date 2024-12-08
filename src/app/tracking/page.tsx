@@ -1,66 +1,66 @@
-'use client'
+'use client';
 
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import styles from './tracking.module.css'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import styles from './tracking.module.css';
 
 interface Order {
-	id: number
-	total_price: number
-	name: string
-	address: string
-	payment_status: string
-	order_status: string
+	id: number;
+	total_price: number;
+	name: string;
+	address: string;
+	payment_status: string;
+	order_status: string;
 	products: {
-		id: number
-		name: string
-		price: number
-		quantity: number
-	}[]
-	created_at: string
+		id: number;
+		name: string;
+		price: number;
+		quantity: number;
+	}[];
+	created_at: string;
 }
 
 export default function Page() {
-	const [orders, setOrders] = useState<Order[]>([]) // Explicitly type orders as an array of Order
-	const [isLoading, setIsLoading] = useState(true)
-	const [error, setError] = useState<string | null>(null)
+	const [orders, setOrders] = useState<Order[]>([]); // Explicitly type orders as an array of Order
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
 	// session_id can be null if it's not available in localStorage
 	const session_id: string | null =
-		typeof window !== 'undefined' ? localStorage.getItem('session_id') : null
+		typeof window !== 'undefined' ? localStorage.getItem('session_id') : null;
 
 	useEffect(() => {
 		if (!session_id) {
-			console.log('No session ID found')
-			setIsLoading(false)
-			return
+			console.log('No session ID found');
+			setIsLoading(false);
+			return;
 		}
-		console.log(session_id)
+		console.log(session_id);
 
 		// Explicitly type sessionId as a string
 		const getGuestOrders = async (sessionId: string) => {
 			try {
 				const response = await axios.get(
 					`${process.env.NEXT_PUBLIC_API_BASE_URL}orders/session/${sessionId}`
-				)
-				setOrders(response.data)
+				);
+				setOrders(response.data);
 			} catch (error) {
-				setError('Failed to fetch orders. Please try again later.')
-				console.error('Error fetching guest orders:', error)
+				setError('Failed to fetch orders. Please try again later.');
+				console.error('Error fetching guest orders:', error);
 			} finally {
-				setIsLoading(false)
+				setIsLoading(false);
 			}
-		}
+		};
 
-		getGuestOrders(session_id)
-	}, [session_id])
+		getGuestOrders(session_id);
+	}, [session_id]);
 
 	if (isLoading) {
-		return <div className={styles.loader}>Loading...</div>
+		return <div className={styles.loader}>Loading...</div>;
 	}
 
 	if (error) {
-		return <div className={styles.loader}>{error}</div>
+		return <div className={styles.loader}>{error}</div>;
 	}
 
 	return (
@@ -108,5 +108,5 @@ export default function Page() {
 				<p>No orders found</p>
 			)}
 		</div>
-	)
+	);
 }

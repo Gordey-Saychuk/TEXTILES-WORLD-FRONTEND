@@ -1,44 +1,44 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import styles from './cart.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import Image from 'next/image'
+'use client';
+import React, { useEffect, useState } from 'react';
+import styles from './cart.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
 import {
 	removeItem,
 	increaseQuantity,
 	decreaseQuantity
-} from '@/app/GlobalRedux/cartSlice'
-import { useRouter } from 'next/navigation'
-import Button from '@/components/Button/Button'
-import { RootState } from '@/app/GlobalRedux/store'
+} from '@/app/GlobalRedux/cartSlice';
+import { useRouter } from 'next/navigation';
+import Button from '@/components/Button/Button';
+import { RootState } from '@/app/GlobalRedux/store';
 
 export default function Cart() {
 	const { itemsCart, totalPrice, totalQuantity, totalOldPrice } = useSelector(
 		(state: RootState) => state.cart
-	)
-	const [isClient, setIsClient] = useState(false) // Для проверки, что код выполняется на клиенте
+	);
+	const [isClient, setIsClient] = useState(false); // Для проверки, что код выполняется на клиенте
 
-	const dispatch = useDispatch()
-	const router = useRouter()
+	const dispatch = useDispatch();
+	const router = useRouter();
 
 	useEffect(() => {
-		setIsClient(true) // Когда компонент монтируется, устанавливаем флаг, что код выполняется на клиенте
-	}, [])
+		setIsClient(true); // Когда компонент монтируется, устанавливаем флаг, что код выполняется на клиенте
+	}, []);
 
 	function delItem(id: string | number) {
-		dispatch(removeItem({ id }))
+		dispatch(removeItem({ id }));
 	}
 
 	function handleIncrease(id: string | number) {
-		dispatch(increaseQuantity({ id }))
+		dispatch(increaseQuantity({ id }));
 	}
 
 	function handleDecrease(id: string | number) {
-		dispatch(decreaseQuantity({ id }))
+		dispatch(decreaseQuantity({ id }));
 	}
 
 	if (!isClient) {
-		return null // Возвращаем null до того, как компонент отрендерится на клиенте
+		return null; // Возвращаем null до того, как компонент отрендерится на клиенте
 	}
 
 	return (
@@ -52,8 +52,8 @@ export default function Cart() {
 				<div className={styles.content}>
 					<ul className={styles.items}>
 						{itemsCart.map((item) => {
-							const imageUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image_url}`
-							console.log('Image URL:', imageUrl) // Вывод пути в консоль
+							const imageUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image_url}`;
+							console.log('Image URL:', imageUrl); // Вывод пути в консоль
 
 							return (
 								<li className={styles.item} key={item.id}>
@@ -104,7 +104,7 @@ export default function Cart() {
 										</div>
 									</div>
 								</li>
-							)
+							);
 						})}
 					</ul>
 					<div className={styles.summarys}>
@@ -138,5 +138,5 @@ export default function Cart() {
 				</div>
 			)}
 		</div>
-	)
+	);
 }

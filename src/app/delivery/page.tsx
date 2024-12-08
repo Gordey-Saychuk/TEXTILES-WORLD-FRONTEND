@@ -1,7 +1,7 @@
-import React from 'react'
-import styles from './delivery.module.css'
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs'
-import Head from 'next/head'
+import React from 'react';
+import styles from './delivery.module.css';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import Head from 'next/head';
 
 export async function generateMetadata() {
 	return {
@@ -33,7 +33,7 @@ export async function generateMetadata() {
 		alternates: {
 			canonical: 'https://textiles-world.ru/delivery'
 		}
-	}
+	};
 }
 
 export default function page() {
@@ -125,5 +125,5 @@ export default function page() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

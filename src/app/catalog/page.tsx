@@ -1,30 +1,30 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { getTovarsCatalog } from '../lib/api/getTovars'
-import SliderCatalog from '../../components/SliderCatalog/SliderCatalog'
-import Card from '../../components/Card/Card'
-import Category from '@/components/Category/Category'
-import styles from './ClientCatalog.module.css'
-import { Product } from '@/types/index'
-import Sort from '@/components/Sort/Sort'
+import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { getTovarsCatalog } from '../lib/api/getTovars';
+import SliderCatalog from '../../components/SliderCatalog/SliderCatalog';
+import Card from '../../components/Card/Card';
+import Category from '@/components/Category/Category';
+import styles from './ClientCatalog.module.css';
+import { Product } from '@/types/index';
+import Sort from '@/components/Sort/Sort';
 
 export default function Catalog() {
-	const router = useRouter()
-	const searchParams = useSearchParams()
-	const [data, setData] = useState<Product[]>([])
-	const [totalPages, setTotalPages] = useState(0)
-	const [currentPage, setCurrentPage] = useState(1)
-	const [categoryId, setCategoryId] = useState<number | undefined>(undefined)
-	const [sortId, setSortId] = useState<string | undefined>('default')
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const [data, setData] = useState<Product[]>([]);
+	const [totalPages, setTotalPages] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
+	const [sortId, setSortId] = useState<string | undefined>('default');
 
 	useEffect(() => {
-		const page = parseInt(searchParams.get('page') || '1', 10)
-		const category = searchParams.get('categoryId')
-		setCurrentPage(page)
-		setCategoryId(category ? parseInt(category, 10) : undefined)
-	}, [searchParams])
+		const page = parseInt(searchParams.get('page') || '1', 10);
+		const category = searchParams.get('categoryId');
+		setCurrentPage(page);
+		setCategoryId(category ? parseInt(category, 10) : undefined);
+	}, [searchParams]);
 
 	// Запрос данных
 	useEffect(() => {
@@ -35,25 +35,25 @@ export default function Catalog() {
 					3,
 					categoryId,
 					sortId
-				) // Include sortId in API call
-				setData(response.results || [])
-				setTotalPages(Math.ceil(response.count / 3))
+				); // Include sortId in API call
+				setData(response.results || []);
+				setTotalPages(Math.ceil(response.count / 3));
 			} catch (error) {
-				console.error('Ошибка загрузки данных:', error)
+				console.error('Ошибка загрузки данных:', error);
 			}
 		}
-		fetchData()
-	}, [currentPage, categoryId, sortId])
+		fetchData();
+	}, [currentPage, categoryId, sortId]);
 
-	console.log('сорт', sortId)
+	console.log('сорт', sortId);
 
 	const handleCategoryChange = (id: number | undefined) => {
-		router.push(`/catalog?page=1&categoryId=${id || ''}`)
-	}
+		router.push(`/catalog?page=1&categoryId=${id || ''}`);
+	};
 
 	const handlePageChange = (page: number) => {
-		router.push(`/catalog?page=${page}&categoryId=${categoryId || ''}`)
-	}
+		router.push(`/catalog?page=${page}&categoryId=${categoryId || ''}`);
+	};
 
 	return (
 		<div>
@@ -98,5 +98,5 @@ export default function Catalog() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }

@@ -1,9 +1,9 @@
-import styles from './Button.module.css'
+import styles from './Button.module.css';
 
 interface ButtonProps {
-	children: React.ReactNode
-	submit?: boolean
-	onClick?: () => void // Add the onClick prop here
+	children: React.ReactNode;
+	submit?: boolean;
+	onClick?: () => void; // Add the onClick prop here
 }
 
 export default function Button({ children, submit, onClick }: ButtonProps) {
@@ -15,5 +15,5 @@ export default function Button({ children, submit, onClick }: ButtonProps) {
 		>
 			{children}
 		</button>
-	)
+	);
 }

@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import styles from './SliderCatalog.module.css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import Image from 'next/image'
+import styles from './SliderCatalog.module.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
-import { Autoplay } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules';
 
 export default function SliderCatalog() {
 	return (
@@ -35,5 +35,5 @@ export default function SliderCatalog() {
 				</div>
 			</SwiperSlide>
 		</Swiper>
-	)
+	);
 }

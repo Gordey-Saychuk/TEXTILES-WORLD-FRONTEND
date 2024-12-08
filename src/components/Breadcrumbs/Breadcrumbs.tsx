@@ -1,6 +1,6 @@
 // Breadcrumbs.js
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
 const Breadcrumbs = ({ paths }) => {
 	return (
@@ -16,7 +16,7 @@ const Breadcrumbs = ({ paths }) => {
 				</span>
 			))}
 		</nav>
-	)
-}
+	);
+};
 
-export default Breadcrumbs
+export default Breadcrumbs;

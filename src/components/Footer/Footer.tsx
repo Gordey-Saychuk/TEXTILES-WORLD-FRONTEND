@@ -1,36 +1,36 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import Link from 'next/link'
-import styles from './Footer.module.css' // Import CSS module
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import styles from './Footer.module.css'; // Import CSS module
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Ensure to import ToastContainer in your root component (e.g., _app.js)
-import { ToastContainer } from 'react-toastify'
-import Button from '../Button/Button'
+import { ToastContainer } from 'react-toastify';
+import Button from '../Button/Button';
 
 const Footer = () => {
-	const [email, setEmail] = useState('')
+	const [email, setEmail] = useState('');
 
 	const validateEmail = (email: string) => {
 		// Basic email validation regex
-		const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		return re.test(email)
-	}
+		const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return re.test(email);
+	};
 
 	// Specify the type for the parameter 'e'
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+		e.preventDefault();
 
 		if (!email) {
-			toast.error('Пожалуйста, Введите корректный e-mail')
-			return
+			toast.error('Пожалуйста, Введите корректный e-mail');
+			return;
 		}
 
 		if (!validateEmail(email)) {
-			toast.error('Введите корректный e-mail')
-			return
+			toast.error('Введите корректный e-mail');
+			return;
 		}
 
 		try {
@@ -40,19 +40,19 @@ const Footer = () => {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({ email })
-			})
+			});
 
 			if (response.ok) {
-				toast.success('Вы успешно подписались на рассылку!')
-				setEmail('')
+				toast.success('Вы успешно подписались на рассылку!');
+				setEmail('');
 			} else {
-				toast.error('Что-то пошло не так. Попробуйте еще раз.')
+				toast.error('Что-то пошло не так. Попробуйте еще раз.');
 			}
 		} catch (error) {
-			console.error('Ошибка сети:', error)
-			toast.error('Ошибка сети. Попробуйте еще раз.')
+			console.error('Ошибка сети:', error);
+			toast.error('Ошибка сети. Попробуйте еще раз.');
 		}
-	}
+	};
 
 	return (
 		<>
@@ -159,7 +159,7 @@ const Footer = () => {
 			</div>
 			<ToastContainer />
 		</>
-	)
-}
+	);
+};
 
-export default Footer
+export default Footer;
