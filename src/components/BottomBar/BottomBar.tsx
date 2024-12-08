@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import Link from 'next/link'
-import FullScreenMenu from '../FullScreenMenu/FullScreenMenu'
-import styles from './BottomBar.module.css'
-import Image from 'next/image'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import FullScreenMenu from '../FullScreenMenu/FullScreenMenu';
+import styles from './BottomBar.module.css';
+import Image from 'next/image';
 
 export const BottomBar = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const handleMenuClick = () => {
-		setIsMenuOpen((prev) => !prev) // Toggle menu state
-	}
+		setIsMenuOpen((prev) => !prev); // Toggle menu state
+	};
 
 	const handleLinkClick = () => {
-		setIsMenuOpen(false) // Close menu on link click
-	}
+		setIsMenuOpen(false); // Close menu on link click
+	};
 
 	const links = [
 		{
@@ -54,7 +54,7 @@ export const BottomBar = () => {
 			label: 'Отзывы',
 			className: styles.largeIcon
 		}
-	]
+	];
 
 	return (
 		<>
@@ -97,5 +97,5 @@ export const BottomBar = () => {
 				onClose={() => setIsMenuOpen(false)}
 			/>
 		</>
-	)
-}
+	);
+};

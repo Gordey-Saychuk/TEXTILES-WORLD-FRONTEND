@@ -1,38 +1,38 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react'
-import styles from './reviews.module.css'
-import StarRating from '../../components/StarRating/StarRating'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import styles from './reviews.module.css';
+import StarRating from '../../components/StarRating/StarRating';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 async function getReviews() {
 	try {
 		const response = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_BASE_URL}reviews/`
-		)
-		console.log(response.data) // Лог результата
-		return response.data
+		);
+		console.log(response.data); // Лог результата
+		return response.data;
 	} catch (e) {
-		console.error('Ошибка при загрузке отзывов:', e)
-		toast.error('Ошибка при загрузке отзывов')
-		return []
+		console.error('Ошибка при загрузке отзывов:', e);
+		toast.error('Ошибка при загрузке отзывов');
+		return [];
 	}
 }
 
 // Основной компонент страницы отзывов
 export default function ReviewsPage() {
-	const [rew, serRew] = useState([])
+	const [rew, serRew] = useState([]);
 
 	useEffect(() => {
 		async function fetchReviews() {
-			const r = await getReviews()
+			const r = await getReviews();
 
-			serRew(r)
+			serRew(r);
 		}
-		fetchReviews()
-	}, [])
+		fetchReviews();
+	}, []);
 
 	return (
 		<div className={styles.reviewsPage}>
@@ -87,5 +87,5 @@ export default function ReviewsPage() {
 			{/* Toast Container */}
 			<ToastContainer />
 		</div>
-	)
+	);
 }

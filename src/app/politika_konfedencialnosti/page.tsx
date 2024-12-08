@@ -1,8 +1,8 @@
-import React from 'react'
-import styles from './politikakonfedencialnosti.module.css'
+import React from 'react';
+import styles from './politikakonfedencialnosti.module.css';
 
-import Head from 'next/head'
-import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
+import Head from 'next/head';
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 
 export async function generateMetadata() {
 	return {
@@ -29,7 +29,7 @@ export async function generateMetadata() {
 		alternates: {
 			canonical: 'https://textiles-world.ru/politika_konfedencialnosti'
 		}
-	}
+	};
 }
 
 export default function page() {
@@ -357,5 +357,5 @@ export default function page() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

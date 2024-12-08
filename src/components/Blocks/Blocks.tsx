@@ -1,4 +1,4 @@
-import styles from './Blocks.module.css' // Исправьте путь к CSS файлу, если нужно
+import styles from './Blocks.module.css'; // Исправьте путь к CSS файлу, если нужно
 
 const blocksData = [
 	{
@@ -32,7 +32,7 @@ const blocksData = [
 		caption: 'Изготовление по вашим размерам'
 	}
 	// Добавьте свои данные
-]
+];
 
 export default function Blocks() {
 	return (
@@ -52,5 +52,5 @@ export default function Blocks() {
 				</div>
 			))}
 		</section>
-	)
+	);
 }

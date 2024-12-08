@@ -1,0 +1,12 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid white;
+}
+
+.input{
+  border-radius: 20px;
+  box-shadow: 0 15px 10px rgba(121, 111, 190, 0.307), 0 0px 16px rgba(121, 111, 190, 0.696); 
+}

@@ -16,18 +16,17 @@ export default function Profile() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		if (isLoading) return // Ждем завершения загрузки
-		if (!isAuthenticated) {
-			console.log('Пользователь не аутентифицирован')
-			router.push('/auth')
-		} else if (!user) {
-			dispatch(getUser())
-		}
-	}, [isAuthenticated, user, isLoading, router, dispatch])
-
-	if (!isAuthenticated || isLoading) {
-		return <h1>Загрузка профиля...</h1>
-	}
+    if (isLoading) return; // Ждем завершения загрузки
+    if (!isAuthenticated) { 
+       
+    } else if (!user) {
+      dispatch(getUser());
+    }
+  }, [isAuthenticated, user, isLoading, router, dispatch]);
+  
+  if (!isAuthenticated || isLoading) {
+    return <h1>Загрузка профиля...</h1>;
+  } 
 
 	return (
 		<div className={styles.page}>
@@ -47,4 +46,4 @@ export default function Profile() {
 			<div>У вас пока нет заказов</div>
 		</div>
 	)
-}
+} 

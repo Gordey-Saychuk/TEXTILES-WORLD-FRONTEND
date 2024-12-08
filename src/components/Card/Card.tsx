@@ -1,63 +1,63 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import styles from './Card.module.css'
-import { Product, Review } from '@/types/index'
-import Image from 'next/image'
-import { getReviewsByProductId } from '../../app/lib/api/getReviewsByProductId'
-import { useDispatch } from 'react-redux'
-import { addItem } from '@/app/GlobalRedux/cartSlice'
+'use client';
+import React, { useEffect, useState } from 'react';
+import styles from './Card.module.css';
+import { Product, Review } from '@/types/index';
+import Image from 'next/image';
+import { getReviewsByProductId } from '../../app/lib/api/getReviewsByProductId';
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/app/GlobalRedux/cartSlice';
 
 interface CardProps {
-	product: Product
+	product: Product;
 }
 
 export default function Card({ product }: CardProps) {
-	const [discount, setDiscount] = useState<number | null>(null)
-	const [reviews, setReviews] = useState<Review[]>([])
-	const dispatch = useDispatch()
+	const [discount, setDiscount] = useState<number | null>(null);
+	const [reviews, setReviews] = useState<Review[]>([]);
+	const dispatch = useDispatch();
 
 	function getReviewWord(count: number) {
-		const remainder10 = count % 10
-		const remainder100 = count % 100
+		const remainder10 = count % 10;
+		const remainder100 = count % 100;
 
 		if (remainder100 >= 11 && remainder100 <= 14) {
-			return 'отзывов'
+			return 'отзывов';
 		}
 		if (remainder10 === 1) {
-			return 'отзыв'
+			return 'отзыв';
 		}
 		if (remainder10 >= 2 && remainder10 <= 4) {
-			return 'отзыва'
+			return 'отзыва';
 		}
 
-		return 'отзывов'
+		return 'отзывов';
 	}
 
 	function calculateDiscount(product: Product) {
 		const discountValue =
 			((Number(product.old_price) - Number(product.price)) /
 				Number(product.old_price)) *
-			100
-		console.log(discountValue)
+			100;
+		console.log(discountValue);
 		// Преобразуем discountValue в строку, а затем обратно в число
-		setDiscount(parseFloat(discountValue.toFixed(2)))
+		setDiscount(parseFloat(discountValue.toFixed(2)));
 	}
 
 	useEffect(() => {
 		if (product.old_price) {
-			calculateDiscount(product)
+			calculateDiscount(product);
 		}
-		console.log(`${product.image_url}`)
-	}, [product])
+		console.log(`${product.image_url}`);
+	}, [product]);
 
 	useEffect(() => {
 		const fetchReviews = async () => {
-			const reviewsData = await getReviewsByProductId(product.id)
-			setReviews(reviewsData)
-		}
+			const reviewsData = await getReviewsByProductId(product.id);
+			setReviews(reviewsData);
+		};
 
-		fetchReviews()
-	}, [product.id])
+		fetchReviews();
+	}, [product.id]);
 
 	function itemsCarts() {
 		const item = {
@@ -66,16 +66,16 @@ export default function Card({ product }: CardProps) {
 			price: product.price,
 			image_url: product.image_url,
 			old_price: product.old_price
-		}
+		};
 
-		dispatch(addItem(item))
+		dispatch(addItem(item));
 	}
 
 	return (
 		<div className={styles.card}>
 			<div className={styles.photos}>
 				<div
-					className={styles.photo}
+					className={styles.photo} 
 					style={{ backgroundImage: `url(${product.image_url})` }}
 				></div>
 			</div>
@@ -106,5 +106,5 @@ export default function Card({ product }: CardProps) {
 				</button>
 			</div>
 		</div>
-	)
+	);
 }

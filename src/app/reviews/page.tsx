@@ -1,12 +1,12 @@
-import Head from 'next/head'
-import ReviewsPage from './ReviewsPage'
-import { fetchReviews } from './fetchReviews' // Assuming you move this to a separate file
+import Head from 'next/head';
+import ReviewsPage from './ReviewsPage';
+import { fetchReviews } from './fetchReviews'; // Assuming you move this to a separate file
 
 export async function generateMetadata() {
-	const reviews = await fetchReviews()
-	const reviewCount = reviews.length
+	const reviews = await fetchReviews();
+	const reviewCount = reviews.length; 
 	const averageRating =
-		reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount || 0
+		reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount || 0;
 
 	return {
 		title: 'Отзывы - Textiles World',
@@ -50,7 +50,7 @@ export async function generateMetadata() {
 				reviewAspect: 'Overall'
 			}))
 		}
-	}
+	};
 }
 
 export default function Page() {
@@ -92,5 +92,5 @@ export default function Page() {
 			</Head>
 			<ReviewsPage />
 		</>
-	)
+	);
 }

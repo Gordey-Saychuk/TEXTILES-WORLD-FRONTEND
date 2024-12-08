@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/free-mode'
-import Card from '../Card/Card'
-import styles from './CardSlider.module.css'
-import { Product } from '@/types/index'
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/free-mode';
+import Card from '../Card/Card';
+import styles from './CardSlider.module.css';
+import { Product } from '@/types/index';
 
 interface CardSliderProps {
-	data: Product[]
+	data: Product[];
 }
 
 export default function CardSlider({ data }: CardSliderProps) {
@@ -32,5 +32,5 @@ export default function CardSlider({ data }: CardSliderProps) {
 				</SwiperSlide>
 			))}
 		</Swiper>
-	)
+	);
 }

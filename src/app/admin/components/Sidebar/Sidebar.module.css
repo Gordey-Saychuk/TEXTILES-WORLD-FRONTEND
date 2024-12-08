@@ -1,0 +1,8 @@
+.sidebar{
+  background-color: rgb(205 198 238);
+  height: 50%;
+  width: 70px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  box-shadow: 0 0px 10px rgba(121, 111, 190, 0.307), 0 0px 16px rgba(121, 111, 190, 0.696); 
+}

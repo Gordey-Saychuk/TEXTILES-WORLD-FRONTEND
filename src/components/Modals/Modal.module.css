@@ -1,0 +1,74 @@
+.modal {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  display: flex;
+  justify-content: center; /* Центрируем по горизонтали */
+  align-items: center; /* Центрируем по вертикали */
+  z-index: 9999; /* Поверх других элементов */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.modalActive {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Для анимации */
+}
+
+.modals {
+  border-radius: 20px;
+  width: 300px;
+  height: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10000; /* Для модалки, чтобы она была поверх */
+}
+
+.phoneBlocks {
+  cursor: pointer;
+}
+
+.underPhone {
+  color: #a7aeb6;
+  font-size: 17px;
+}
+
+.social {
+  display: flex;
+  justify-content: space-around;
+}
+
+.phone {
+  font-size: 20px;
+  font-family: var(--font-sf-pro-bold);
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.phone:hover {
+  color: var(--prime);
+}
+
+.socialTg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-family: var(--font-sf-pro-bold);
+  cursor: pointer;
+}

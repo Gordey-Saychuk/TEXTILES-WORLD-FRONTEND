@@ -70,7 +70,8 @@
 .cartIcon {
 	position: relative;
 	display: inline-block;
-	z-index: 1010; /* Обеспечиваем, чтобы иконка была поверх других элементов */
+	z-index: 1010; 
+  transition: transform 0.3s ease;
 }
 
 .cartBadge {
@@ -90,6 +91,42 @@
 
 	border: 2px solid white;
 }
+
+.linkse {
+	cursor: pointer;
+	transition: color 0.3s ease; 
+  position: relative;
+}
+
+.linkse:hover {
+	color: var(--rude);
+}
+
+.sale {
+  position: absolute;
+  left: 50px;
+  top: -20px;
+  background-color: red;
+  color: white;
+  padding: 1px 15px;
+  transform: rotate(10deg); 
+
+}
+
+.profileIcon{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profileIcon:hover{
+  transform: scale(1.2);
+  
+}
+
+.cartIcon:hover{
+  transform: scale(1.2);
+}
+
 
 @media (max-width: 1100px) {
 	.topbar {

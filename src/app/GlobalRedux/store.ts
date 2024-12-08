@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { configureStore } from '@reduxjs/toolkit'
-import { tovarsApi } from './api/tovarsApi'
-import cartReducer from './cartSlice'
-import authReducer from './authSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { tovarsApi } from './api/tovarsApi';
+import cartReducer from './cartSlice';
+import authReducer from './authSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -14,10 +14,10 @@ export const store = configureStore({
 
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(tovarsApi.middleware)
-})
+});
 
-export type AppStore = typeof store
+export type AppStore = typeof store;
 
-export type RootState = ReturnType<AppStore['getState']>
+export type RootState = ReturnType<AppStore['getState']>;
 
-export type AppDispatch = AppStore['dispatch']
+export type AppDispatch = AppStore['dispatch'];

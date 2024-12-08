@@ -1,43 +1,43 @@
-import { useSelector } from 'react-redux'
-import styles from './Header.module.css'
-import Input from '../Input/Input'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { RootState } from '@/app/GlobalRedux/store'
-import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import styles from './Header.module.css';
+import Input from '../Input/Input';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { RootState } from '@/app/GlobalRedux/store';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
 	const { totalQuantity = 0 } = useSelector(
 		(state: RootState) => state.cart || {}
-	)
-	const { isAuthenticated } = useSelector((state: RootState) => state.auth) // Проверяем статус аутентификации
-	const [isSticy, setIsSticy] = useState(false)
+	);
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth); // Проверяем статус аутентификации
+	const [isSticy, setIsSticy] = useState(false);
 
-	const router = useRouter()
+	const router = useRouter();
 
 	const handleProfileClick = () => {
 		if (isAuthenticated) {
-			router.push('/profile')
+			router.push('/profile');
 		} else {
-			router.push('/auth')
+			router.push('/auth');
 		}
-	}
+	};
 
 	function handleScroll() {
 		if (window.scrollY > 100) {
-			setIsSticy(true)
+			setIsSticy(true);
 		} else {
-			setIsSticy(false)
+			setIsSticy(false);
 		}
 	}
 
 	useEffect(() => {
-		window.addEventListener('scroll', handleScroll)
+		window.addEventListener('scroll', handleScroll);
 		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [])
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	return (
 		<div className={`${styles.topbars} ${isSticy ? styles.sticky : ''}`}>
@@ -67,8 +67,10 @@ export default function Header() {
 						</Link>
 						<li className={styles.links}>Постельное белье</li>
 						<li className={styles.links}>Хиты продаж</li>
-						<li className={styles.links}>Распродажа</li>
-					</ul>
+						<li className={styles.linkse}>Распродажа
+              <div className={styles.sale} >sale</div> 
+            </li> 
+					</ul>  
 				</div>
 
 				<div className={styles.phoneBlock}>
@@ -96,5 +98,5 @@ export default function Header() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

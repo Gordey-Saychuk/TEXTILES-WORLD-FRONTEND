@@ -1,6 +1,6 @@
-import styles from './Input.module.css'
-import { InputProps } from './InputProps'
-import Image from 'next/image'
+import styles from './Input.module.css';
+import { InputProps } from './InputProps';
+import Image from 'next/image';
 
 export default function Input({
 	placeholder,
@@ -32,5 +32,5 @@ export default function Input({
 				/>
 			) : null}
 		</div>
-	)
+	);
 }

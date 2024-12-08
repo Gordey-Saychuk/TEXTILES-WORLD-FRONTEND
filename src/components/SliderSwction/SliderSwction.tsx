@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import styles from './SliderSwction.module.css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import Image from 'next/image'
+import styles from './SliderSwction.module.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
-import { Autoplay } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules';
 
 export default function SliderSwction() {
 	return (
@@ -38,5 +38,5 @@ export default function SliderSwction() {
 				/>
 			</SwiperSlide>
 		</Swiper>
-	)
+	);
 }
