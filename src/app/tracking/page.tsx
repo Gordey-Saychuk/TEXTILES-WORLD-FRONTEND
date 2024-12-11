@@ -3,6 +3,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styles from './tracking.module.css';
+import Title from '@/components/Title/Title';
 
 interface Order {
 	id: number;
@@ -65,12 +66,17 @@ export default function Page() {
 
 	return (
 		<div className={styles.container}>
-			<h1 className={styles.heading}>Orders</h1>
+ 
+      <Title>Заказы</Title> 
+    
 			{orders.length > 0 ? (
 				<ul className={styles.orderList}>
 					{orders.map((order) => (
 						<li key={order.id} className={styles.orderItem}>
 							<div className={styles.orderHeader}>
+              <p className={styles.createdAt}>
+              Заказ от {new Date(order.created_at).toLocaleString()}
+							</p> 
 								<span>Order #{order.id}</span>
 								<span>${order.total_price}</span>
 							</div>
@@ -96,11 +102,9 @@ export default function Page() {
 											{product.name} - ${product.price} x {product.quantity}
 										</li>
 									))}
-								</ul>
+								</ul> 
 							</div>
-							<p className={styles.createdAt}>
-								Created at: {new Date(order.created_at).toLocaleString()}
-							</p>
+				
 						</li>
 					))}
 				</ul>

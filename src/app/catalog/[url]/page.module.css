@@ -1,0 +1,294 @@
+/* Общие стили для контейнера */
+.container {
+  padding: 20px;
+  padding-top: 0px;
+
+  width: -webkit-fill-available; 
+}
+
+.Toastify__toast {
+  pointer-events: all !important;
+}
+
+
+.gal{
+  margin-left: 20px; 
+  
+}
+
+.reviewBody{
+  padding: 20px;
+}
+
+.containerse{
+  background-color: #f1f6fa;
+  padding-top: 20px;
+  max-width: 1830px;
+  margin: auto;
+}
+
+.breadc{
+  padding: 20px;
+  padding-top: 0;
+}
+
+
+
+.par{
+  font-size: 23px;
+}
+
+/* Заголовок продукта */
+.title {
+  
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.tabContainere{
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  height: 100%;
+  margin: 20px;
+}
+
+.icon{
+  background-color: #f1f6fa;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.detailsName{
+  display: flex;
+  justify-content:space-between;
+}
+
+.pars{
+  margin-top: 20px;
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+.tabContainer {
+  
+  display: flex;
+  justify-content: space-between; /* Распределяет кнопки по ширине контейнера */
+  margin: 0 auto; /* Центрирует контейнер */
+  border-bottom: 2px solid #ddd; /* Линия под табами */
+  
+}
+
+.tabContent{
+  padding-top: 10px;
+
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 50%;
+  font-size: 16px;
+  color: #555; /* Цвет текста по умолчанию */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход для фона и цвета */
+  border-bottom: 2px solid transparent; /* Нижняя граница для активного состояния */
+  margin: 0;
+}
+
+
+.activeTab { 
+  color: #fff; /* Цвет текста для активного таба */
+  background-color: var(--prime); /* Цвет фона для активного таба */
+  border-bottom: 2px solid var(--prime); /* Нижняя граница для активного таба */
+  border-radius: 4px 4px 0 0; /* Скругленные верхние углы */
+  font-weight: bold; /* Жирный текст для активного таба */
+}
+
+/* Стили для контента */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+/* Галерея и описание */
+.details {
+  min-height: 600px;
+  flex: 1;
+
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+
+.mobileOnly {
+  display: block;
+  margin-bottom: 30px;
+  margin-top: 20px;
+ 
+} 
+ 
+.sectionOrder{ 
+  background-color: white;
+  z-index: 1000;
+  margin: 200px;
+}
+
+.desktopOnly {
+  display: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.shareWrapper {
+  position: relative;
+}
+
+.shareMenu {
+  position: absolute;
+  top: -90px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 160px;
+  border-radius: 20px;
+}
+
+.shareLink {
+  text-decoration: none;
+
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.shareLink:hover {
+  text-decoration: underline;
+}
+
+
+
+@media (max-width: 1167px) {
+  .containerse{
+ 
+    padding-top: 60px;
+    background-color: white;
+  }
+
+}
+
+@media (min-width: 1167px) {
+  /* Размещение галереи слева, описания справа */
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content:space-between;
+  }
+
+  .raspre{
+    display: flex;
+  }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  /* На больших экранах показываем блок для больших экранов */
+  .desktopOnly {
+    display: block;
+  }
+
+
+  .sliderContainer {
+    max-width: 40%; /* Уменьшаем ширину галереи на больших экранах */
+    margin-right: 20px;
+  }
+
+  .details {
+    max-width: 60%;
+  }
+}
+
+/* Описание продукта */
+.description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  
+}
+
+/* Секция с ценами */
+.priceSection {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  display: flex;
+ 
+}
+
+/* Старая цена с зачёркиванием */
+.oldPrice { 
+  text-decoration: line-through;
+  color: gray;
+
+  font-size: 25px;
+}
+
+.sPrice{
+  margin-top: 5px;
+  margin-right: 5px;
+  font-size: 33px;
+  font-weight: bold;
+}
+.btn {
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: auto;
+}
+
+.btnConteiner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+} 
+/* Сетка для характеристик продукта */
+.infoGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px; /* Отступ после сетки */
+}
+
+/* Отдельные элементы сетки */
+.infoGrid p {
+  margin: 0;
+}
+
+/* Заголовок для отзывов */
+.reviewTitle {
+  margin-top: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd; /* Линия под заголовком */
+  padding-bottom: 10px; /* Отступ под заголовком */
+}

@@ -104,3 +104,37 @@
 .body {
 	padding: 10px;
 }
+
+.buttonsBox{
+  display: flex;
+  width: 370px;
+
+  gap: 10px;
+}
+
+.modalTitle{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.buttonLink{
+  width: 100%;  
+  }
+
+.buttons {
+  background-color: #f1f6fa;
+  border: 1.5px solid black;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 30px;
+  width: 100%;  
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+  
+}
+ 
+.buttons:hover {
+  background-color: rgb(255, 255, 255);
+}

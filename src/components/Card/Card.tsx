@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { getReviewsByProductId } from '../../app/lib/api/getReviewsByProductId';
 import { useDispatch } from 'react-redux';
 import { addItem } from '@/app/GlobalRedux/cartSlice';
+import Modals from '@/components/Modals/Modals';
+import Link from 'next/link';
+import Button from '@/components/Button/Button'; 
 
 interface CardProps {
 	product: Product;
@@ -15,6 +18,8 @@ export default function Card({ product }: CardProps) {
 	const [discount, setDiscount] = useState<number | null>(null);
 	const [reviews, setReviews] = useState<Review[]>([]);
 	const dispatch = useDispatch();
+
+  const [actives, setActives] = useState(false); 
 
 	function getReviewWord(count: number) {
 		const remainder10 = count % 10;
@@ -43,11 +48,11 @@ export default function Card({ product }: CardProps) {
 		setDiscount(parseFloat(discountValue.toFixed(2)));
 	}
 
-	useEffect(() => {
-		if (product.old_price) {
-			calculateDiscount(product);
+	useEffect(() => { 
+		if (product.old_price) { 
+			calculateDiscount(product);  
 		}
-		console.log(`${product.image_url}`);
+		console.log(`{product.image_url}`);
 	}, [product]);
 
 	useEffect(() => {
@@ -60,12 +65,15 @@ export default function Card({ product }: CardProps) {
 	}, [product.id]);
 
 	function itemsCarts() {
+    setActives(true); 
+
 		const item = {
 			id: product.id,
 			name: product.name,
 			price: product.price,
 			image_url: product.image_url,
-			old_price: product.old_price
+			old_price: product.old_price,
+      sets: product.sets 
 		};
 
 		dispatch(addItem(item));
@@ -73,16 +81,23 @@ export default function Card({ product }: CardProps) {
 
 	return (
 		<div className={styles.card}>
-			<div className={styles.photos}>
-				<div
-					className={styles.photo} 
-					style={{ backgroundImage: `url(${product.image_url})` }}
+        <Link href={`/catalog/${product.url}`}>
+			<div className={styles.photos}> 
+				<div   
+					className={styles.photo}  
+					style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${product.image_url})` }}
 				></div>
 			</div>
+      </Link>
 			<div className={styles.body}>
-				<h3 className={styles.title}>{product.name}</h3>
+      <Link href={`/catalog/${product.url}`}>
+				<h3 className={styles.title}>{product.name}</h3> 
+        </Link>
+        <Link href={`/catalog/${product.url}`}>
 				<p className={styles.sets}>{product.sets}</p>
-				<div className={styles.reviews}>
+        </Link>
+        <Link href={`/catalog/${product.url}`}>
+				<div className={styles.reviews}> 
 					<Image
 						src="/svg/Card/star.svg"
 						alt="Звезда"
@@ -101,10 +116,24 @@ export default function Card({ product }: CardProps) {
 						<span className={styles.discount}> -{discount}%</span>
 					)}
 				</div>
+        </Link> 
 				<button onClick={itemsCarts} className={styles.button}>
-					Добавить в корзину
+					Добавить в корзину 
 				</button>
 			</div>
-		</div>
+      <Modals setActives={setActives} active={actives}>
+        <div> 
+        <div className={styles.modalTitle}>Товар добавлен в корзину</div>
+        <div className={styles.buttonsBox}> 
+        <button onClick={() => {setActives(false);}} className={styles.buttons}>  
+					ПРОДОЛЖИТЬ ПОКУПКИ   
+				</button>   
+        <Link className={styles.buttonLink} onClick={() => {setActives(false);}} href={'./cart'}> 
+        <Button>В КОРЗИНУ</Button>    
+        </Link> 
+        </div> 
+        </div>
+      </Modals> 
+		</div>  
 	);
 }

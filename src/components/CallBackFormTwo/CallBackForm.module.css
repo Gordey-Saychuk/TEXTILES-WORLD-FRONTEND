@@ -1,0 +1,91 @@
+/* CallBackForm.module.css */
+
+.container {
+	padding: 20px;
+
+	border-radius: 50px;
+	max-width: 1830px;
+	margin: auto;
+}
+
+.header {
+	font-size: 30px !important;
+	font-weight: bold;
+	margin-top: 10px;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.phoneNumber {
+	font-size: 40px !important;
+	font-weight: bold;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.zvon {
+	margin-bottom: 10px;
+}
+
+.description {
+	font-size: 16px;
+	color: #555;
+	margin-bottom: 10px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.label {
+	font-size: 14px;
+
+	font-weight: 600;
+	color: #333;
+}
+
+/* Упрощённый стиль для PhoneInput */
+
+.inputContainer {
+	display: flex;
+	align-items: center;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	overflow: hidden;
+	background-color: #eef2f6;
+}
+
+.input {
+	flex: 1;
+	border: none;
+	padding: 10px 15px;
+	font-size: 16px;
+	outline: none;
+}
+
+.input::placeholder {
+	color: #aaa;
+}
+
+.submitButton {
+	background-color: var(--prime);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+	background-color: var(--lite);
+}
+
+.agreement {
+	font-size: 12px;
+	color: #777;
+	margin-top: 10px;
+	text-align: center;
+}

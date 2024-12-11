@@ -7,6 +7,8 @@ import styles from './Profile.module.css'
 import Image from 'next/image'
 import { RootState } from '@/app/GlobalRedux/store'
 import { getUser, refreshAccessToken } from '@/app/GlobalRedux/authSlice'
+import Button from '@/components/Button/Button'
+import { Link } from 'react-alice-carousel'
 
 export default function Profile() {
 	const { isAuthenticated, user, isLoading } = useSelector(
@@ -43,7 +45,10 @@ export default function Profile() {
 				<h1 className={styles.name}>{user?.name}</h1>
 				<div className={styles.email}>{user?.email}</div>
 			</div>
-			<div>У вас пока нет заказов</div>
+      <Link href='/tracking'>  
+      <Button>Отследить заказ</Button>
+      </Link>
+			 
 		</div>
 	)
 } 
