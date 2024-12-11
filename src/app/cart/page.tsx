@@ -11,6 +11,7 @@ import {
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button/Button';
 import { RootState } from '@/app/GlobalRedux/store';
+import Link from 'next/link'; 
 
 export default function Cart() {
 	const { itemsCart, totalPrice, totalQuantity, totalOldPrice } = useSelector(
@@ -45,27 +46,34 @@ export default function Cart() {
 		<div className={styles.page}>
 			<h1 className={styles.title}>Корзина</h1>
 			{itemsCart.length === 0 ? (
-				<div className={styles.empty}>
-					<p>Ваша корзина пуста 🛒</p>
-				</div>
+				 <div className={styles.emptyCartContainer}> 
+         <div className={styles.imgs}> 
+         <Image src="/png/emptycart.png" alt="Корзина пуста" width={320} height={240} />
+         </div>
+         <p className={styles.emptyCartText}>Корзина пуста</p>
+         <Link className={styles.catalogBtn} href="/catalog"> 
+         <Button >ПЕРЕЙТИ В КАТАЛОГ</Button>
+         </Link>  
+       </div> 
 			) : (
-				<div className={styles.content}>
+				<div className={styles.content}>  
 					<ul className={styles.items}>
 						{itemsCart.map((item) => {
-							const imageUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image_url}`;
+							const imageUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`;
 							console.log('Image URL:', imageUrl); // Вывод пути в консоль
 
 							return (
 								<li className={styles.item} key={item.id}>
-									<Image
+									<Image 
 										src={imageUrl}
 										alt={item.name}
-										width={80}
-										height={80}
+										width={110}  
+										height={110}
 										className={styles.itemImage}
 									/>
 									<div className={styles.itemInfo}>
 										<h3 className={styles.itemName}>{item.name}</h3>
+                    <p className={styles.sets}>{item.sets}</p>  
 										<div className={styles.quantityControl}>
 											<button
 												className={styles.decreaseButton}
@@ -85,7 +93,7 @@ export default function Cart() {
 									</div>
 									<div className={styles.boxPrice}>
 										<div className={styles.price}>
-											{item.price * item.quantity} ₽
+											{item.price * item.quantity} ₽ 
 										</div>
 										<div className={styles.oldPrice}>
 											{item.old_price * item.quantity} ₽

@@ -7,6 +7,7 @@ interface CartItem {
 	image_url: string;
 	quantity: number;
 	old_price: number;
+  sets: string; 
 }
 
 interface CounterState {
