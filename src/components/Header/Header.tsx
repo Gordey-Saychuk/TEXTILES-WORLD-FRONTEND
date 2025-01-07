@@ -59,17 +59,21 @@ export default function Header() {
 						className={styles.icon}
 					/>
 				</div>
-
+ 
 				<div className={styles.nav}>
 					<ul className={styles.ul}>
 						<Link className={styles.links} href="/catalog">
-							Каталог
+							Каталог 
 						</Link>
-						<li className={styles.links}>Постельное белье</li>
+					 
+            <Link className={styles.links} href="/catalog/hits"> 
 						<li className={styles.links}>Хиты продаж</li>
+            </Link>
+            <Link className={styles.links} href="/catalog/sale">  
 						<li className={styles.linkse}>Распродажа
               <div className={styles.sale} >sale</div> 
             </li> 
+            </Link>
 					</ul>  
 				</div>
 

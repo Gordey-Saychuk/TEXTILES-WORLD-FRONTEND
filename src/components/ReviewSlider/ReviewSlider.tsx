@@ -7,57 +7,35 @@ import { Autoplay } from 'swiper/modules';
 
 const ReviewSlider = ({ reviews }) => {
   return (
-    <div className={styles.sliderContainer}>
-      <Swiper 
-        spaceBetween={20} // Расстояние между слайдами
-        slidesPerView={1} // Количество видимых слайдов 
-        pagination={{ clickable: true }} // Пагинация
-        navigation={false} // Отключить кнопки навигации
-        loop={true} // Циклический слайдер
-        freeMode={true} // Включить режим свободного перемещения слайдов 
-        direction="horizontal" // Убедитесь, что направление горизонтальное
-        breakpoints={{
-          // Параметры брекпоинтов для различных размеров экрана
-          520: {
-            slidesPerView: 2, 
-            spaceBetween: 10, 
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          
-
-        }}
-        
-        autoplay={{   // Настройки автопрокрутки
-          delay: 2000, // Задержка между прокрутками (в миллисекундах)
-          disableOnInteraction: false, // Автопрокрутка не останавливается при взаимодействии
-        }}  
-        modules={[Autoplay]} 
-      > 
-        {reviews.map((review) => (
-          <SwiperSlide key={review.id} className={styles.reviewSlide}>
-            <div className={styles.reviewContent}>
-              <StarRating rating={review.rating} isInteractive={false} />
-              <p className={styles.nameText}><strong>Имя:</strong> {review.name}</p> 
-              <p className={styles.commentText}><strong>Комментарий:</strong> {review.comment}</p>
-       
-              {review.photo && (
-                <div
-                  className={styles.reviewPhoto} 
-                  style={{ backgroundImage: `url(${review.photo})` }} 
-                />
-              )}
-            </div>
-          </SwiperSlide> 
-        ))}
-      </Swiper>
-    </div>
+    <ul className={styles.reviewList}>
+    {reviews.map((review) => (
+      <li key={review.reviewId}>
+        {review.productName && (
+          <p>
+            <strong>Наименование товара:</strong> {review.productName}
+          </p> 
+        )}  
+        <div className={styles.reviewReitBox}>  
+          <p className={styles.reviewReit}>Рейтинг:</p>
+          <StarRating rating={review.rating} isInteractive={false} />
+        </div>  
+        <p>    
+          <span className={styles.reviewName}>Имя:</span> <span className={styles.reviewNamse}>{review.name} </span>
+        </p> 
+        <p className={styles.reviewComm}>    
+          <span className={styles.reviewName}>Комментарий:</span>  <span className={styles.reviewNamse}>{review.comment} </span>
+        </p> 
+ 
+        {review.image_url && (   
+        <img 
+        className={styles.photo}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}${review.image_url}`}  // Формируем полный URL
+        alt="Review"
+      /> 
+        )}
+      </li>
+    ))}
+  </ul> 
   );
 };
 

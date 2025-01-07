@@ -1,15 +1,20 @@
 import React from 'react';
 import ProductPageClient from './ProductPageClient';
 import { Product } from '@/types/index';
+import { getHits } from '@/app/lib/api/getTovars';
 
 interface ProductPageProps {
-  params: { 
+  params: Promise<{
     url: string; 
-  };
-}
+  }>;
+} 
+
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { url } = params;
+  const resolvedParams = await params;  
+  const { url} = resolvedParams; 
+
+  const hits = await getHits();
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${url}`, {
     cache: 'no-store', 
@@ -21,5 +26,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const product: Product = await response.json(); 
 
-  return <ProductPageClient url={url} product={product} />;
+
+
+  return <ProductPageClient hits={hits} url={url} product={product} />;
 }
+ 

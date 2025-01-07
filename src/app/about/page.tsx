@@ -1,21 +1,21 @@
 import React from 'react';
 import styles from './about.module.css';
 
-import Head from 'next/head';
+import Head from 'next/head';   
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 
-export async function generateMetadata() {
-	return {
+export async function generateMetadata() { 
+	return { 
 		title: 'О нас - Textiles World',
 		description:
-			'Интернет-магазин постельного белья и штор Textiles World. Узнайте больше о нашей миссии, продуктах и преимуществах. Качество и стиль для вашего дома.',
+			'Интернет-магазин постельного белья Textiles World. Узнайте больше о нашей миссии, продуктах и преимуществах. Качество и стиль для вашего дома.',
 		keywords:
-			'о нас, Textiles World, постельное белье, шторы, интернет-магазин, домашний текстиль, купить шторы, купить постельное белье',
+			'о нас, Textiles World, постельное белье, интернет-магазин, домашний текстиль, купить постельное белье',
 		robots: 'index, follow',
 		openGraph: {
 			title: 'О нас - Textiles World',
 			description:
-				'Textiles World - интернет-магазин постельного белья и штор, предлагающий высококачественные изделия для вашего дома. Узнайте больше о нас.',
+				'Textiles World - интернет-магазин постельного белья, предлагающий высококачественные изделия для вашего дома. Узнайте больше о нас.',
 			url: 'https://textiles-world.ru/about',
 			type: 'website',
 			siteName: 'Textiles World'
@@ -24,7 +24,7 @@ export async function generateMetadata() {
 			card: 'summary',
 			title: 'О нас - Textiles World',
 			description:
-				'Textiles World - ваш источник качественного постельного белья и штор. Узнайте больше о нашей миссии и продуктах.'
+				'Textiles World - ваш источник качественного постельного белья. Узнайте больше о нашей миссии и продуктах.'
 		},
 		alternates: {
 			canonical: 'https://textiles-world.ru/about'
@@ -33,8 +33,8 @@ export async function generateMetadata() {
 }
 
 export default function page() {
-	return (
-		<div className={styles.conteiner}>
+	return ( 
+		<div className={styles.conteiner}> 
 			<Head>
 				<script type="application/ld+json">
 					{`
@@ -43,7 +43,7 @@ export default function page() {
               "@type": "WebPage",
               "name": "О нас - Textiles World",
               "url": "https://textiles-world.ru/about",
-              "description": "Textiles World - интернет-магазин постельного белья и штор. Узнайте больше о нашей миссии и предложениях.",
+              "description": "Textiles World - интернет-магазин постельного белья. Узнайте больше о нашей миссии и предложениях.",
               "publisher": {
                 "@type": "Organization",
                 "name": "Textiles World"
@@ -62,49 +62,41 @@ export default function page() {
 				<h1 className={styles.h2}>О нас</h1>
 
 				<div className={styles.flexColumn}>
-					<p>
-						Добро пожаловать в Textiles World - интернет-магазин, предлагающий
-						широкий ассортимент постельного белья и штор. Мы стремимся к тому,
-						чтобы сделать ваш дом уютным и стильным, предоставляя
-						высококачественные текстильные изделия по доступным ценам.
+					<p className={styles.textTitle}> 
+						Добро пожаловать в Textiles World — интернет-магазин постельного белья. 
+						Мы стремимся сделать ваш дом уютным и комфортным, предоставляя широкий выбор высококачественных комплектов постельного белья по доступным ценам.
 					</p>
 
 					<ul className={styles.list}>
-						<li>
-							<span className={styles.fontBold}>Широкий ассортимент:</span> В
-							нашем каталоге вы найдете разнообразие комплектов постельного
-							белья, штор и других текстильных изделий для дома. Мы предлагаем
-							как классические, так и современные модели, чтобы удовлетворить
-							любые вкусы и потребности.
-						</li>
-						<li>
-							<span className={styles.fontBold}>Качество и стиль:</span> Все
-							наши товары выполнены из натуральных и экологичных материалов, что
-							обеспечивает долговечность и комфорт. Мы работаем только с
-							проверенными поставщиками, чтобы вы могли быть уверены в качестве
-							продукции.
-						</li>
-						<li>
+						<li className={styles.fontBolds}> 
+							<span className={styles.fontBold}>Разнообразие коллекций:</span> В
+							нашем каталоге вы найдете разнообразные дизайны и размеры, чтобы
+							удовлетворить любые ваши предпочтения.
+						</li> 
+						<li className={styles.fontBolds}>
+							<span className={styles.fontBold}>Качество:</span> Все наши
+							изделия выполнены из натуральных и долговечных материалов, что
+							гарантирует комфорт и долговечность.
+						</li> 
+						<li className={styles.fontBolds}>
 							<span className={styles.fontBold}>
-								Удобная доставка и обслуживание:
+								Удобство покупки и доставки:
 							</span>{' '}
-							Мы осуществляем доставку по всей России, обеспечивая быстрый и
-							удобный процесс оформления заказа. Наши консультанты всегда готовы
-							помочь вам с выбором и ответить на все ваши вопросы.
+							Легкий процесс оформления заказа и быстрая доставка по всей
+							России. Наша служба поддержки всегда на связи, чтобы помочь вам.
 						</li>
-						<li>
+						<li className={styles.fontBolds}>  
 							<span className={styles.fontBold}>Доступные цены:</span> Мы
-							уверены, что каждый заслуживает качественный домашний текстиль, не
-							переплачивая за бренд. В Textiles World вы найдете лучшие цены на
-							постельное белье и шторы.
+							уверены, что каждый заслуживает комфортного сна, не переплачивая.
 						</li>
 					</ul>
 
 					<p className={styles.fontBold}>
-						Textiles World - это ваш надежный источник домашнего уюта и стиля.
+						Textiles World — ваш надежный источник идеального сна и уюта.
 					</p>
 				</div>
 			</div>
 		</div>
 	);
 }
+ 

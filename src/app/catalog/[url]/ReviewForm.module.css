@@ -1,10 +1,14 @@
 /* Общие стили для страницы отзывов */
 .reviewFormContainer {
- 
+ padding: 20px;
+ background-color: white;
   margin: 0 auto;
-  margin-top: 30px;
-
-  border-radius: 8px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between; 
+  gap: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 
@@ -13,12 +17,25 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
-.ratingSummary h1 {
-  font-size: 24px;
-  margin-right: 10px;
+
+.reviewCount{
+  margin-bottom: 2px;
 }
+
+.ratingProd{
+  margin-bottom: 35px;
+}
+
+.reviewTitle{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
 
 .ratingSummary .reviewCount {
   font-size: 18px;
@@ -28,10 +45,16 @@
 
 .reviewForm {
   background: #fff;
+  min-width: 400px;
+  border-radius: 8px; 
+  background-color: #f1f6fa; 
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
 
-  border-radius: 8px;
-
-  margin-bottom: 40px;
+.reviewForme{
+  width: 100%;
 }
 
 .reviewForm h2 {
@@ -50,18 +73,19 @@
 .reviewForm input[type="text"],
 .reviewForm textarea,
 .reviewForm input[type="file"] {
-  width: 100%;
-  padding: 10px;
+  width: 100%; 
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 20px;
   font-size: 14px;
   background-color: #fff;
   margin-top: 5px;
+   
 }
 
 .reviewForm textarea {
   resize: vertical;
   min-height: 100px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .reviewForm .ratingStars {
@@ -79,15 +103,27 @@
 .reviewForm button {
   background-color: var(--prime);
   color: #fff;
-  border: none;
+  border-radius: 20px;
   padding: 10px 20px;
-  border-radius: 6px;
+  border: none;
   font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  width: 100%;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.reviewEmpty{
+  font-size: 27px;
+}
+
+.reviewReit{
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .reviewForm button:hover {
+  
   background-color: var(--lite);
   transform: scale(1.05);
 }
@@ -96,6 +132,12 @@
   background-color: #aaa;
   cursor: not-allowed;
 }
+
+
+
+
+
+
 
 /* Стили для списка отзывов */
 .reviewList {
@@ -122,54 +164,34 @@
   border-radius: 8px;
 }
 
-/* Адаптивные стили */
-@media (max-width: 768px) {
 
 
-  .reviewForm h2 {
-    font-size: 20px;
-  }
-
-  .reviewForm button {
-    width: 100%;
-  }
-
-  .ratingSummary {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-.fileLabel {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  color: #333;
-}
-
+/* Скрываем стандартное поле input */
 .fileInput {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
+  display: none;
 }
 
-.customButton {
-  display: block;
-  max-width: 200px;
+/* Стили для кастомной кнопки */
+.customFileButton {
+  display: inline-block;
+  background-color: white;
+  color: #fff;
   padding: 10px 20px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border-radius: 5px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
-  font-size: 16px;
-  border: 2px solid #000000;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.customButton:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+.customFileButton:hover {
+  background-color: rgb(247, 244, 244); 
+  transform: scale(1.05);
+}
+
+.customFileButton:active {
+  background-color: #969696;
+  transform: scale(0.95);
 }

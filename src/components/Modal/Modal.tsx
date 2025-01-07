@@ -27,7 +27,7 @@ export default function Modal({ active, anchorRef, setActive }: ModalPrors) {
 					<div className={styles.underPhone}>Круглосуточно</div>
 				</div>
 				<div className={styles.social}>
-					<Link href="tg" className={styles.socialTg}>
+					<Link href="https://t.me/Manager_Arts" className={styles.socialTg}>
 						<Image
 							src="/svg/Header/Telegram.webp"
 							alt="Звезда"
@@ -37,6 +37,7 @@ export default function Modal({ active, anchorRef, setActive }: ModalPrors) {
 						/>
 						Telegram
 					</Link>
+          <Link href="https://wa.me/+79939503108" className={styles.socialTg}>				
 					<div className={styles.socialTg}>
 						<Image
 							src="/svg/Header/WhatsApp.webp"
@@ -47,6 +48,7 @@ export default function Modal({ active, anchorRef, setActive }: ModalPrors) {
 						/>
 						Whatsapp
 					</div>
+          </Link>
 				</div>
 			</div>
 		</div>

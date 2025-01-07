@@ -21,7 +21,7 @@ export const refreshAccessToken = createAsyncThunk(
 
       // Извлекаем только accessToken из ответа
       const { access_token: accessToken } = response.data;
-
+ 
       console.log('New access token:', accessToken);  
 
       // Обновляем только accessToken в Redux и сохраняем его в localStorage

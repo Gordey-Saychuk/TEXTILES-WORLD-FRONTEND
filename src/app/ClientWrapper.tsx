@@ -27,9 +27,9 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const [modalContent, setModalContent] = useState<React.ReactNode>(null); // Состояние для контента модала
   const dispatch = useDispatch();
 
-  const pathname = usePathname();    
+  const pathname = usePathname();     
 
-  const { isAuthenticated, user, isLoading, accessToken } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, user, accessToken } = useSelector((state: RootState) => state.auth);
  
   const isAdminPage = isClient && pathname.startsWith('/admin'); 
 

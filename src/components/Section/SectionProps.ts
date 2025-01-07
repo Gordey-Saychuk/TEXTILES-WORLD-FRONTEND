@@ -2,7 +2,7 @@ import { Product } from '@/types/index';
 import { ReactNode } from 'react';
 
 export interface ClientHomeProps {
-	data: Product[];
+	NaboryPostelnogo: Product[];
 	hits: Product[];
 	pleds: Product[];
 }

@@ -9,6 +9,7 @@
 	flex-direction: column;
 	gap: 13px;
 	margin-top: 13px;
+  margin-bottom: 50px;
 }
 
 .bodyForm {

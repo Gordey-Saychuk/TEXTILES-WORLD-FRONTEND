@@ -9,6 +9,11 @@
 	border: none;
 	font-size: 17px;
 }
+
+.inputs{
+  background-color: white !important;
+}
+
 .inputContainer {
 	position: relative;
 	display: flex;

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './reviews.module.css';
-import StarRating from '../../components/StarRating/StarRating';
+ 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -76,10 +76,10 @@ export default function ReviewsPage() {
 
 			<h1>Отзывы</h1>
 			<ul className={styles.reviewList}>
-				<ul>
+				<ul> 
 					{rew.map((e) => (
-						<li>{e.comment}</li>
-					))}
+						<li key={e.id}>{e.comment}</li>
+					))} 
 				</ul>
 				{/* отзфыв  */}
 			</ul>

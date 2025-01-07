@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import Image from 'next/image';
 
 import { Autoplay } from 'swiper/modules';
+import Button from '../Button/Button';
 
 export default function SliderSwction() {
 	return (
@@ -26,17 +27,17 @@ export default function SliderSwction() {
 					width={1000}
 					height={700}
 					className={styles.icon}
-				/>
+				/>   
+        <div className={styles.text}>  
+        <div className={styles.textBox}> 
+          <div >Постельное белье премиум качества</div>
+          <div>Купить со скидкой у нас</div> 
+           
+        </div>
+        <Button>Смотреть каталог</Button> 
+        </div>
 			</SwiperSlide>
-			<SwiperSlide className={styles.slide}>
-				<Image
-					src="/images/AXlHyXuW8ZoFSnue-VoNa9B6Xh2fmMjk76uMy7smdYE=.jfif"
-					alt="Slide 2"
-					width={1000}
-					height={500}
-					className={styles.icon}
-				/>
-			</SwiperSlide>
+ 
 		</Swiper>
 	);
 }

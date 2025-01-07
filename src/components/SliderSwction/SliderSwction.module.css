@@ -1,24 +1,49 @@
 /* Ограничиваем ширину слайдера до половины экрана */
 .swiper-container {
-	max-width: 70%; /* Ширина слайдера */
+	width: 70%; /* Ширина слайдера */
 	max-height: 500px;
 	border-radius: 15px;
 	margin: 0 !important;
 }
 
-.slide {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.text {
+  color: rgb(0, 0, 0);
+  position: absolute; /* Абсолютное позиционирование для размещения текста над изображением */
+  top: 25%; /* Центрируем текст вертикально */
+  left: 40%; /* Центрируем текст горизонтально */
+  transform: translate(-50%, -50%); /* Смещаем текст в центр относительно своей позиции */
+  text-align: center; /* Центровка текста по горизонтали */
+  font-size: 20px; /* Размер текста */
+  text-wrap: nowrap;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.821); /* Фон для читаемости */
+  padding: 30px; /* Отступы для текста */
+  border-radius: 20px; /* Закругление углов */
+  z-index: 10; /* Убедитесь, что текст выше изображения */
+  
 }
 
-/* Стили для изображения внутри слайда */
-.icon {
-	width: 100%;
-	max-height: 500px;
-	object-fit: cover;
-	border-radius: 15px;
+.textBox{
+  font-size: 33px; /* Размер текста */
+  margin-bottom: 20px;
 }
+
+.slide {
+  position: relative; /* Чтобы текст мог быть спозиционирован относительно слайда */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Обрезаем содержимое вне слайда */
+}
+
+.icon {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  z-index: 1; /* Фон для текста будет ниже текста */
+}
+
 
 /* Стили для навигационных кнопок Swiper */
 .swiper-button-next,
