@@ -9,7 +9,13 @@ import Image from 'next/image';
 
 import { Autoplay } from 'swiper/modules';
 
-export default function SliderCatalog() {
+interface SliderCatalogProps {
+  img: string,
+  title: string,
+  p: string
+}
+
+export default function SliderCatalog({img, title, p}: SliderCatalogProps) { 
 	return (
 		<Swiper
 			modules={[Autoplay]}
@@ -21,16 +27,16 @@ export default function SliderCatalog() {
 		>
 			<SwiperSlide className={styles.slide}>
 				<div className={styles.overlay}>
-					<Image
-						src="/images/FukuMiAyiR2RezCsxHRT.jpg"
+					<Image 
+						src={img}
 						alt="Slide 1"
 						width={1000}
 						height={700}
 						className={styles.icon}
 					/>
-					<div className={styles.textOverlay}>
-						<h2>Каталог постельного белья</h2>
-						<p>Каталог постельного белья и текстиля для дома</p>
+					<div className={styles.textOverlay}> 
+						<h2>{title}</h2>
+						<p>{p}</p>
 					</div>
 				</div>
 			</SwiperSlide>

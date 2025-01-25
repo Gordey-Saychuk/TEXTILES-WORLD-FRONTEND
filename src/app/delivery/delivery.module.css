@@ -6,16 +6,30 @@
 	font-size: 39px;
 }
 
+.priceDeliv{
+  font-size: 17px;
+}
+
 .conteiner {
 	background-color: white;
+ 
 }
 
 .conteiners {
 	background-color: white;
-	max-width: 1600px;
+	max-width: 1830px;
 	margin: auto;
-	padding: 40px;
-	padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  min-height: 100vh;
+	
+}
+
+.textTitle{
+  font-size: 20px; 
+  text-align: center;
+  font-weight: bold;
 }
 
 .flexColumn {
@@ -25,7 +39,7 @@
 }
 
 .list {
-	margin-top: 1.5rem; /* замените на нужное значение */
+  font-size: 17px;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem; /* замените на ваш стиль */

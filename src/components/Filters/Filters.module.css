@@ -1,11 +1,9 @@
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .title {
@@ -19,6 +17,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .filterTitle {
@@ -37,7 +36,7 @@
   width: 60px;
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   text-align: center;
 }
 
@@ -51,59 +50,66 @@
   gap: 10px;
 }
 
-.colorButton {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
 
-.colorButton:hover {
-  transform: scale(1.1);
-}
-
-.colorSelected {
-  box-shadow: 0 0 0 3px #000;
-}
-
-.select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-}
 
 .actions {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .resetButton {
   padding: 10px 15px;
-  background-color: #e74c3c;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
+  border: 1px solid rgb(107, 105, 105);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .resetButton:hover {
-  background-color: #c0392b;
+  background-color: #ebe7e7;
 }
 
 .applyButton {
   padding: 10px 15px;
-  background-color: #27ae60;
+  background-color: var(--prime);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .applyButton:hover {
-  background-color: #1e8449;
+  background-color: var(--lite);
+}
+
+.colorButton {
+  background-color: white;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+  border: 2px solid var(--prime);
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.colorButton:hover {
+  background-color: var(--prime);
+  color: #fff;
+}
+
+.select{
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.selectedColor {
+  background-color: var(--prime);
+  color: #fff;
+  border-color: #4caf50;
 }

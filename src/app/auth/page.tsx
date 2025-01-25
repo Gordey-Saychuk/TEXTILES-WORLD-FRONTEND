@@ -7,6 +7,7 @@ import styles from './auth.module.css';
 import Title from '@/components/Title/Title';
 import Button from '@/components/Button/Button';
 import Input from '@/components/Input/Input';
+import Link from 'next/link';
 
 export default function Auth() {
 	const [name, setName] = useState('');
@@ -73,8 +74,11 @@ export default function Auth() {
 						placeholder="Пароль"
 					></Input>
 					<Button submit={true}>ОТПРАВИТЬ</Button>
-				</form>
-			</div>
+				</form>  
+
+        <div className={styles.link}>У вас уже есть аккаунт?  
+        <Link className={styles.links} href='/login'> Войти</Link></div> 
+			</div>  
 			<div className={styles.bodyForm}>
 				<Title> Завести аккаунт</Title>
 				<p className={styles.infoTexts}>

@@ -18,23 +18,23 @@ export async function generateMetadata() {
 				'Свяжитесь с Textiles World по любым вопросам. Мы всегда рады помочь вам с выбором текстиля для дома.',
 			url: 'https://textiles-world.ru/contact',
 			type: 'website',
-			siteName: 'Textiles World'
+			siteName: 'Textiles World',
 		},
 		twitter: {
 			card: 'summary',
 			title: 'Контакты - Textiles World',
 			description:
-				'Контактная информация интернет-магазина Textiles World. Свяжитесь с нами для вопросов по текстилю.'
+				'Контактная информация интернет-магазина Textiles World. Свяжитесь с нами для вопросов по текстилю.',
 		},
 		alternates: {
-			canonical: 'https://textiles-world.ru/contact'
-		}
+			canonical: 'https://textiles-world.ru/contact',
+		},
 	};
 }
 
 export default function page() {
 	return (
-		<div className={styles.conteiner}>
+		<div className={styles.container}>
 			<Head>
 				<script type="application/ld+json">
 					{`
@@ -52,70 +52,66 @@ export default function page() {
           `}
 				</script>
 			</Head>
-			<div className={styles.conteiners}>
+			<div className={styles.innerContainer}>
 				<Breadcrumbs
 					paths={[
 						{ name: 'Главная', href: '/' },
-						{ name: 'Контакты', href: '/contact' }
+						{ name: 'Контакты', href: '/contact' },
 					]}
 				/>
-				<h1 className={styles.h2}>Контакты</h1>
-
-				<div className={styles.flexColumn}>
-					<p>
+				<h1 className={styles.heading}>Контакты</h1>
+				<div className={styles.content}>
+					<p className={styles.introText}>
 						Мы всегда на связи и готовы помочь вам с выбором постельного белья и
 						штор для вашего дома. Вот как вы можете с нами связаться:
 					</p>
 
 					<ul className={styles.contactList}>
 						<li>
-							<span className={styles.fontBold}>ИП: </span>
-							<div>Медведев Родион Николаевич</div>
+							<span className={styles.label}>ИП: </span>Медведев Родион Николаевич
 						</li>
 						<li>
-							<span className={styles.fontBold}>ИНН: </span>
-							<div>503115814622</div>
+							<span className={styles.label}>ИНН: </span>503115814622
 						</li>
 						<li>
-							<span className={styles.fontBold}>ОГРНИП: </span>
-							<div>32350810021474</div>
+							<span className={styles.label}>ОГРНИП: </span>32350810021474
 						</li>
 						<li>
-							<span className={styles.fontBold}>Контактный телефон: </span>
-							<a href="tel:+79939503108" className={styles.contactLink}>
-								+7 (968) 591-98-48
-							</a>
-						</li>
-						<li>
-							<span className={styles.fontBold}>Электронная почта: </span>
-							<a className={styles.contactLink}>artlampss@yandex.ru</a>
-						</li>
-						<li>
-							<span className={styles.fontBold}>Телефон: </span>
-							<a href="tel:+79939503108" className={styles.contactLink}>
+							<span className={styles.label}>Контактный телефон: </span>
+							<a href="tel:+79939503108" className={styles.link}>
 								+7 (993) 950-31-08
 							</a>
 						</li>
 						<li>
-							<span className={styles.fontBold}>Telegram: </span>
+							<span className={styles.label}>Электронная почта: </span>
+							<a href="mailto:artlampss@yandex.ru" className={styles.link}>
+								artlampss@yandex.ru
+							</a>
+						</li>
+						<li>
+							<span className={styles.label}>Telegram: </span>
 							<a
 								href="https://t.me/Manager_Arts"
-								className={styles.contactLink}
+								className={styles.link}
+								target="_blank"
+								rel="noopener noreferrer"
 							>
 								@Manager_Arts
 							</a>
 						</li>
 						<li>
-							<span className={styles.fontBold}>WhatsApp: </span>
+							<span className={styles.label}>WhatsApp: </span>
 							<a
 								href="https://wa.me/79939503108"
-								className={styles.contactLink}
+								className={styles.link}
+								target="_blank"
+								rel="noopener noreferrer"
 							>
 								+7 (993) 950-31-08
 							</a>
 						</li>
 						<li>
-							<span className={styles.fontBold}>График работы: </span>
+							<span className={styles.label}>График работы: </span>
 							Каждый день - круглосуточно
 						</li>
 					</ul>
@@ -124,3 +120,4 @@ export default function page() {
 		</div>
 	);
 }
+ 

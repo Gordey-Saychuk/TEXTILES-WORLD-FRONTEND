@@ -4,17 +4,23 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-size: 39px;
-}
+} 
 
 .conteiner {
 	background-color: white;
+  min-height: 100vh; 
 }
 
 .conteiners {
-	max-width: 1600px;
+	max-width: 1830px;
 	margin: auto;
-	padding: 40px;
-	padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.textTitle{
+  font-size: 20px;
+  text-align: center; 
 }
 
 .flexColumn {
@@ -30,8 +36,14 @@
 	gap: 1rem; /* замените на ваш стиль */
 }
 
+.fontBolds{
+  font-size: 20px;
+}
+
 .fontBold {
 	font-weight: bold;
+  font-size: 20px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {

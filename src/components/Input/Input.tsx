@@ -9,13 +9,15 @@ export default function Input({
 	onChange,
 	value,
 	required,
+  color,
 	...props
 }: InputProps) {
 	return (
 		<div className={styles.inputContainer}>
-			<input
-				type={type}
-				className={styles.input}
+			<input 
+				type={type} 
+        className={`${styles.input} ${color ? styles.inputs : ''}`}
+
 				placeholder={placeholder}
 				onChange={onChange}
 				value={value}

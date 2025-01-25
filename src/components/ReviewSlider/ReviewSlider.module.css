@@ -1,111 +1,54 @@
-.sliderContainer {
-  width: 100%;
-  max-height: 300px; /* Увеличьте высоту, чтобы разместить больше контента */
-  margin: 0 auto;
+
+/* Стили для отзывов */
+.reviewList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-top: 30px;
+
+}
+ 
+.photo {
+	max-width: 200px;
+	max-height: 200px;
 }
 
-.reviewSlide {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.reviewReitBox{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  min-height: 299px; 
 }
 
-.reviewContent {
-  text-align: center;
-  width: 100%;
-  position: relative;
-  z-index: 1; /* Убедитесь, что текст отображается поверх фона */
+.reviewReit{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px !important;
 }
 
-.reviewPhoto {
-  margin-top: 10px;
-  max-width: 100%;
-  max-height: 190px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 190px; /* Явно укажите высоту, если она фиксированная */
-  border: 1px solid #ddd; /* Необязательный стиль для визуального отделения */
+.reviewComm{
+  margin-bottom: 10px !important;
 }
 
-/* Комментарий */
-.commentText {
-  margin: 0;
-  padding: 0;
-  width: 100%; /* Ширина для правильного расчета обрезки */
-  max-height: 60px; /* Фиксированная максимальная высота для нескольких строк */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal; /* Позволяет тексту переноситься на новую строку */
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* Количество строк, которые вы хотите отобразить */
-  -webkit-box-orient: vertical;
-  
-  font-size: 14px; /* Регулируйте размер шрифта при необходимости */
-  line-height: 1.5; /* Убедитесь, что линия текста соответствует высоте строки */
+.reviewNamse{
+  font-size: 20px;
 }
 
-/* Имя */
-.nameText {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 12px; /* Уменьшите размер шрифта для компактных экранов */
+.reviewName{
+  font-size: 20px;
+  font-weight: bold;
 }
 
-@media (max-width: 640px) {
-  .reviewSlide {
-    padding: 10px;
-  }
-
-  .commentText {
-    font-size: 12px;
-    max-height: 45px; /* Уменьшите высоту блока для маленьких экранов */
-    -webkit-line-clamp: 2; /* Меньше строк на маленьких экранах */
-  }
-
-  .nameText {
-    font-size: 11px;
-  }
+.reviewList li {
+	background: #fff;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+ 
+.reviewList li p {
+	margin: 5px 0;
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
-  .reviewSlide {
-    padding: 15px;
-  }
-
-  .commentText {
-    font-size: 13px;
-    max-height: 55px; /* Увеличьте высоту блока для средних экранов */
-    -webkit-line-clamp: 3; /* Увеличьте количество строк на средних экранах */
-  }
-
-  .nameText {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 769px) {
-  .reviewSlide {
-    padding: 20px;
-  }
-
-  .commentText {
-    font-size: 14px;
-    max-height: 60px; /* Высота блока для больших экранов */
-    -webkit-line-clamp: 3; /* Количество строк на больших экранах */
-  }
-
-  .nameText {
-    font-size: 12px;
-  }
+.reviewList li img {
+	border-radius: 8px;
 }

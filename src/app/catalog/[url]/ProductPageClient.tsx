@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Product, Review } from '@/types/index'; 
-import styles from './page.module.css';
-import { useDispatch } from 'react-redux';
+import { Product } from '@/types/index';  
+import styles from './page.module.css'; 
+import { useDispatch } from 'react-redux'; 
 import { addItem } from '@/app/GlobalRedux/cartSlice';
 import Modals from '@/components/Modals/Modals'; 
 import Image from 'next/image';
@@ -14,14 +14,20 @@ import ProductSlider from '@/components/ProductSlider/ProductSlider';
 import ReviewForm from './ReviewForm';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import Section from '@/components/Section/Section';
+import Title from '@/components/Title/Title';
+import CardSlider from '@/components/CardSlider/CardSlider';
+ 
 
 interface ProductPageClientProps { 
   product: Product;
+  url: string; 
+  hits: Product[] 
 } 
 
 
 
-export default function ProductPageClient({ product,url }: ProductPageClientProps) {
+export default function ProductPageClient({ product, url, hits }: ProductPageClientProps) {
   const [actives, setActives] = useState(false);
   const [activeTab, setActiveTab] = useState('description'); 
   const dispatch = useDispatch();
@@ -35,7 +41,7 @@ export default function ProductPageClient({ product,url }: ProductPageClientProp
         setIsShareMenuOpen(false);
       }
     };
-     
+      
   
     // Добавляем обработчик события
     document.addEventListener('mousedown', handleOutsideClick);
@@ -134,37 +140,48 @@ export default function ProductPageClient({ product,url }: ProductPageClientProp
                       className={styles.icon}  
                       
                     /> 
-                  </div> 
-                  {isShareMenuOpen && (
-          <div ref={shareMenuRef} className={styles.shareMenu}>
+                  </div>  
+                  {isShareMenuOpen && (  
+          <div ref={shareMenuRef} className={styles.shareMenu}> 
+                   <div className={styles.linkBox}> 
+                      <Image src="/svg/productPage/vk.svg" alt="Скопировать ссылку" width={22} height={22} />
+            
                       <a
-                        onClick={() => {setIsShareMenuOpen(false)}} 
+                        onClick={() => {setIsShareMenuOpen(false);}}
                         href={`https://vk.com/share.php?url=${encodeURIComponent(currentUrl)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.shareLink}
-                      >
+                      > 
                         Поделиться в ВК 
-                      </a>
+                      </a> 
+                      </div>  
+                      <div className={styles.linkBox}>  
+                      <Image src="/svg/productPage/tg.svg" alt="Скопировать ссылку" width={20} height={20} />
                       <a
-                        onClick={() => {setIsShareMenuOpen(false)}}
+                        onClick={() => {setIsShareMenuOpen(false);}}
                         href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.shareLink}
                       >
                         Поделиться в Telegram
-                      </a>
+                      </a> 
+                      </div>
+                      <div className={styles.linkBox}>  
+                      <Image src="/svg/productPage/link.svg" alt="Скопировать ссылку" width={20} height={20} />
                       <button onClick={copyToClipboard} className={styles.shareLink}>
                         Скопировать ссылку
                       </button>
+                      </div>
                     </div>
                   )}
                 </div>
               </div> 
-          {product.set && ( 
-            <p className={styles.par}> {product.set}</p>
-          )}
+              {product.sets && ( 
+  <p className={styles.par}> {product.sets}</p>
+)}
+ 
 
 
 
@@ -186,35 +203,28 @@ export default function ProductPageClient({ product,url }: ProductPageClientProp
           <hr />
           <p className={styles.pars}> Характеристики</p>
           <div className={styles.infoGrid}>     
-            {product.base_length && (
-              <p><strong>Длина:</strong> {product.base_length}</p>
-            )}
-            {product.additionalLengthPrice && (
-              <p><strong>Доп. цена за длину:</strong> ₽{product.additionalLengthPrice}</p>
-            )}
-            {product.textile && (
-              <p><strong>Ткань:</strong> {product.textile}</p>
+            
+            {product.material && (
+              <p className={styles.infoPar}><strong>Ткань:</strong> {product.material}</p>
             )}
             {product.consist && (
-              <p><strong>Состав:</strong> {product.consist}</p>
+              <p className={styles.infoPar}><strong>Состав:</strong> {product.consist}</p>
             )}
-            {product.set && (
-              <p><strong>Комплект:</strong> {product.set}</p>
+            {product.sets && (
+              <p className={styles.infoPar}><strong>Комплект:</strong> {product.sets}</p>
             )}
-            {product.manufacturer && (
-              <p><strong>Производитель:</strong> {product.manufacturer}</p>
+            {product.manufacture && (
+              <p className={styles.infoPar}><strong>Производитель:</strong> {product.manufacture}</p>
             )}
             {product.brand && (
-              <p><strong>Бренд:</strong> {product.brand}</p>
-            )}
+              <p className={styles.infoPar}><strong>Бренд:</strong> {product.brand}</p>
+            )} 
             {product.color && (
-              <p><strong>Цвет:</strong> {product.color}</p>
+              <p className={styles.infoPar}><strong>Цвет:</strong> {product.color}</p>
             )}
-            {product.drawing && (
-              <p><strong>Рисунок:</strong> {product.drawing}</p>
-            )}
+            
           </div>
-          <hr />  
+        
       
         </div>
 
@@ -249,12 +259,7 @@ export default function ProductPageClient({ product,url }: ProductPageClientProp
             > 
               Доставка  
             </button>
-            <button 
-              className={`${styles.tabButton} ${activeTab === 'questions' ? styles.activeTab : ''}`} 
-              onClick={() => setActiveTab('questions')}
-            > 
-              Вопросы   
-            </button> 
+           
           </div>
           <div className={styles.tabContent}>
             {activeTab === 'description' && (
@@ -266,41 +271,42 @@ export default function ProductPageClient({ product,url }: ProductPageClientProp
             )}
             {activeTab === 'delivery' && (
               <div>
+               
                 <p className={styles.description}>
-                  {/* Здесь вы можете добавить информацию о доставке и возврате */}
-                  <strong>    Информация о доставке и возврате товара будет здесь.</strong>
-              
-                   
+                 Сроки доставки:  
+                    
+                </p> 
+                <p className={styles.descriptions}>  
+                  По Московской области: 1-2 дня 
+                </p>
+                <p className={styles.descriptions}>   
+                  Заказы дальше Московской области: 2–5 дней
                 </p>
               </div>
             )} 
-              {activeTab === 'questions' && ( 
-              <div>
-                <p className={styles.description}>
-                  {/* Здесь вы можете добавить информацию о доставке и возврате */}
-                  <strong>    Информация о доставке и возврате товара будет здесь.</strong>
-              
-                   
-                </p>
-              </div>
-            )} 
-          </div> 
+          
           </div>  
+          </div>   
+          <div className={styles.cardSlider}> 
+          <Section sliderComponent={<CardSlider data={hits} />}>
+				<Title link={true}>Хиты продаж</Title>
+			</Section>
+      </div> 
     <div className={styles.reviewBody}> 
-        <h2 className={styles.reviewTitle}>Оставить отзыв</h2>
+        
         <ReviewForm productId={product.id} />  
       </div>  
       <Modals setActives={setActives} active={actives}>
           <div>
             <div className={styles.modalTitle}>Товар добавлен в корзину</div>
-            <div className={styles.buttonsBox}>
-              <button onClick={() => setActives(false)} className={styles.button}>
-                Продолжить покупки
-              </button>
-              <Link href="/cart"> 
-                <Button>В корзину</Button>
-              </Link>
-            </div>
+            <div className={styles.buttonsBox}>  
+        <button onClick={() => {setActives(false);}} className={styles.buttons}>  
+					ПРОДОЛЖИТЬ ПОКУПКИ    
+				</button>   
+        <Link className={styles.buttonLink} onClick={() => {setActives(false);}} href={'../cart'}> 
+        <Button>В КОРЗИНУ</Button>    
+        </Link> 
+        </div>  
           </div>
         </Modals>
         <ToastContainer /> 

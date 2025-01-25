@@ -43,16 +43,19 @@
 
 .textContent {
 	padding: 10px;
+  font-size: 18px;
+  color: #666;
 }
 
 .heading {
 	font-size: 26px;
-	margin: 40px 0 20px 0; /* Отступы добавлены сверху */
+	margin: 40px 10px 20px 10px; /* Отступы добавлены сверху */
 	color: #333;
 	transition: color 0.3s ease;
 }
 
 .textWithImage {
+  float: right; 
 	display: flex;
 	align-items: center;
 	margin-bottom: 30px;

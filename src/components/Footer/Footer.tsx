@@ -84,9 +84,7 @@ const Footer = () => {
 					<nav className={styles.catalog}>
 						<h3>Каталог</h3>
 						<ul className={styles.catalogList}>
-							<li>
-								<Link href="/catalog/shtori">Шторы</Link>
-							</li>
+					
 							<li>
 								<Link href="/catalog/postelnoe-belie">Постельное белье</Link>
 							</li>
@@ -98,13 +96,9 @@ const Footer = () => {
 							<li>
 								<Link href="/catalog/pledy">Пледы</Link>
 							</li>
-							<li>
-								<Link href="/catalog/prostynya">Простыня</Link>
-							</li>
-							<li>
-								<Link href="/catalog/tyul">Тюль</Link>
-							</li>
-						</ul>
+					
+				
+						</ul> 
 					</nav>
 
 					<nav className={styles.customers}>

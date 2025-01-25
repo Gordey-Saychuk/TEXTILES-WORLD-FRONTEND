@@ -7,29 +7,27 @@
 	margin: auto;
 	background-color: #f9f9f9;
 	padding-top: 60px;
+  max-width: 1830px;
 }
 
 .toggleButtons {
 	width: 100%;
-}
+} 
 .toggleButton {
-	width: 100%;
-	margin: auto;
-	background-color: var(--prime);
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: 16px;
-	cursor: pointer;
-	margin-bottom: 20px;
-	transition:
-		background-color 0.3s ease,
-		transform 0.3s ease;
+  background-color: var(--prime);
+  border: none;
+  color: white;
+  padding: 15px;
+  border-radius: 30px; 
+  width: 100%; 
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  margin-bottom: 20px;
 }
 
 .toggleButton:hover {
-	background-color: var(--prime);
+  background-color: var(--lite);
 }
 
 /* Стили для общего рейтинга */
@@ -39,13 +37,19 @@
 	margin-bottom: 40px;
 	background: #fff;
 	padding: 20px;
-	border-radius: 8px;
+	border-radius: 20px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ratingSummary h1 {
 	font-size: 24px;
 	margin-right: 20px;
+}
+
+.ratingGen{ 
+  font-size: 25px;
+  margin-bottom: 27px;
+  
 }
 
 .ratingSummary .ratingStars {
@@ -67,111 +71,102 @@
 	font-size: 18px;
 	color: #333;
 	margin-left: 10px;
+  font-weight: bold;
 }
 
-/* Стили для формы отзыва */
-.reviewForm {
-	background: #fff;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin-bottom: 40px;
+/* Стили для формы отзыва */.reviewForm {
+  background: #fff;
+  min-width: 400px;
+  border-radius: 8px; 
+  background-color: #f1f6fa; 
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.reviewForme{
+  width: 100%;
 }
 
 .reviewForm h2 {
-	margin-bottom: 20px;
-	font-size: 24px;
-	color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 
 .reviewForm label {
-	display: block;
-	margin-bottom: 15px;
-	font-size: 16px;
-	color: #333;
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
 }
 
-.reviewForm input[type='text'],
+.reviewForm input[type="text"],
 .reviewForm textarea,
-.reviewForm input[type='file'] {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 6px;
-	font-size: 14px;
-	background-color: #fff;
-	margin-top: 5px;
-}
-
-.fileLabel {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	color: #333;
-}
-
-.fileInput {
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0;
-	cursor: pointer;
-	height: 100%;
-	width: 100%;
-}
-
-.customButton {
-	display: block;
-	max-width: 200px;
-	padding: 10px 20px;
-	background-color: #ffffff;
-	color: rgb(0, 0, 0);
-	border-radius: 5px;
-	text-align: center;
-	cursor: pointer;
-	font-size: 16px;
-	border: 2px solid #000000;
+.reviewForm input[type="file"] {
+  width: 100%; 
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: #fff;
+  margin-top: 5px;
+   
 }
 
 .reviewForm textarea {
-	resize: vertical;
-	min-height: 100px;
+  resize: vertical;
+  min-height: 100px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .reviewForm .ratingStars {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .reviewForm .ratingStars svg {
-	width: 24px;
-	height: 24px;
-	fill: #ffc107;
-	cursor: pointer;
+  width: 24px;
+  height: 24px;
+  fill: #ffc107;
+  cursor: pointer;
 }
 
 .reviewForm button {
-	background-color: var(--prime);
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 6px;
-	font-size: 16px;
-	cursor: pointer;
-	transition:
-		background-color 0.3s ease,
-		transform 0.3s ease;
+  background-color: var(--prime);
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reviewEmpty{
+  font-size: 27px;
+}
+
+.reviewReit{
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .reviewForm button:hover {
-	background-color: var(--lite);
-	transform: scale(1.05);
+  
+  background-color: var(--lite);
+  transform: scale(1.05);
 }
 
 .reviewForm button:disabled {
-	background-color: #aaa;
-	cursor: not-allowed;
+  background-color: #aaa;
+  cursor: not-allowed;
 }
+
+
+
+
 
 .photo {
 	max-width: 200px;

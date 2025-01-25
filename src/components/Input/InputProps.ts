@@ -7,4 +7,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	value?: string;
 	required?: boolean; // Добавляем свойство required
+  color?: string; 
 }

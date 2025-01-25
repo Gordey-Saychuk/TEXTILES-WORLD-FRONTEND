@@ -6,6 +6,8 @@ import StarRating from '../../components/StarRating/StarRating';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import ReviewSlider from '@/components/ReviewSlider/ReviewSlider';
+import Modals from '@/components/Modals/Modals';
 
 // Функция для загрузки отзывов
 export async function fetchReviews() { 
@@ -29,10 +31,12 @@ export default function ReviewsPage() {
 		comment: '',
 		name: '',
 		photo: null
-	});
+	}); 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isFormVisible, setIsFormVisible] = useState(false); // Состояние для показа формы
- 
+
+  const [isModalVisible, setIsModalVisible] = useState(false); 
+
+
   const accessToken = useSelector((state) => state.auth.accessToken);
 
 	useEffect(() => {
@@ -113,9 +117,7 @@ export default function ReviewsPage() {
 		}
 	};
 
-	const handleShowForm = () => {
-		setIsFormVisible((prevState) => !prevState);
-	};
+
 
 	const calculateAverageRating = () => {
 		if (reviews.length === 0) return 0;
@@ -169,8 +171,8 @@ export default function ReviewsPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: schemaMarkup }}
 			/>
-			<div className={styles.ratingSummary}>
-				<h2>Общий рейтинг:</h2>
+			<div className={styles.ratingSummary}> 
+				<h2 className={styles.ratingGen}>Общий рейтинг:</h2>
 				<StarRating rating={averageRating} isInteractive={false} />
 				<div className={styles.reviewCount}>
 					{averageRating} ({reviewCount}{' '}
@@ -178,88 +180,60 @@ export default function ReviewsPage() {
 				</div>
 			</div>
 
-			<button className={styles.toggleButton} onClick={handleShowForm}>
-				Оставить отзыв
-			</button>
-
-			{isFormVisible && (
-				<div className={styles.reviewForm}>
-					<h2>Оставить отзыв о сайте</h2>
-					<form onSubmit={handleSubmit}>
-						<label>
-							Рейтинг:
-							<StarRating
-								rating={newReview.rating}
-								onChange={(value) =>
-									setNewReview((prevReview) => ({
-										...prevReview,
-										rating: value
-									}))
-								}
-								isInteractive={true}
-							/>
-						</label>
-						<label>
-							Комментарий:
-							<textarea
-								name="comment"
-								value={newReview.comment}
-								onChange={handleInputChange}
-							/>
-						</label>
-						<label>
-							Ваше имя:
-							<input
-								type="text"
-								name="name"
-								value={newReview.name}
-								onChange={handleInputChange}
-							/>
-						</label>
-						<label className={styles.fileLabel}>
-							Фото:
-							<input
-								type="file"
-								name="photo"
-								accept="image/*"
-								onChange={handleFileChange}
-								className={styles.fileInput}
-							/>
-							<span className={styles.customButton}>Выбрать файл</span>
-						</label>
-						<button type="submit" disabled={isSubmitting}>
-							{isSubmitting ? 'Отправка...' : 'Отправить отзыв'}
-						</button>
-					</form>
-				</div>
-			)}
-
-			<h1>Отзывы</h1>
-			<ul className={styles.reviewList}>
-				{reviews.map((review) => (
-					<li key={review.reviewId}>
-						{review.productName && (
-							<p>
-								<strong>Наименование товара:</strong> {review.productName}
-							</p>
-						)}
-						<p>
-							<strong>Рейтинг:</strong>
-							<StarRating rating={review.rating} isInteractive={false} />
-						</p>
-						<p>
-							<strong>Имя:</strong> {review.reviewerName}
-						</p>
-						<p>
-							<strong>Комментарий:</strong> {review.comment}
-						</p>
-
-						{review.photo && (
-							<img className={styles.photo} src={review.photo} alt="Review" />
-						)}
-					</li>
-				))}
-			</ul>
+			<button className={styles.toggleButton} onClick={() => setIsModalVisible(true)}>
+				Оставить отзыв 
+			</button>  
+  
+      <Modals active={isModalVisible} setActives={() => setIsModalVisible(false)}>
+      <div className={styles.reviewForm}>
+        <h2>Оставить отзыв</h2> 
+        <form onSubmit={handleSubmit}> 
+          <p className={styles.reviewReit}>
+             Рейтинг:
+            </p>
+            <StarRating
+              rating={newReview.rating}
+              onChange={(value: number) => setNewReview((prevReview) => ({ ...prevReview, rating: value }))}
+              isInteractive={true}
+            />
+          
+          <p className={styles.reviewReit}>  
+            Комментарий:
+            </p> 
+            <textarea
+            className={styles.textarea} 
+              name="comment"
+              value={newReview.comment}
+              onChange={handleInputChange}
+            />
+         
+         <p className={styles.reviewReit}> 
+  Фото:
+</p>
+<label htmlFor="photoInput" className={styles.customFileButton}>
+  Выберите файл
+</label>
+<input
+  id="photoInput"
+  type="file"
+  name="photo"
+  accept="image/*"
+  onChange={handleFileChange}
+  className={styles.fileInput}
+/>
+ 
+          
+    
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Отправка...' : 'Отправить отзыв'}
+          </button>
+        </form>
+       
+      </div>  
+</Modals>
+ 
+			<h1>Отзывы</h1> 
+      <ReviewSlider reviews={reviews} /> 
 
 			{/* Toast Container */}
 			<ToastContainer />

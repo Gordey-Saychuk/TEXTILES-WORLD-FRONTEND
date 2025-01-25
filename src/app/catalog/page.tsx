@@ -7,11 +7,14 @@ import { getTovarsCatalog } from '../lib/api/getTovars';
 import SliderCatalog from '../../components/SliderCatalog/SliderCatalog';
 import Card from '../../components/Card/Card';
 import Category from '@/components/Category/Category';
-import styles from './ClientCatalog.module.css';
-import { Product } from '@/types/index'; 
+import styles from './ClientCatalog.module.css'; 
+import { Product } from '@/types/index';
 import Sort from '@/components/Sort/Sort';
 import Filters from '@/components/Filters/Filters';
-import Image from 'next/image';
+import Image from 'next/image'; 
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
+import SEOKatalog from '@/components/SEOBlock/SEOKatalog';
+import { AppliedFilters } from './hits/ClientCatalogProps';
 
 export default function Catalog() {
   const router = useRouter();
@@ -21,33 +24,32 @@ export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const category = searchParams.get('categoryId');
+    
     setCurrentPage(page);
     setCategoryId(category ? parseInt(category, 10) : undefined);
-  }, [searchParams]);
 
-  // Запрос данных
-  useEffect(() => {
+
+    
+    // Запрос данных
     async function fetchData() {
-      try {
-        const response = await getTovarsCatalog(
-          currentPage,
-          8, 
-          categoryId,
-          sortId
-        ); 
-        setData(response.results || []);
-        setTotalPages(Math.ceil(response.count / 8));
-      } catch (error) {
-        console.error('Ошибка загрузки данных:', error);
-      }
-    }
+        try {
+            const response = await getTovarsCatalog(page, 8, category ? parseInt(category, 10) : undefined, sortId, filters);
+            setData(response.results || []);
+            setTotalPages(Math.ceil(response.count / 8));
+        } catch (error) {
+            console.error('Ошибка загрузки данных:', error);
+        }
+    } 
+     
     fetchData();
-  }, [currentPage, categoryId, sortId]);
+}, [searchParams, sortId, filters]);  
+ 
 
   const handleCategoryChange = (id: number | undefined) => {
     router.push(`/catalog?page=1&categoryId=${id || ''}`);
@@ -64,10 +66,21 @@ export default function Catalog() {
     }
   };
 
-  return (
+  
+  
+
+  return ( 
     <div>
+      <div className={styles.breadcrumbs}>
+      	<Breadcrumbs
+					paths={[
+						{ name: 'Главная', href: '/' },
+						{ name: 'Каталог', href: '/catalog' }  
+					]}  
+				/>  
+        </div>
       <div className={styles.page}>
-        <SliderCatalog />
+      <SliderCatalog title='Каталог постельного белья' p='Каталог постельного белья и текстиля для дома' img='/images/FukuMiAyiR2RezCsxHRT.jpg' /> 
       </div>
       <section className={styles.sections}>
         <div className={styles.section}>
@@ -82,14 +95,16 @@ export default function Catalog() {
                 className={styles.icon}
                 onClick={() => setIsFilterModalOpen(true)} // Открытие модального окна
               />
-            </div>
-            <Sort sortId={sortId} changeSort={(i) => setSortId(i)} />
+            </div> 
+            <Sort sortId={sortId} changeSort={(i: string) => setSortId(i)} />
           </div>
           <div className={styles.catalogCard}>
-            {data.map((item) => (
-              <Card key={item.id} product={item} />
-            ))}
-          </div>
+            {data.length > 0 ? (
+              data.map((item) => <Card key={item.id} product={item} />)
+            ) : (
+              <p>Нет доступных товаров</p>
+            )}
+          </div> 
           <div className={styles.pagination}>
             <button
               className={`${styles.pagButton} ${
@@ -115,7 +130,7 @@ export default function Catalog() {
           </div>
         </div>
       </section>
-
+      <SEOKatalog />
       {/* Модальное окно фильтров */}
       <AnimatePresence>
         {isFilterModalOpen && (
@@ -132,21 +147,19 @@ export default function Catalog() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()} // Предотвращаем всплытие события
             >
               <button
                 className={styles.closeButton}
                 onClick={() => setIsFilterModalOpen(false)}
               >
                 ✕
-              </button>
-              <h2>Фильтры</h2>
-              <Filters
-  onApplyFilters={(filters) => {
-    console.log('Примененные фильтры:', filters);
-    setIsFilterModalOpen(false); // Закрыть модалку после применения
-  }}
-/>
-
+              </button>  
+              <h2>Фильтры</h2>  
+              <Filters 
+              urls="filters/"
+              onApplyFilters={setFilters} 
+              />
             </motion.div>
           </motion.div>
         )}

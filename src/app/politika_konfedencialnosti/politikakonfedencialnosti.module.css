@@ -11,10 +11,11 @@
 }
 
 .conteiners {
-	max-width: 1600px;
+	max-width: 1830px;
 	margin: auto;
-	padding: 20px;
-	padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
 }
 
 .flexColumn {

@@ -1,21 +1,21 @@
-'use client'
+'use client'; 
 
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from 'next/navigation'
-import styles from './Profile.module.css'
-import Image from 'next/image'
-import { RootState } from '@/app/GlobalRedux/store'
-import { getUser, refreshAccessToken } from '@/app/GlobalRedux/authSlice'
-import Button from '@/components/Button/Button'
-import { Link } from 'react-alice-carousel'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import styles from './Profile.module.css';
+import Image from 'next/image';
+import { RootState } from '@/app/GlobalRedux/store';
+import { getUser } from '@/app/GlobalRedux/authSlice'; 
+import Button from '@/components/Button/Button'; 
+import { Link } from 'react-alice-carousel';
 
 export default function Profile() {
 	const { isAuthenticated, user, isLoading } = useSelector(
 		(state: RootState) => state.auth
-	)
-	const router = useRouter()
-	const dispatch = useDispatch()
+	);
+	const router = useRouter();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
     if (isLoading) return; // Ждем завершения загрузки
@@ -50,5 +50,5 @@ export default function Profile() {
       </Link>
 			 
 		</div>
-	)
+	); 
 } 

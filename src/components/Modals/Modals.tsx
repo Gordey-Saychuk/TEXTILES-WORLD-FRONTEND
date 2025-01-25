@@ -30,8 +30,8 @@ export default function Modals({ active, setActives, children }: ModalPrors & { 
       <div ref={modalRef} className={styles.modals}>
         {children}
       </div>
-    </div>,
+    </div>, 
     document.body
-  );
+  ); 
     
 } 

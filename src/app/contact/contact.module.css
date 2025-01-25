@@ -1,41 +1,72 @@
-/* YourStyles.module.css */
-.h2 {
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-size: 39px;
-}
 
-.conteiner {
-	background-color: white;
-}
 
-.conteiners {
-	max-width: 1600px;
+.innerContainer {
+	max-width: 1830px;
 	margin: auto;
-	padding: 40px;
-	padding-top: 60px;
+	padding-left: 20px;
+  padding-right: 20px;
+  min-height: 100vh;
 }
 
-.flexColumn {
+.heading {
+	text-align: center;
+	font-size: 36px;
+	margin-bottom: 1.5rem;
+	color: #333;
+}
+
+.introText {
+	font-size: 18px;
+	line-height: 1.6;
+	color: #555;
+	margin-bottom: 2rem;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.contactList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem; /* замените это на ваш стиль для lg:gap-8 */
+	gap: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.list {
-	margin-top: 1.5rem; /* замените на нужное значение */
+.contactList li {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem; /* замените на ваш стиль */
+	gap: 0.5rem;
 }
 
-.fontBold {
+.label {
 	font-weight: bold;
+	font-size: 18px;
+	color: #444;
 }
 
-@media (max-width: 767px) {
-	.conteiners {
-		padding-top: 50px;
+.link {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s ease;
+}
+
+.link:hover {
+	color: #0056b3;
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.innerContainer {
+		padding: 1rem;
+	}
+	.heading {
+		font-size: 28px;
+	}
+	.introText {
+		font-size: 16px;
 	}
 }

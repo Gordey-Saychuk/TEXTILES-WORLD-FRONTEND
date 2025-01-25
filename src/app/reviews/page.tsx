@@ -4,9 +4,8 @@ import { fetchReviews } from './fetchReviews'; // Assuming you move this to a se
 
 export async function generateMetadata() {
 	const reviews = await fetchReviews();
-	const reviewCount = reviews.length; 
-	const averageRating =
-		reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount || 0;
+ 
+ 
 
 	return {
 		title: 'Отзывы - Textiles World',
