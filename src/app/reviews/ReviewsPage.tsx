@@ -31,9 +31,9 @@ export default function ReviewsPage() {
 		comment: '',
 		name: '',
 		photo: null
-	});
+	}); 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isFormVisible, setIsFormVisible] = useState(false); // Состояние для показа формы
+
   const [isModalVisible, setIsModalVisible] = useState(false); 
 
 
@@ -117,9 +117,7 @@ export default function ReviewsPage() {
 		}
 	};
 
-	const handleShowForm = () => {
-		setIsFormVisible((prevState) => !prevState);
-	};
+
 
 	const calculateAverageRating = () => {
 		if (reviews.length === 0) return 0;
@@ -233,59 +231,7 @@ export default function ReviewsPage() {
        
       </div>  
 </Modals>
-
-			{isFormVisible && (
-				<div className={styles.reviewForm}>
-					<h2>Оставить отзыв о сайте</h2>
-					<form onSubmit={handleSubmit}>
-						<label>
-							Рейтинг:
-							<StarRating
-								rating={newReview.rating}
-								onChange={(value) =>
-									setNewReview((prevReview) => ({
-										...prevReview,
-										rating: value
-									}))
-								}
-								isInteractive={true}
-							/>
-						</label>
-						<label>
-							Комментарий:
-							<textarea
-								name="comment"
-								value={newReview.comment}
-								onChange={handleInputChange}
-							/>
-						</label>
-						<label>
-							Ваше имя:
-							<input
-								type="text"
-								name="name"
-								value={newReview.name}
-								onChange={handleInputChange}
-							/> 
-						</label>
-						<label className={styles.fileLabel}>
-							Фото:
-							<input
-								type="file"
-								name="photo"
-								accept="image/*"
-								onChange={handleFileChange}
-								className={styles.fileInput}
-							/>
-							<span className={styles.customButton}>Выбрать файл</span>
-						</label>
-						<button type="submit" disabled={isSubmitting}>
-							{isSubmitting ? 'Отправка...' : 'Отправить отзыв'}
-						</button>
-					</form>
-				</div>
-			)}
-
+ 
 			<h1>Отзывы</h1> 
       <ReviewSlider reviews={reviews} /> 
 

@@ -13,8 +13,9 @@ import Sort from '@/components/Sort/Sort';
 import Filters from '@/components/Filters/Filters';
 import Image from 'next/image'; 
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
-import SEOBestsellers from '@/components/SEOBlock/SEOBestsellers';
+
 import SEOSale from '@/components/SEOBlock/SEOSale';
+import { AppliedFilters } from '../hits/ClientCatalogProps';
 
 export default function Sale() { 
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Sale() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {

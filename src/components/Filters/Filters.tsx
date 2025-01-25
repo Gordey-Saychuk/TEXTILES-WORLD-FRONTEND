@@ -1,10 +1,13 @@
 'use client';
 
+
 import React, { useState, useEffect } from 'react';
 import styles from './Filters.module.css'; 
+import { FiltersData } from '@/app/catalog/hits/ClientCatalogProps';
 
+  
 const Filters = ({ onApplyFilters, urls }: { onApplyFilters: (filters: any) => void; urls: string }) => {
-  const [filtersData, setFiltersData] = useState<any>({
+  const [filtersData, setFiltersData] = useState<FiltersData>({
     price_range: { min_price: 0, max_price: 1000 },
     colors: [],
     brands: [],  

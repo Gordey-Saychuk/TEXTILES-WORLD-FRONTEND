@@ -6,7 +6,6 @@ import StarRating from '@/components/StarRating/StarRating';
 import ReviewSlider from '../../../components/ReviewSlider/ReviewSlider'; 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Input from '@/components/Input/Input';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
 
@@ -47,8 +46,9 @@ export default function ReviewForm({ productId }: { productId: number }) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const {user} = useSelector(	(state: RootState) => state.auth); 
-    
-  const accessToken = useSelector((state) => state.auth.accessToken);  
+     
+  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
+
 
   useEffect(() => {
     async function loadReviews() {
@@ -56,9 +56,9 @@ export default function ReviewForm({ productId }: { productId: number }) {
       const sortedReviews = reviewsData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setReviews(sortedReviews); 
     }
-    console.log('asdasd', user?.name);   
+    console.log('asdasd', user?.name);    
     loadReviews();
-  }, [productId]);
+  }, [productId, user?.name]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;

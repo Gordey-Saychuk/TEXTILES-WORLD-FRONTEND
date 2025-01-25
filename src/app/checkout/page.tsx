@@ -94,7 +94,7 @@ export default function Checkout() {
 		if (isAuthenticated && token) {
 			const userData = await getUser(token);
 			userId = userData?.id;
-      console.log('asdasdasd2', userId); 
+      console.log('asdasdasd2', userId);
 		} else if (isClient) {
 			// Получаем session_id, если пользователь не авторизован
 			sessionId = localStorage.getItem('session_id');

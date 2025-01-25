@@ -1,12 +1,10 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; 
 import styles from './ReviewSlider.module.css'; 
-import StarRating from '../StarRating/StarRating';
-import { Autoplay } from 'swiper/modules'; 
+import StarRating from '../StarRating/StarRating'; 
 
 const ReviewSlider = ({ reviews }) => {
-  return (
+  return ( 
     <ul className={styles.reviewList}>
     {reviews.map((review) => (
       <li key={review.reviewId}>

@@ -24,70 +24,78 @@ export default function Page() {
     category: 1, 
     slice: 1 
   });
-  const [mainImage, setMainImage] = useState(null);
-  const [additionalImages, setAdditionalImages] = useState([]);
+  const [mainImage, setMainImage] = useState<File | null>(null); 
+  const [additionalImages, setAdditionalImages] = useState<File[]>([]);
 
-  function handleMainImageChange(e) {
-    setMainImage(e.target.files[0]);
+ 
+
+  function handleMainImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setMainImage(e.target.files ? e.target.files[0] : null);
   }
+  
 
 
-  function handleAdditionalImagesChange(e) {
-    setAdditionalImages([...e.target.files]);
+  function handleAdditionalImagesChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setAdditionalImages(e.target.files ? Array.from(e.target.files) : []);
+ 
   }
+  
 
 
 
-  function handleInputChange (e) {
-    const {name, value} = e.target;
-
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    const { name, value } = e.target;
     setForm({
-      ...form, 
+      ...form,
       [name]: value,
     });
-
   }
+   
+   
 
   function handleClick(str: string) {
     setActive(str); 
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault(); 
+  
     console.log('Отправляемые данные:', form);
-
+  
     const formData = new FormData();
-
+  
     // Добавляем данные формы
     Object.keys(form).forEach((key) => {
-      formData.append(key, form[key]);
+      const value = form[key as keyof typeof form];
+      formData.append(key, typeof value === 'number' ? value.toString() : value);
     });
-
+     
+  
     // Добавляем главное фото
     if (mainImage) {
       formData.append('image_url', mainImage);
     }
-
+  
     // Добавляем дополнительные фото
     additionalImages.forEach((file, index) => {
       if (index < 10) {
         formData.append(`image_url${index + 1}`, file);
       }
     });
-
+  
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}addproducts/`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
-
+  
       console.log('Данные успешно отправлены:', response.data);
     } catch (error) {
       console.error('Ошибка отправки данных:', error);
     }
-  } 
+  }
+  
    
   return (
     <div> 
@@ -118,12 +126,12 @@ export default function Page() {
             <SubTitle>Описание</SubTitle>   
             <div className={styles.input}>    	<Input onChange={handleInputChange} name="description" value={form.description} placeholder="Описание" /> </div>   
             <SubTitle>Цена</SubTitle>    
-            <div className={styles.input}>    	<Input onChange={handleInputChange} name="price" value={form.price} placeholder="Цена" /> </div>  
+            <div className={styles.input}>    	<Input onChange={handleInputChange} name="price" value={String(form.price)}  placeholder="Цена" /> </div>  
 
             <SubTitle>Старая цена</SubTitle>     
-            <div className={styles.input}>    	<Input onChange={handleInputChange} name="old_price" value={form.old_price} placeholder="Старая цена" /> </div>  
+            <div className={styles.input}>    	<Input onChange={handleInputChange} name="old_price" value={String(form.old_price) } placeholder="Старая цена" /> </div>  
 
-            <SubTitle>Комплект</SubTitle>      
+            <SubTitle>Комплект</SubTitle>       
             <div className={styles.input}>    	<Input onChange={handleInputChange} name="sets" value={form.sets} placeholder="Комплект" /> </div>  
  
             <SubTitle>Материал</SubTitle>      

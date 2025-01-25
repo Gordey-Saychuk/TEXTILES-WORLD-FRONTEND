@@ -12,8 +12,8 @@ import Sort from '@/components/Sort/Sort';
 import Filters from '@/components/Filters/Filters';
 import Image from 'next/image'; 
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
-import SEOPillows from '@/components/SEOBlock/SEOPillows';
 import SEOSets from '@/components/SEOBlock/SEOSets';
+import { AppliedFilters } from '../hits/ClientCatalogProps';
 
 export default function Nabor() { 
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function Nabor() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {
@@ -50,9 +50,7 @@ export default function Nabor() {
 }, [searchParams, sortId, filters]);  
   
 
-  const handleCategoryChange = (id: number | undefined) => { 
-    router.push(`/catalog/nabor-postelnogo-belya?page=1&categoryId=${id || ''}`);
-  };
+
 
   const handlePageChange = (page: number) => {
     router.push(`/catalog/nabor-postelnogo-belya?page=${page}&categoryId=${categoryId || ''}`);

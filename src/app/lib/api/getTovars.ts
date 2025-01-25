@@ -1,3 +1,4 @@
+import { AppliedFilters } from '@/app/catalog/hits/ClientCatalogProps';
 import axios from 'axios';
 
 export async function getTovars() {
@@ -13,26 +14,30 @@ export async function getTovars() {
 
 export async function getTovarsCatalog(
   page = 1,
-  pageSize = 3,
+  pageSize = 3, 
   categoryId?: number,
   sortId?: string,
-  filters: { [key: string]: any } = {}
-) {
+  filters: Partial<AppliedFilters> = {} // Частичные данные
+): Promise<any> {
   try {
-    const params: { [key: string]: any } = { page, page_size: pageSize };
+    const params: Record<string, string | number | null> = { 
+      page, 
+      page_size: pageSize 
+    };
 
     if (categoryId !== undefined) {
       params.category = categoryId;
     }
 
     if (sortId) {
-      // Здесь сортировка передается как "ordering"
       params.ordering = sortId;
     }
 
-    // Добавление фильтров в параметры
+    // Добавление фильтров
     Object.entries(filters).forEach(([key, value]) => {
-      params[key] = value;
+      if (value !== undefined && value !== null) {
+        params[key] = value;
+      }
     });
 
     const response = await axios.get(
@@ -47,32 +52,38 @@ export async function getTovarsCatalog(
   }
 }
 
+
 export async function getHitsCatalog(
   page = 1,
   pageSize = 3,
   categoryId?: number,
   sortId?: string,
-  filters: { [key: string]: any } = {}
-) {
+  filters: Partial<AppliedFilters> = {} // Используем частичные данные фильтров
+): Promise<any> {
   try {
-    const params: { [key: string]: any } = { page, page_size: pageSize };
+    const params: Record<string, string | number | null> = { 
+      page, 
+      page_size: pageSize 
+    };
 
     if (categoryId !== undefined) {
       params.category = categoryId;
     }
 
     if (sortId) {
-      // Здесь сортировка передается как "ordering"
+      // Передача сортировки как "ordering"
       params.ordering = sortId;
     }
 
-    // Добавление фильтров в параметры
+    // Добавляем фильтры в параметры
     Object.entries(filters).forEach(([key, value]) => {
-      params[key] = value;
+      if (value !== undefined && value !== null) {
+        params[key] = value;
+      }
     });
- 
+
     const response = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_BASE_URL}/products?slice=2`,  
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products?slice=2`,
       { params }
     );
 
@@ -82,35 +93,40 @@ export async function getHitsCatalog(
     throw new Error('Failed to fetch products');
   }
 }
+ 
 
 
-
-export async function getNaboryCatalog( 
+export async function getNaboryCatalog(
   page = 1,
   pageSize = 3,
   categoryId?: number,
   sortId?: string,
-  filters: { [key: string]: any } = {}
-) {
-  try { 
-    const params: { [key: string]: any } = { page, page_size: pageSize };
+  filters: Partial<AppliedFilters> = {} // Используем Partial для необязательных фильтров
+): Promise<any> {
+  try {
+    const params: Record<string, string | number | null> = { 
+      page, 
+      page_size: pageSize 
+    };
 
     if (categoryId !== undefined) {
       params.category = categoryId;
     }
 
     if (sortId) {
-      // Здесь сортировка передается как "ordering"
+      // Передача сортировки как "ordering"
       params.ordering = sortId;
     }
 
-    // Добавление фильтров в параметры
+    // Добавляем фильтры в параметры
     Object.entries(filters).forEach(([key, value]) => {
-      params[key] = value;
+      if (value !== undefined && value !== null) {
+        params[key] = value;
+      }
     });
- 
+
     const response = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_BASE_URL}/products/category/1`,  
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/category/1`,
       { params }
     );
 
@@ -120,7 +136,7 @@ export async function getNaboryCatalog(
     throw new Error('Failed to fetch products');
   }
 }
-
+ 
 
 
 export async function getPledsCatalog(
@@ -128,27 +144,32 @@ export async function getPledsCatalog(
   pageSize = 3,
   categoryId?: number,
   sortId?: string,
-  filters: { [key: string]: any } = {}
-) {
-  try { 
-    const params: { [key: string]: any } = { page, page_size: pageSize };
+  filters: Partial<AppliedFilters> = {} // Используем Partial для необязательных фильтров
+): Promise<any> {
+  try {
+    const params: Record<string, string | number | null> = { 
+      page, 
+      page_size: pageSize 
+    };
 
     if (categoryId !== undefined) {
       params.category = categoryId;
     }
 
     if (sortId) {
-      // Здесь сортировка передается как "ordering"
+      // Передача сортировки как "ordering"
       params.ordering = sortId;
     }
 
-    // Добавление фильтров в параметры
+    // Добавляем фильтры в параметры
     Object.entries(filters).forEach(([key, value]) => {
-      params[key] = value;
+      if (value !== undefined && value !== null) {
+        params[key] = value;
+      }
     });
- 
+
     const response = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_BASE_URL}/products/category/2`,  
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/category/2`,
       { params }
     );
 
@@ -158,7 +179,7 @@ export async function getPledsCatalog(
     throw new Error('Failed to fetch products');
   }
 }
-
+ 
 
 
 export async function getSaleCatalog(
@@ -166,27 +187,32 @@ export async function getSaleCatalog(
   pageSize = 3,
   categoryId?: number,
   sortId?: string,
-  filters: { [key: string]: any } = {}
-) {
+  filters: Partial<AppliedFilters> = {} // Используем Partial для необязательных фильтров
+): Promise<any> {  // Указан тип возвращаемого значения - можно уточнить, если известно, что именно возвращается
   try {
-    const params: { [key: string]: any } = { page, page_size: pageSize };
+    const params: Record<string, string | number | null> = { 
+      page, 
+      page_size: pageSize 
+    };
 
     if (categoryId !== undefined) {
       params.category = categoryId;
     }
 
     if (sortId) {
-      // Здесь сортировка передается как "ordering"
+      // Передача сортировки как "ordering"
       params.ordering = sortId;
     }
 
     // Добавление фильтров в параметры
     Object.entries(filters).forEach(([key, value]) => {
-      params[key] = value;
+      if (value !== undefined && value !== null) {
+        params[key] = value;
+      }
     });
-  
+
     const response = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_BASE_URL}/products?slice=1`,  
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/products?slice=1`,  
       { params }
     );
 
@@ -196,7 +222,7 @@ export async function getSaleCatalog(
     throw new Error('Failed to fetch products');
   }
 }
-
+ 
 
 
 

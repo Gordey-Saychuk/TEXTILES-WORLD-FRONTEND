@@ -12,8 +12,8 @@ import Sort from '@/components/Sort/Sort';
 import Filters from '@/components/Filters/Filters';
 import Image from 'next/image'; 
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
-import SEOBestsellers from '@/components/SEOBlock/SEOBestsellers';
 import SEOPillows from '@/components/SEOBlock/SEOPillows';
+import { AppliedFilters } from '../hits/ClientCatalogProps';
 
 export default function Pledy() { 
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function Pledy() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {
@@ -50,9 +50,7 @@ export default function Pledy() {
 }, [searchParams, sortId, filters]);  
   
 
-  const handleCategoryChange = (id: number | undefined) => { 
-    router.push(`/catalog/pledy?page=1&categoryId=${id || ''}`);
-  };
+
 
   const handlePageChange = (page: number) => {
     router.push(`/catalog/pledy?page=${page}&categoryId=${categoryId || ''}`);

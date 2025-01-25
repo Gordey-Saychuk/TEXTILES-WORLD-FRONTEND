@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'; 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion'; // Импорт анимации
-import { getHits, getHitsCatalog } from '../../lib/api/getTovars';
+import { getHitsCatalog } from '../../lib/api/getTovars';
 import SliderCatalog from '@/components/SliderCatalog/SliderCatalog';
 import Card from '@/components/Card/Card';
 import Category from '@/components/Category/Category';
@@ -14,6 +14,7 @@ import Filters from '@/components/Filters/Filters';
 import Image from 'next/image'; 
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import SEOBestsellers from '@/components/SEOBlock/SEOBestsellers';
+import { AppliedFilters } from './ClientCatalogProps';
 
 export default function Hits() { 
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Hits() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function Hits() {
             console.error('Ошибка загрузки данных:', error);
         }
     } 
-     
+     console.log('adsd', filters);  
     fetchData();
 }, [searchParams, sortId, filters]);  
   

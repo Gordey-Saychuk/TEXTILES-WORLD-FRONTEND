@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion'; // Импорт анимации
-import { getHits, getTovarsCatalog } from '../lib/api/getTovars';
+import { getTovarsCatalog } from '../lib/api/getTovars';
 import SliderCatalog from '../../components/SliderCatalog/SliderCatalog';
 import Card from '../../components/Card/Card';
 import Category from '@/components/Category/Category';
@@ -14,6 +14,7 @@ import Filters from '@/components/Filters/Filters';
 import Image from 'next/image'; 
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import SEOKatalog from '@/components/SEOBlock/SEOKatalog';
+import { AppliedFilters } from './hits/ClientCatalogProps';
 
 export default function Catalog() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [sortId, setSortId] = useState<string | undefined>('default');
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<AppliedFilters >({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Состояние модального окна
 
   useEffect(() => {
