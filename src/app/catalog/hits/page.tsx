@@ -31,10 +31,12 @@ export default function Hits() {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const category = searchParams.get('categoryId');
     
-    setCurrentPage(page);
+    setCurrentPage(page); 
     setCategoryId(category ? parseInt(category, 10) : undefined);
 
-
+async function createFunc(id: number) {
+  console.log("id клиента и его номер заказа ", id);
+}
     
     // Запрос данных
     async function fetchData() { 
